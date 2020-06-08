@@ -37,7 +37,7 @@ public class CatalogoInicialController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			request.setAttribute(Constantes.PAGINA, Constantes.INICIO_JUEGOS);
+			//request.setAttribute(Constantes.PAGINA, Constantes.INICIO_JUEGOS);
 			request.setAttribute(Constantes.JUEGOS, juegos);
 			request.getRequestDispatcher(Constantes.LISTADO_JUEGOS_JSP).forward(request, response);
 		}
