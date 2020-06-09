@@ -21,8 +21,23 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link ${(param.activa eq 'listado_juegos')?'active':'' }" href="inicio">Listado Juegos </a>
-      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego.jsp">Crear Juegos </a>
+      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego?id=0">Crear Juegos </a>
       <a class="nav-item nav-link" href="#">Features</a>
     </div>
   </div>
 </nav>
+
+	<!--  guardar alerta en sesion y el alert en cabecera -->
+	<c:if test="${not empty alerta }">
+		<div class="alert alert-${alerta.tipo} alert-dismissible fade show" role="alert">
+		  <strong>${alerta.mensaje}</strong> 
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+	</c:if>
+	
+	<% request.getSession().removeAttribute("alerta"); %>
+	
+	
+	

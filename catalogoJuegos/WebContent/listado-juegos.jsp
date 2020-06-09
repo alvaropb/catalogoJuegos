@@ -9,14 +9,7 @@
 <div class="container">
 	<h1>Listado de juegos</h1>
 	
-	<c:if test="${not empty alerta }">
-		<div class="alert alert-${alerta.tipo} alert-dismissible fade show" role="alert">
-		  <strong>${alerta.mensaje}</strong> 
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		  </button>
-		</div>
-	</c:if>
+
 
 	 <table class="table"> 
 		  <thead class="thead-dark">

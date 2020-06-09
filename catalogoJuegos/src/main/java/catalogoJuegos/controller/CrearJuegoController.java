@@ -26,8 +26,15 @@ public class CrearJuegoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// TODO redireccionar a crear-juego.jsp seteando id=0 para que en el metodo post podamos editar( id!=0) o crear (id=0)  
+	
+		String vista = "";
+		Juego juego=new Juego();
+		
+		vista = Constantes.CREAR_JUEGO_JSP;
+		
+		request.setAttribute("juego", juego);
+		request.getRequestDispatcher(vista).forward(request, response);
 	}
 
 	/**
@@ -76,9 +83,9 @@ public class CrearJuegoController extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			vista = "crear-juego.jsp";
+			vista = Constantes.CREAR_JUEGO_JSP;
 		} finally {
-			request.setAttribute("alerta", alerta);
+			request.getSession().setAttribute("alerta", alerta);
 			request.getRequestDispatcher(vista).forward(request, response);
 		}
 
