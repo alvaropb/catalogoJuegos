@@ -2,10 +2,16 @@ package catalogoJuegos.utilidades;
 
 public class Constantes {
 
+	// atributos
+	
 	public static final String PAGINA = "pagina";
 	public static final String INICIO_JUEGOS = "Inicio | juegos";
 	public static final String JUEGOS = "juegos";
+	
+	// paginas
+	
 	public static final String LISTADO_JUEGOS_JSP = "listado-juegos.jsp";
+	public static final String CREAR_JUEGO_JSP = "crear-juego.jsp";
 	
 	
 	
