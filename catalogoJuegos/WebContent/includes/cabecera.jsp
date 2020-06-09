@@ -13,3 +13,16 @@
 
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Catalogo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link ${(param.activa eq 'listado_juegos')?'active':'' }" href="inicio">Listado Juegos </a>
+      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego.jsp">Crear Juegos </a>
+      <a class="nav-item nav-link" href="#">Features</a>
+    </div>
+  </div>
+</nav>
