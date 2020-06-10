@@ -5,7 +5,7 @@
 </body>
 <script>
 	$(document).ready( function () {
-	    $('#mitabla').DataTable();
+	    $('.table').DataTable();
 	} );
 
 </script>
