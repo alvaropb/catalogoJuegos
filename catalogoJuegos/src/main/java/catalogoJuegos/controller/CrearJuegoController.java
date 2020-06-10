@@ -27,6 +27,7 @@ public class CrearJuegoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+
 		String vista = "";
 		Juego juego = new Juego();
 		JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
