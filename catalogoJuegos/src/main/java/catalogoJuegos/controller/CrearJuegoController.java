@@ -26,15 +26,29 @@ public class CrearJuegoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO redireccionar a crear-juego.jsp seteando id=0 para que en el metodo post podamos editar( id!=0) o crear (id=0)  
-	
+
 		String vista = "";
-		Juego juego=new Juego();
-		
-		vista = Constantes.CREAR_JUEGO_JSP;
-		
-		request.setAttribute("juego", juego);
-		request.getRequestDispatcher(vista).forward(request, response);
+		Juego juego = new Juego();
+		JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
+		// recoger id de la url
+		try {
+			String id = request.getParameter("id");
+			if (id != null && !id.isEmpty()) {
+				int idDao = Integer.parseInt(id);
+				juego.setId(idDao);
+				juego = dao.getById(juego);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			vista = Constantes.CREAR_JUEGO_JSP;
+
+			request.setAttribute("juego", juego);
+			request.getRequestDispatcher(vista).forward(request, response);
+
+		}
+
 	}
 
 	/**
@@ -46,44 +60,56 @@ public class CrearJuegoController extends HttpServlet {
 
 		String vista = "";
 		Alerta alerta = new Alerta();
-
+		Juego juego = new Juego();
 		try {
 			// recoger parametros
 			String nombre = request.getParameter("nombre");
-			Juego juego = new Juego(nombre);
+			String id = request.getParameter("id");
+			juego = new Juego(nombre);
+			
+			
+			int idR = Integer.parseInt(id);
+			juego.setId(idR);
+			juego.setId(idR);
 
 			// llamar al DAO
 			JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
 
-			// TODO comprobar que no exista ya en la BBDD
-			Juego juegoExistente = new Juego();
-			juegoExistente = dao.getByName(juego);
-
-			if (juegoExistente != null && juegoExistente.getId() != 0) {
-
-				alerta.setMensaje(Constantes.NOMBRE_YA_EXISTE + ": " + juegoExistente.getNombre());
-				alerta.setTipo(Constantes.DANGER);
-				throw new Exception(Constantes.NOMBRE_YA_EXISTE);
-
-			}
-
 			// TODO validacion lenght >3 lenght <100
-			
+
 			if (!Validaciones.longitud(nombre, Constantes.TRES, Constantes.CIEN)) {
 				alerta.setMensaje(Constantes.NOMBRE_LONGITUD_INCORRECTA);
 				alerta.setTipo(Constantes.WARNING);
 				throw new Exception(Constantes.NOMBRE_LONGITUD_INCORRECTA);
 			}
+			// si id== 0 estamos insertando
+			if ("0".equals(id) || id == null) {
+				// asumir error, si insert ok, sobreescribe alerta con valores ok
+				alerta.setMensaje(Constantes.INSERT_ERRONEO + ": " + juego.getNombre());
+				alerta.setTipo(Constantes.DANGER);
 
-			dao.insert(juego);
-			alerta.setMensaje(Constantes.INSERT_CORRECTO + ": " + juego.getNombre());
-			alerta.setTipo(Constantes.SUCCESS);
+				dao.insert(juego);
+
+				alerta.setMensaje(Constantes.INSERT_CORRECTO + ": " + juego.getNombre());
+				alerta.setTipo(Constantes.SUCCESS);
+			} else {// estamos editando
+
+				alerta.setMensaje(Constantes.UPDATE_ERRONEO + ": " + juego.getNombre());
+				alerta.setTipo(Constantes.DANGER);
+
+
+				dao.update(juego);
+				alerta.setMensaje(Constantes.UPDATE_CORRECTO + ": " + juego.getNombre());
+				alerta.setTipo(Constantes.SUCCESS);
+			}
 
 			vista = "inicio";
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			alerta.setMensaje(alerta.getMensaje() + e.getMessage());
 			vista = Constantes.CREAR_JUEGO_JSP;
+			request.setAttribute("juego", juego);
 		} finally {
 			request.getSession().setAttribute("alerta", alerta);
 			request.getRequestDispatcher(vista).forward(request, response);
