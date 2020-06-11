@@ -1,17 +1,23 @@
 package catalogoJuegos.controller;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import catalogoJuegos.modelo.Juego;
 import catalogoJuegos.modelo.JuegoDAOImpl;
 import catalogoJuegos.utilidades.Alerta;
 import catalogoJuegos.utilidades.Constantes;
-import catalogoJuegos.utilidades.Validaciones;
 
 /**
  * Servlet implementation class CrearJuegoController
@@ -19,6 +25,8 @@ import catalogoJuegos.utilidades.Validaciones;
 @WebServlet(description = "Controller para crear un registro de un nuevo juego", urlPatterns = { "/crear-juego" })
 public class CrearJuegoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	private static Validator validator = factory.getValidator();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -62,27 +70,21 @@ public class CrearJuegoController extends HttpServlet {
 		String vista = "";
 		Alerta alerta = new Alerta();
 		Juego juego = new Juego();
+		
 		try {
 			// recoger parametros
 			String nombre = request.getParameter("nombre");
 			String id = request.getParameter("id");
 			juego = new Juego(nombre);
 			
-			
-			int idR = Integer.parseInt(id);
-			juego.setId(idR);
-			juego.setId(idR);
 
 			// llamar al DAO
 			JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
+			
+			//validar pojo
+			validaciones(alerta,juego);
 
-			// TODO validacion lenght >3 lenght <100
-
-			if (!Validaciones.longitud(nombre, Constantes.TRES, Constantes.CIEN)) {
-				alerta.setMensaje(Constantes.NOMBRE_LONGITUD_INCORRECTA);
-				alerta.setTipo(Constantes.WARNING);
-				throw new Exception(Constantes.NOMBRE_LONGITUD_INCORRECTA);
-			}
+			
 			// si id== 0 estamos insertando
 			if ("0".equals(id) || id == null) {
 				// asumir error, si insert ok, sobreescribe alerta con valores ok
@@ -97,18 +99,22 @@ public class CrearJuegoController extends HttpServlet {
 
 				alerta.setMensaje(Constantes.UPDATE_ERRONEO + ": " + juego.getNombre());
 				alerta.setTipo(Constantes.DANGER);
-
+				
+				int idR = Integer.parseInt(id);
+				juego.setId(idR);
 
 				dao.update(juego);
+				
 				alerta.setMensaje(Constantes.UPDATE_CORRECTO + ": " + juego.getNombre());
 				alerta.setTipo(Constantes.SUCCESS);
-			}
-
+			}//fin update
+			
+			// si update o insert ok, vamos al listado
 			vista = "inicio";
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			alerta.setMensaje(alerta.getMensaje() + e.getMessage());
+	
 			vista = Constantes.CREAR_JUEGO_JSP;
 			request.setAttribute("juego", juego);
 		} finally {
@@ -116,6 +122,23 @@ public class CrearJuegoController extends HttpServlet {
 			request.getRequestDispatcher(vista).forward(request, response);
 		}
 
+	}
+	
+	protected void validaciones(Alerta alerta,Juego juego) throws Exception {
+		factory = Validation.buildDefaultValidatorFactory();
+		validator = factory.getValidator();
+		Set<ConstraintViolation<Juego>> violations = validator.validate(juego);
+		String errores="";
+		for (Iterator iterator = violations.iterator(); iterator.hasNext();) {
+			ConstraintViolation<Juego> constraintViolation = (ConstraintViolation<Juego>) iterator.next();
+			
+			errores +="<p> <b>"+constraintViolation.getPropertyPath()+"</b>"+constraintViolation.getMessage() +"</p>";
+		}
+		if (!violations.isEmpty()) {
+			alerta.setMensaje(errores);
+			alerta.setTipo(Constantes.DANGER);
+			throw new Exception("");
+		}
 	}
 
 }
