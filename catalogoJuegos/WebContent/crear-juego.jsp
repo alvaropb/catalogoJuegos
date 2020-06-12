@@ -21,6 +21,10 @@
 			    <label for="nombre">Nombre</label>
 			    <input type="text" class="form-control" id="nombre" name="nombre" value="${juego.nombre }" placeholder="Intro nombre entre 3 y 100 caracteres">
 		  	</div>
+			<div class="form-group">
+			    <label for="precio">Precio</label>
+			    <input type="text" class="form-control" id="precio" aria-describedby="precio" name="precio" placeholder="0.0" value="${juego.precio }">
+		 	</div>
 		  
 		  <button type="submit" class="btn btn-primary">Submit</button>
 	</form>

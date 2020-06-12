@@ -1,6 +1,7 @@
 package catalogoJuegos.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -34,7 +35,6 @@ public class CrearJuegoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 
 		String vista = "";
 		Juego juego = new Juego();
@@ -75,8 +75,14 @@ public class CrearJuegoController extends HttpServlet {
 			// recoger parametros
 			String nombre = request.getParameter("nombre");
 			String id = request.getParameter("id");
-			juego = new Juego(nombre);
+			String precio=request.getParameter("precio");
 			
+			
+			juego = new Juego(nombre);
+			// TODO investigar si se pierde datos por conversion de Double a BigDecimal
+			if ( precio!=null && !precio.isEmpty() ) {
+				juego.setPrecio(BigDecimal.valueOf(Double.valueOf(precio)));
+			}
 
 			// llamar al DAO
 			JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
@@ -123,16 +129,17 @@ public class CrearJuegoController extends HttpServlet {
 		}
 
 	}
-	
-	protected void validaciones(Alerta alerta,Juego juego) throws Exception {
+
+	protected void validaciones(Alerta alerta, Juego juego) throws Exception {
 		factory = Validation.buildDefaultValidatorFactory();
 		validator = factory.getValidator();
 		Set<ConstraintViolation<Juego>> violations = validator.validate(juego);
-		String errores="";
+		String errores = "";
 		for (Iterator iterator = violations.iterator(); iterator.hasNext();) {
 			ConstraintViolation<Juego> constraintViolation = (ConstraintViolation<Juego>) iterator.next();
-			
-			errores +="<p> <b>"+constraintViolation.getPropertyPath()+"</b>"+constraintViolation.getMessage() +"</p>";
+
+			errores += "<p> <b>" + constraintViolation.getPropertyPath() + "</b>" + constraintViolation.getMessage()
+					+ "</p>";
 		}
 		if (!violations.isEmpty()) {
 			alerta.setMensaje(errores);

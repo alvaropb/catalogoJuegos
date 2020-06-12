@@ -1,5 +1,8 @@
 package catalogoJuegos.modelo;
 
+import java.math.BigDecimal;
+
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,11 +15,15 @@ public class Juego {
 	
 	private int id;
 	
+	@DecimalMin(value = "0.1",message ="precio debe ser mayor que 0" )
+	private BigDecimal precio;
+	
 	
 	public Juego() {
 		super();
 		this.nombre = "";
 		this.id = 0;
+		this.precio=BigDecimal.ZERO;
 	}
 	
 	
@@ -42,14 +49,18 @@ public class Juego {
 		this.id = id;
 	}
 
+	public BigDecimal getPrecio() {
+		return precio;
+	}
 
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
+	}
 
 	@Override
 	public String toString() {
-		return "Juego [nombre=" + nombre + ", id=" + id + "]";
+		return "Juego [nombre=" + nombre + ", id=" + id + ", precio=" + precio + "]";
 	}
-	
-	
 	
 	
 

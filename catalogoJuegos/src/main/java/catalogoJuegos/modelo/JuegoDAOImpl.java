@@ -8,15 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class JuegoDAOImpl implements JuegoDAO {
-	private final static String GET_ALL = "SELECT id, nombre FROM juegos ORDER BY id DESC";
+	private final static String GET_ALL = "SELECT id, nombre,precio FROM juegos ORDER BY id DESC";
 
-	private static final String INSERT = "INSERT INTO juegos (nombre) VALUES(?)";
+	private static final String INSERT = "INSERT INTO juegos (nombre,precio) VALUES(?,?)";
 
-	private static final String GET_BY_NAME = "SELECT nombre,id FROM juegos WHERE nombre=?";
+	private static final String GET_BY_NAME = "SELECT nombre,id, precio FROM juegos WHERE nombre=?";
 
-	private static final String GET_BY_ID = "SELECT nombre,id FROM juegos WHERE id=?";
+	private static final String GET_BY_ID = "SELECT nombre,id, precio FROM juegos WHERE id=?";
 
-	private static final String UPDATE = "UPDATE juegos SET nombre=? WHERE id=?";
+	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=? WHERE id=?";
 
 	private static final String DELETE = "DELETE FROM juegos WHERE id=?";
 
@@ -69,7 +69,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 			// setear el nombre recogido de la vista
 
 			pst.setString(1, juego.getNombre());
-
+			pst.setBigDecimal(2, juego.getPrecio());
 			pst.execute();
 
 			try (ResultSet rs = pst.getGeneratedKeys();) {
@@ -149,7 +149,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 				PreparedStatement pst=conn.prepareStatement(UPDATE);
 				){
 			pst.setString(1, t.getNombre());
-			pst.setInt(2, t.getId());
+			pst.setBigDecimal(2, t.getPrecio());
+			pst.setInt(3, t.getId());
 			
 			pst.execute();
 			
@@ -188,6 +189,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 	private Juego mapper(ResultSet rs) throws SQLException {
 		Juego juego = new Juego(rs.getString("nombre"));
 		juego.setId(rs.getInt("id"));
+		juego.setPrecio(rs.getBigDecimal("precio"));
 
 		return juego;
 	}
