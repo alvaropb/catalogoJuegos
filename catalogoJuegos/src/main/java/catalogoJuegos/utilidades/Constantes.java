@@ -13,6 +13,7 @@ public class Constantes {
 	public static final String CREAR_JUEGO_JSP = "crear-juego.jsp";
 	public static final String INICIO = "inicio";
 	public static final String LISTADO_JUEGOS_JSP = "listado-juegos.jsp";
+	public static final String LOGIN = "login.jsp";
 
 	// mensajes alerta
 
@@ -21,6 +22,9 @@ public class Constantes {
 	public static final String DELETE_ERRONEO = "Delete erroneo";
 	public static final String INSERT_CORRECTO = "Insercion correcta";
 	public static final String INSERT_ERRONEO = "Insercion erronea";
+	public static final String LOGIN_CORRECTO = "Login correcto";
+	public static final String LOGIN_ERRONEO = "Login erroneo";
+	public static final String LOGOUT_CORRECTO = "Logout correcto";
 	public static final String NOMBRE_LONGITUD_INCORRECTA = "La longitud es incorrecta";
 	public static final String NOMBRE_YA_EXISTE = "El nombre ya existe";
 	public static final String SUCCESS = "success";
@@ -32,5 +36,7 @@ public class Constantes {
 
 	public static final int TRES = 3;
 	public static final int CIEN = 100;
+	
+	
 
 }
