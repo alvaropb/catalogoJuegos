@@ -130,9 +130,7 @@ public class CrearJuegoController extends HttpServlet {
 
 	}
 
-	protected void validaciones(Alerta alerta, Juego juego) throws Exception {
-		factory = Validation.buildDefaultValidatorFactory();
-		validator = factory.getValidator();
+	private void validaciones(Alerta alerta, Juego juego) throws Exception {
 		Set<ConstraintViolation<Juego>> violations = validator.validate(juego);
 		String errores = "";
 		for (Iterator iterator = violations.iterator(); iterator.hasNext();) {
@@ -144,7 +142,7 @@ public class CrearJuegoController extends HttpServlet {
 		if (!violations.isEmpty()) {
 			alerta.setMensaje(errores);
 			alerta.setTipo(Constantes.DANGER);
-			throw new Exception("");
+			throw new Exception();
 		}
 	}
 
