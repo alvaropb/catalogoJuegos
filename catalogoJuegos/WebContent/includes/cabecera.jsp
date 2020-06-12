@@ -34,9 +34,21 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link ${(param.activa eq 'listado_juegos')?'active':'' }" href="inicio">Listado Juegos </a>
       <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego?id=0">Crear Juegos </a>
-      <a class="nav-item nav-link" href="#">Features</a>
-    </div>
+     <c:if test="${empty usuario }">
+      	<a class="nav-item nav-link ${(param.activa eq 'login')?'active':'' }" href="login">Login </a>
+     </c:if>
+     </div>
   </div>
+    
+  <c:if test="${not empty usuario }">
+	  <div>
+	  	<span>${usuario.nombre}</span>
+	  </div>
+	  <div>
+	  	<a class="nav-item nav-link  ${(param.activa eq 'login')?'active':'' }" href="logout">Logout </a>	
+	  </div>
+  </c:if>
+  
 </nav>
 
 	<!--  guardar alerta en sesion y el alert en cabecera -->
