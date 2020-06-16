@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class UsuarioDAOImpl implements UsuarioDAO {
 	
 	private final static String USUARIO_EXISTE = "SELECT nombre, id ,pass,imagen FROM usuarios WHERE nombre=? AND pass=?";
-	
+	//TODO limitar consultas SELECT  con LIMIT 500
 	private static UsuarioDAOImpl INSTANCE = null;
 
 	private synchronized static void createInstance() {
