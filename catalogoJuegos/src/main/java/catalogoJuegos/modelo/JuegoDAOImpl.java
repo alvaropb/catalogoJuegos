@@ -8,11 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class JuegoDAOImpl implements JuegoDAO {
-	private final static String GET_ALL = "SELECT id, nombre,precio FROM juegos ORDER BY id DESC";
+	private final static String GET_ALL = "SELECT id, nombre,precio FROM juegos ORDER BY id DESC LIMIT 500";
 
 	private static final String INSERT = "INSERT INTO juegos (nombre,precio) VALUES(?,?)";
 
-	private static final String GET_BY_NAME = "SELECT nombre,id, precio FROM juegos WHERE nombre=?";
+	private static final String GET_BY_NAME = "SELECT nombre,id, precio FROM juegos WHERE nombre=? LIMIT 500";
 
 	private static final String GET_BY_ID = "SELECT nombre,id, precio FROM juegos WHERE id=?";
 
