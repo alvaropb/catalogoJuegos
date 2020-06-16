@@ -20,6 +20,9 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" >
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" ></script>
 
+<!-- md5  -->
+<script src="js/md5.min.js"></script>
+
 <!-- custom js -->
 <script type="text/javascript" src="js/custom.js"></script>
 

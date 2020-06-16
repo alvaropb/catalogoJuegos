@@ -21,8 +21,7 @@
 				    <label for="pass">Password</label>
 				    <input type="password" class="form-control" id="pass" aria-describedby="pass" name="pass" value="${usuario.pass }">
 			 	</div>		
-		
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-primary" onclick="convertir()">Submit</button>
 		
 		
 		</form>
