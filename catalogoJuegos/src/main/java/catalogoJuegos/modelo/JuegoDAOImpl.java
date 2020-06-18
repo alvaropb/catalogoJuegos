@@ -8,15 +8,30 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class JuegoDAOImpl implements JuegoDAO {
-	private final static String GET_ALL = "SELECT id, nombre,precio FROM juegos ORDER BY id DESC LIMIT 500";
+	private final static String GET_ALL = "SELECT " + 
+			"j.nombre as 'titulo' ," + 
+			"j.id as 'id_juego'," + 
+			"j.precio as 'precio'," + 
+			"c.id_categoria," + 
+			"c.nombre as 'nombre_categoria'" + 
+			"FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + 
+			"" + 
+			"ORDER BY id DESC LIMIT 500;";
 
-	private static final String INSERT = "INSERT INTO juegos (nombre,precio) VALUES(?,?)";
+	private static final String INSERT = "INSERT INTO juegos (nombre,precio,id_categoria) VALUES(?,?,?)";
 
 	private static final String GET_BY_NAME = "SELECT nombre,id, precio FROM juegos WHERE nombre=? LIMIT 500";
 
-	private static final String GET_BY_ID = "SELECT nombre,id, precio FROM juegos WHERE id=?";
+	private static final String GET_BY_ID = "SELECT " + 
+			"j.nombre as 'titulo' ," + 
+			"j.id as 'id_juego'," + 
+			"j.precio as 'precio'," + 
+			"c.id_categoria," + 
+			"c.nombre as 'nombre_categoria'" + 
+			"FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + 
+			"WHERE j.id= ?;";
 
-	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=? WHERE id=?";
+	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=?, id_categoria=? WHERE id=?";
 
 	private static final String DELETE = "DELETE FROM juegos WHERE id=?";
 
@@ -70,6 +85,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 
 			pst.setString(1, juego.getNombre());
 			pst.setBigDecimal(2, juego.getPrecio());
+			pst.setInt(3, juego.getCategoria().getId());
 			pst.execute();
 
 			try (ResultSet rs = pst.getGeneratedKeys();) {
@@ -150,7 +166,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 				){
 			pst.setString(1, t.getNombre());
 			pst.setBigDecimal(2, t.getPrecio());
-			pst.setInt(3, t.getId());
+			pst.setInt(3, t.getCategoria().getId());
+			pst.setInt(4, t.getId());
 			
 			pst.execute();
 			
@@ -187,9 +204,13 @@ public class JuegoDAOImpl implements JuegoDAO {
 	
 	
 	private Juego mapper(ResultSet rs) throws SQLException {
-		Juego juego = new Juego(rs.getString("nombre"));
-		juego.setId(rs.getInt("id"));
+		Juego juego = new Juego(rs.getString("titulo"));
+		juego.setId(rs.getInt("id_juego"));
 		juego.setPrecio(rs.getBigDecimal("precio"));
+		Categoria c=new Categoria(rs.getString("nombre_categoria"));
+		c.setId(rs.getInt("id_categoria"));
+		juego.setCategoria(c);
+		
 
 		return juego;
 	}

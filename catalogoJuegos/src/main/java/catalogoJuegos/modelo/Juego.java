@@ -19,11 +19,14 @@ public class Juego {
 	private BigDecimal precio;
 	
 	
+	private Categoria categoria;
+	
 	public Juego() {
 		super();
 		this.nombre = "";
 		this.id = 0;
 		this.precio=BigDecimal.ZERO;
+		this.categoria=new Categoria();
 	}
 	
 	
@@ -57,11 +60,24 @@ public class Juego {
 		this.precio = precio;
 	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Juego [nombre=" + nombre + ", id=" + id + ", precio=" + precio + "]";
+		return "Juego [nombre=" + nombre + ", id=" + id + ", precio=" + precio + ", categoria=" + categoria + "]";
 	}
-	
-	
+
+
+
 
 }

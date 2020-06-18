@@ -20,37 +20,41 @@ import catalogoJuegos.utilidades.Constantes;
 @WebServlet(description = "catalogo inicial", urlPatterns = { "/inicio" })
 public class CatalogoInicialController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doProccess(request, response);
 
-
-		ArrayList<Juego>juegos=new ArrayList();
-		JuegoDAOImpl dao=JuegoDAOImpl.getInstance();
-		try {
-			juegos=dao.getAll();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			//request.setAttribute(Constantes.PAGINA, Constantes.INICIO_JUEGOS);
-			request.setAttribute(Constantes.JUEGOS, juegos);
-			request.getRequestDispatcher(Constantes.LISTADO_JUEGOS_JSP).forward(request, response);
-		}
-		
-		
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		doProccess(request, response);
+	}
+
+	protected void doProccess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ArrayList<Juego> juegos = new ArrayList();
+		JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
+		try {
+			juegos = dao.getAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// request.setAttribute(Constantes.PAGINA, Constantes.INICIO_JUEGOS);
+			request.setAttribute(Constantes.JUEGOS, juegos);
+			request.getRequestDispatcher(Constantes.LISTADO_JUEGOS_JSP).forward(request, response);
+		}
 	}
 
 }

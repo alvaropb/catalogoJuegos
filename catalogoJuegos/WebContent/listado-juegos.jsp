@@ -17,6 +17,8 @@
 		      <th>Id</th>
 		      <th>Nombre</th>
 		      <th>Precio</th>
+		      <th>ID categoria</th>
+		      <th>Categoria</th>
 		      <th>Operaciones</th>
 		    </tr>
 		  </thead>
@@ -26,6 +28,8 @@
 			    		<td>${juego.id}</td>
 			    		<td>${juego.nombre}</td>
 			    		<td>${juego.precio}</td>
+			    		<td>${juego.categoria.id}</td>
+			    		<td>${juego.categoria.nombre}</td>
 			    		<td><a href="crear-juego?id=${juego.id}"><i class="fas fa-edit mx-3"></i></a>
 			    			<a  onclick="confirmar('${juego.nombre}')"
 			    			 href="eliminar-juego?id=${juego.id}"><i class="fas fa-trash-alt"></i></a>

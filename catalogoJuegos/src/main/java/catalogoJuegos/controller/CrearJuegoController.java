@@ -52,7 +52,7 @@ public class CrearJuegoController extends HttpServlet {
 			e.printStackTrace();
 		} finally {
 			vista = Constantes.CREAR_JUEGO_JSP;
-
+			// TODO cargar en un combo los valores de la tabla categorias
 			request.setAttribute("juego", juego);
 			request.getRequestDispatcher(vista).forward(request, response);
 
@@ -76,14 +76,17 @@ public class CrearJuegoController extends HttpServlet {
 			String nombre = request.getParameter("nombre");
 			String id = request.getParameter("id");
 			String precio=request.getParameter("precio");
+			int idCategoria=Integer.valueOf(request.getParameter("idCategoria")) ;
+			
 			
 			
 			juego = new Juego(nombre);
+			juego.getCategoria().setId(idCategoria);
 			// TODO investigar si se pierde datos por conversion de Double a BigDecimal
 			if ( precio!=null && !precio.isEmpty() ) {
 				juego.setPrecio(BigDecimal.valueOf(Double.valueOf(precio)));
 			}
-
+			
 			// llamar al DAO
 			JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
 			

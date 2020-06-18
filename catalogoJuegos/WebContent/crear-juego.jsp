@@ -25,6 +25,10 @@
 			    <label for="precio">Precio</label>
 			    <input type="text" class="form-control" id="precio" aria-describedby="precio" name="precio" placeholder="0.0" value="${juego.precio }">
 		 	</div>
+		 	<div class="form-group">
+			    <label for="idCategoria">Categoria</label>
+			    <input type="number" class="form-control" id="idCategoria" aria-describedby="categoria" name="idCategoria" placeholder="" value="${juego.categoria.id }">
+		 	</div>
 		  
 		  <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
