@@ -20,6 +20,7 @@ public class Juego {
 	
 	
 	private Categoria categoria;
+	private String imagen;
 	
 	public Juego() {
 		super();
@@ -27,6 +28,7 @@ public class Juego {
 		this.id = 0;
 		this.precio=BigDecimal.ZERO;
 		this.categoria=new Categoria();
+		this.imagen="";
 	}
 	
 	
@@ -72,10 +74,26 @@ public class Juego {
 
 
 
+	public String getImagen() {
+		return imagen;
+	}
+
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Juego [nombre=" + nombre + ", id=" + id + ", precio=" + precio + ", categoria=" + categoria + "]";
+		return "Juego [nombre=" + nombre + ", id=" + id + ", precio=" + precio + ", categoria=" + categoria
+				+ ", imagen=" + imagen + "]";
 	}
+
+
+
 
 
 
