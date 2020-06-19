@@ -2,6 +2,7 @@ package catalogoJuegos.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -15,6 +16,9 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import catalogoJuegos.modelo.Categoria;
+import catalogoJuegos.modelo.CategoriaDAO;
+import catalogoJuegos.modelo.CategoriaDAOImpl;
 import catalogoJuegos.modelo.Juego;
 import catalogoJuegos.modelo.JuegoDAOImpl;
 import catalogoJuegos.utilidades.Alerta;
@@ -28,7 +32,8 @@ public class CrearJuegoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	private static Validator validator = factory.getValidator();
-
+	private static JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
+	private static CategoriaDAO categoriaDao=CategoriaDAOImpl.getInstance();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -38,9 +43,12 @@ public class CrearJuegoController extends HttpServlet {
 
 		String vista = "";
 		Juego juego = new Juego();
-		JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
+		ArrayList<Categoria>categorias=new ArrayList<Categoria>();
+		
+
 		// recoger id de la url
 		try {
+			categorias=categoriaDao.getAll();
 			String id = request.getParameter("id");
 			if (id != null && !id.isEmpty()) {
 				int idDao = Integer.parseInt(id);
@@ -54,6 +62,7 @@ public class CrearJuegoController extends HttpServlet {
 			vista = Constantes.CREAR_JUEGO_JSP;
 			// TODO cargar en un combo los valores de la tabla categorias
 			request.setAttribute("juego", juego);
+			request.setAttribute("categorias", categorias);
 			request.getRequestDispatcher(vista).forward(request, response);
 
 		}
@@ -70,17 +79,19 @@ public class CrearJuegoController extends HttpServlet {
 		String vista = "";
 		Alerta alerta = new Alerta();
 		Juego juego = new Juego();
-		
+		ArrayList<Categoria>categorias=new ArrayList<Categoria>();
 		try {
 			// recoger parametros
 			String nombre = request.getParameter("nombre");
 			String id = request.getParameter("id");
 			String precio=request.getParameter("precio");
+			String imagen = request.getParameter("imagen");
 			int idCategoria=Integer.valueOf(request.getParameter("idCategoria")) ;
 			
 			
 			
 			juego = new Juego(nombre);
+			juego.setImagen(imagen);
 			juego.getCategoria().setId(idCategoria);
 			// TODO investigar si se pierde datos por conversion de Double a BigDecimal
 			if ( precio!=null && !precio.isEmpty() ) {
@@ -88,10 +99,10 @@ public class CrearJuegoController extends HttpServlet {
 			}
 			
 			// llamar al DAO
-			JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
+			dao = JuegoDAOImpl.getInstance();
 			
-			//validar pojo
-			validaciones(alerta,juego);
+			categorias=categoriaDao.getAll();
+
 
 			
 			// si id== 0 estamos insertando
@@ -99,6 +110,8 @@ public class CrearJuegoController extends HttpServlet {
 				// asumir error, si insert ok, sobreescribe alerta con valores ok
 				alerta.setMensaje(Constantes.INSERT_ERRONEO + ": " + juego.getNombre());
 				alerta.setTipo(Constantes.DANGER);
+				//validar pojo
+				validaciones(alerta,juego);
 
 				dao.insert(juego);
 
@@ -111,6 +124,8 @@ public class CrearJuegoController extends HttpServlet {
 				
 				int idR = Integer.parseInt(id);
 				juego.setId(idR);
+				//validar pojo
+				validaciones(alerta,juego);
 
 				dao.update(juego);
 				
@@ -126,6 +141,7 @@ public class CrearJuegoController extends HttpServlet {
 	
 			vista = Constantes.CREAR_JUEGO_JSP;
 			request.setAttribute("juego", juego);
+			request.setAttribute("categorias", categorias);
 		} finally {
 			request.getSession().setAttribute("alerta", alerta);
 			request.getRequestDispatcher(vista).forward(request, response);

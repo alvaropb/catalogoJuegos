@@ -13,12 +13,13 @@ public class JuegoDAOImpl implements JuegoDAO {
 			"j.id as 'id_juego'," + 
 			"j.precio as 'precio'," + 
 			"c.id_categoria," + 
-			"c.nombre as 'nombre_categoria'" + 
+			"c.nombre as 'nombre_categoria'," + 
+			"j.imagen " +
 			"FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + 
 			"" + 
 			"ORDER BY id DESC LIMIT 500;";
 
-	private static final String INSERT = "INSERT INTO juegos (nombre,precio,id_categoria) VALUES(?,?,?)";
+	private static final String INSERT = "INSERT INTO juegos (nombre,precio,id_categoria,imagen) VALUES(?,?,?,?)";
 
 	private static final String GET_BY_NAME = "SELECT nombre,id, precio FROM juegos WHERE nombre=? LIMIT 500";
 
@@ -27,11 +28,12 @@ public class JuegoDAOImpl implements JuegoDAO {
 			"j.id as 'id_juego'," + 
 			"j.precio as 'precio'," + 
 			"c.id_categoria," + 
-			"c.nombre as 'nombre_categoria'" + 
+			"c.nombre as 'nombre_categoria'," +
+			"j.imagen " +
 			"FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + 
 			"WHERE j.id= ?;";
 
-	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=?, id_categoria=? WHERE id=?";
+	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=?, id_categoria=?, imagen=? WHERE id=?";
 
 	private static final String DELETE = "DELETE FROM juegos WHERE id=?";
 
@@ -86,6 +88,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 			pst.setString(1, juego.getNombre());
 			pst.setBigDecimal(2, juego.getPrecio());
 			pst.setInt(3, juego.getCategoria().getId());
+			pst.setString(4, juego.getImagen());
 			pst.execute();
 
 			try (ResultSet rs = pst.getGeneratedKeys();) {
@@ -167,7 +170,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 			pst.setString(1, t.getNombre());
 			pst.setBigDecimal(2, t.getPrecio());
 			pst.setInt(3, t.getCategoria().getId());
-			pst.setInt(4, t.getId());
+			pst.setString(4, t.getImagen());
+			pst.setInt(5, t.getId());
 			
 			pst.execute();
 			
@@ -207,6 +211,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 		Juego juego = new Juego(rs.getString("titulo"));
 		juego.setId(rs.getInt("id_juego"));
 		juego.setPrecio(rs.getBigDecimal("precio"));
+		juego.setImagen(rs.getString("imagen"));
 		Categoria c=new Categoria(rs.getString("nombre_categoria"));
 		c.setId(rs.getInt("id_categoria"));
 		juego.setCategoria(c);
