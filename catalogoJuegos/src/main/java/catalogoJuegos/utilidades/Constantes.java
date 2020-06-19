@@ -12,6 +12,7 @@ public class Constantes {
 
 	public static final String CREAR_JUEGO_JSP = "crear-juego.jsp";
 	public static final String INICIO = "inicio";
+	public static final String LISTADO_JUEGOS_INICIAL_JSP = "listado-juegos-inicial.jsp";
 	public static final String LISTADO_JUEGOS_JSP = "listado-juegos.jsp";
 	public static final String LOGIN = "login.jsp";
 
