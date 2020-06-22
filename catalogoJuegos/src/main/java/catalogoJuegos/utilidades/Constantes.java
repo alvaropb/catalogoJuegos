@@ -4,15 +4,18 @@ public class Constantes {
 
 	// atributos
 
-	public static final String PAGINA = "pagina";
+	public static final String ALERTA = "alerta";
+	public static final String CATEGORIAS = "categorias";
+	public static final String ID_CATEGORIA = "idCategoria";
 	public static final String INICIO_JUEGOS = "Inicio | juegos";
 	public static final String JUEGOS = "juegos";
+	public static final String PAGINA = "pagina";
 
 	// paginas
 
 	public static final String CREAR_JUEGO_JSP = "crear-juego.jsp";
 	public static final String INICIO = "inicio";
-	public static final String LISTADO_JUEGOS_INICIAL_JSP = "listado-juegos-inicial.jsp";
+	public static final String LISTADO_JUEGOS_INICIAL_JSP = "cards-inicio.jsp";
 	public static final String LISTADO_JUEGOS_JSP = "listado-juegos.jsp";
 	public static final String LOGIN = "login.jsp";
 
@@ -21,6 +24,7 @@ public class Constantes {
 	public static final String DANGER = "danger";
 	public static final String DELETE_CORRECTO = "Delete correcto";
 	public static final String DELETE_ERRONEO = "Delete erroneo";
+	public static final String ERROR_INESPERADO = "Ocurrio un error inesperado";
 	public static final String INSERT_CORRECTO = "Insercion correcta";
 	public static final String INSERT_ERRONEO = "Insercion erronea";
 	public static final String LOGIN_CORRECTO = "Login correcto";
@@ -36,7 +40,10 @@ public class Constantes {
 	// constantes numericas
 
 	public static final int TRES = 3;
+	public static final int DIEZ = 10;
 	public static final int CIEN = 100;
+	
+	
 	
 	
 
