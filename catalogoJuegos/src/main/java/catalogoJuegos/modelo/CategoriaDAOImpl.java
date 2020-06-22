@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class CategoriaDAOImpl implements CategoriaDAO {
 
 	private final static String GET_ALL = "SELECT id_categoria, nombre FROM categorias ORDER BY nombre DESC LIMIT 500;";
+	private final static String GET_BY_ID = "SELECT id_categoria, nombre FROM categorias WHERE id_categoria=? ";
 
 	private static CategoriaDAOImpl INSTANCE = null;
 
@@ -33,21 +34,22 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 	@Override
 	public ArrayList<Categoria> getAll() throws Exception {
 		ArrayList<Categoria> categorias = new ArrayList<Categoria>();
-		try (Connection conn=ConnectionManager.getConnection();
-			PreparedStatement pst=conn.prepareStatement(GET_ALL);				
-				){
-			try (ResultSet rs=pst.executeQuery();){
-				
+		try (Connection conn = ConnectionManager.getConnection();
+				PreparedStatement pst = conn.prepareStatement(GET_ALL);) {
+			try (ResultSet rs = pst.executeQuery();) {
+
 				while (rs.next()) {
 					categorias.add(mapper(rs));
 				}
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw e;
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 		return categorias;
@@ -67,8 +69,26 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	@Override
 	public Categoria getById(Categoria t) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Categoria cReturn = new Categoria();
+
+		try (Connection conn = ConnectionManager.getConnection();
+				PreparedStatement pst = conn.prepareStatement(GET_BY_ID)) {
+				pst.setInt(1, t.getId());
+			try (ResultSet rs=pst.executeQuery()){
+				if (rs.next()) {
+					cReturn=mapper(rs);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw e;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+
+		return cReturn;
 	}
 
 	@Override
