@@ -6,6 +6,7 @@ public class Constantes {
 
 	public static final String ALERTA = "alerta";
 	public static final String CATEGORIAS = "categorias";
+	public static final String CATEGORIA_NOMBRE = "categoriaNombre";
 	public static final String ID_CATEGORIA = "idCategoria";
 	public static final String INICIO_JUEGOS = "Inicio | juegos";
 	public static final String JUEGOS = "juegos";
