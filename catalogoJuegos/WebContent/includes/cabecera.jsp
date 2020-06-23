@@ -40,18 +40,18 @@
      <c:if test="${empty usuario }">
       	<a class="nav-item nav-link ${(param.activa eq 'login')?'active':'' }" href="login">Login </a>
      </c:if>
-     <c:if test="${not empty categorias }">
+     
 		<div class="dropdown">
 			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    Categorias
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				    <c:forEach items="${categorias }" var="categoria">
-					    <a class="dropdown-item" href="inicio?idCategoria=${categoria.id }">${categoria.nombre }</a>
+					    <a class="dropdown-item" href="inicio?idCategoria=${categoria.id }&categoriaNombre=${categoria.nombre }">${categoria.nombre }</a>
 				    </c:forEach>
 			  </div>
 		</div>
-     </c:if>
+    
      </div>
   </div>
     
