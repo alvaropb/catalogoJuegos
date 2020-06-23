@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public interface ICrudable<T> {
 	
 	/**
-	 * Metodo que devuelve una coleccion de <T>
+	 * Metodo que devuelve una coleccion de objetos
 	 * @return ArrayList<T> 
 	 * @throws Exception
 	 */
@@ -20,7 +20,7 @@ public interface ICrudable<T> {
 	public T insert(T t) throws Exception;
 	 
 	/**
-	  * Método que busca y retorna el <T> buscado  
+	  * Método que busca y retorna el objeto buscado  
 	  * @param t
 	  * @return 
 	  * @throws Exception
@@ -29,7 +29,7 @@ public interface ICrudable<T> {
 	
 	
 	/**
-	 * Método que busca y retorna un <T> 
+	 * Método que busca y retorna un objeto 
 	 * @param t
 	 * @return <T>
 	 * @throws Exception
@@ -37,7 +37,7 @@ public interface ICrudable<T> {
 	public T getById(T t) throws Exception;
 	
 	/**
-	 * Método que actualiza un <T>
+	 * Método que actualiza un objeto
 	 * @param <T>
 	 * @return <T>
 	 * @throws Exception
@@ -45,7 +45,7 @@ public interface ICrudable<T> {
 	public T update(T t)throws Exception;
 	
 	/**
-	 * Método que borra un <T>
+	 * Método que borra un objeto
 	 * @param <T>
 	 * @return <T>
 	 * @throws Exception
