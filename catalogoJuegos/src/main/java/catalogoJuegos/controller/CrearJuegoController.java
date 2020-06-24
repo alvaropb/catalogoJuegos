@@ -16,11 +16,11 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import catalogoJuegos.modelo.Categoria;
-import catalogoJuegos.modelo.CategoriaDAO;
-import catalogoJuegos.modelo.CategoriaDAOImpl;
-import catalogoJuegos.modelo.Juego;
-import catalogoJuegos.modelo.JuegoDAOImpl;
+import catalogoJuegos.modelo.dao.CategoriaDAO;
+import catalogoJuegos.modelo.impl.CategoriaDAOImpl;
+import catalogoJuegos.modelo.impl.JuegoDAOImpl;
+import catalogoJuegos.modelo.pojo.Categoria;
+import catalogoJuegos.modelo.pojo.Juego;
 import catalogoJuegos.utilidades.Alerta;
 import catalogoJuegos.utilidades.Constantes;
 
@@ -60,7 +60,7 @@ public class CrearJuegoController extends HttpServlet {
 			e.printStackTrace();
 		} finally {
 			vista = Constantes.CREAR_JUEGO_JSP;
-			// TODO cargar en un combo los valores de la tabla categorias
+
 			request.setAttribute("juego", juego);
 			request.setAttribute("categorias", categorias);
 			request.getRequestDispatcher(vista).forward(request, response);
@@ -93,7 +93,7 @@ public class CrearJuegoController extends HttpServlet {
 			juego = new Juego(nombre);
 			juego.setImagen(imagen);
 			juego.getCategoria().setId(idCategoria);
-			// TODO investigar si se pierde datos por conversion de Double a BigDecimal
+			
 			if ( precio!=null && !precio.isEmpty() ) {
 				juego.setPrecio(BigDecimal.valueOf(Double.valueOf(precio)));
 			}
@@ -142,7 +142,7 @@ public class CrearJuegoController extends HttpServlet {
 			vista = Constantes.CREAR_JUEGO_JSP;
 			request.setAttribute("juego", juego);
 			request.setAttribute("categorias", categorias);
-		} finally {
+		} finally {// TODO pasar el nombre de la categoria para el mensaje en cards-inicio.jsp
 			request.getSession().setAttribute("alerta", alerta);
 			request.getRequestDispatcher(vista).forward(request, response);
 		}

@@ -1,4 +1,7 @@
-package catalogoJuegos.modelo;
+package catalogoJuegos.modelo.dao;
+
+import catalogoJuegos.modelo.ICrudable;
+import catalogoJuegos.modelo.pojo.Usuario;
 
 public interface UsuarioDAO extends ICrudable<Usuario>{
 

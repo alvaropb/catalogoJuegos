@@ -1,6 +1,9 @@
-package catalogoJuegos.modelo;
+package catalogoJuegos.modelo.dao;
 
 import java.util.ArrayList;
+
+import catalogoJuegos.modelo.ICrudable;
+import catalogoJuegos.modelo.pojo.Juego;
 
 public interface JuegoDAO extends ICrudable<Juego> {
 	/**

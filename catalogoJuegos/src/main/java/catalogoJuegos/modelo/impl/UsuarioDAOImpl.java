@@ -1,4 +1,4 @@
-package catalogoJuegos.modelo;
+package catalogoJuegos.modelo.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,10 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import catalogoJuegos.modelo.ConnectionManager;
+import catalogoJuegos.modelo.dao.UsuarioDAO;
+import catalogoJuegos.modelo.pojo.Usuario;
+
 public class UsuarioDAOImpl implements UsuarioDAO {
 	
 	private final static String USUARIO_EXISTE = "SELECT nombre, id ,pass,imagen FROM usuarios WHERE nombre=? AND pass=?";
-	//TODO limitar consultas SELECT  con LIMIT 500
+	
 	private static UsuarioDAOImpl INSTANCE = null;
 
 	private synchronized static void createInstance() {
@@ -34,37 +38,37 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	@Override
 	public ArrayList<Usuario> getAll() throws Exception {
-		// TODO Auto-generated method stub
+		// Sin implementar
 		return null;
 	}
 
 	@Override
 	public Usuario insert(Usuario t) throws Exception {
-		// TODO Auto-generated method stub
+		// Sin implementar
 		return null;
 	}
 
 	@Override
 	public Usuario getByName(Usuario t) throws Exception {
-		// TODO Auto-generated method stub
+		// Sin implementar
 		return null;
 	}
 
 	@Override
 	public Usuario getById(Usuario t) throws Exception {
-		// TODO Auto-generated method stub
+		// Sin implementar
 		return null;
 	}
 
 	@Override
 	public Usuario update(Usuario t) throws Exception {
-		// TODO Auto-generated method stub
+		// Sin implementar
 		return null;
 	}
 
 	@Override
 	public Usuario delete(Usuario t) throws Exception {
-		// TODO Auto-generated method stub
+		// Sin implementar
 		return null;
 	}
 
@@ -74,7 +78,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 		try (Connection conn = ConnectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(USUARIO_EXISTE)) {
-			// SELECT nombre, id ,pass,imagen FROM usuarios WHERE nombre=? AND pass=?
+			
 
 			pst.setString(1, usuario.getNombre());
 			pst.setString(2, usuario.getPass());

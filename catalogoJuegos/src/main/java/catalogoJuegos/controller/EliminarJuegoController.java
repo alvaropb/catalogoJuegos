@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import catalogoJuegos.modelo.Juego;
-import catalogoJuegos.modelo.JuegoDAOImpl;
+import catalogoJuegos.modelo.impl.JuegoDAOImpl;
+import catalogoJuegos.modelo.pojo.Juego;
 import catalogoJuegos.utilidades.Alerta;
 import catalogoJuegos.utilidades.Constantes;
 
@@ -56,7 +56,7 @@ public class EliminarJuegoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

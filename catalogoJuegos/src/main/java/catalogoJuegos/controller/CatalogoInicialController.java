@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import catalogoJuegos.modelo.Categoria;
-import catalogoJuegos.modelo.CategoriaDAOImpl;
-import catalogoJuegos.modelo.Juego;
-
-import catalogoJuegos.modelo.JuegoDAOImpl;
+import catalogoJuegos.modelo.impl.CategoriaDAOImpl;
+import catalogoJuegos.modelo.impl.JuegoDAOImpl;
+import catalogoJuegos.modelo.pojo.Categoria;
+import catalogoJuegos.modelo.pojo.Juego;
 import catalogoJuegos.utilidades.Alerta;
 import catalogoJuegos.utilidades.Constantes;
 
@@ -48,7 +47,7 @@ public class CatalogoInicialController extends HttpServlet {
 
 	protected void doProccess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ArrayList<Juego> juegos = new ArrayList();
+		ArrayList<Juego> juegos = new ArrayList<Juego>();
 
 		Alerta alerta=new Alerta();
 		

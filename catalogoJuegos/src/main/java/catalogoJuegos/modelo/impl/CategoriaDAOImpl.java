@@ -1,10 +1,14 @@
-package catalogoJuegos.modelo;
+package catalogoJuegos.modelo.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import catalogoJuegos.modelo.ConnectionManager;
+import catalogoJuegos.modelo.dao.CategoriaDAO;
+import catalogoJuegos.modelo.pojo.Categoria;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
 
@@ -57,13 +61,13 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	@Override
 	public Categoria insert(Categoria t) throws Exception {
-		// TODO Auto-generated method stub
+		// Sin implementar
 		return null;
 	}
 
 	@Override
 	public Categoria getByName(Categoria t) throws Exception {
-		// TODO Auto-generated method stub
+		// Sin implementar
 		return null;
 	}
 
@@ -93,13 +97,13 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	@Override
 	public Categoria update(Categoria t) throws Exception {
-		// TODO Auto-generated method stub
+		// Sin implementar
 		return null;
 	}
 
 	@Override
 	public Categoria delete(Categoria t) throws Exception {
-		// TODO Auto-generated method stub
+		// 	sin implementar		
 		return null;
 	}
 

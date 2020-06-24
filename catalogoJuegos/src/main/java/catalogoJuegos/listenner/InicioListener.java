@@ -6,8 +6,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import catalogoJuegos.modelo.Categoria;
-import catalogoJuegos.modelo.CategoriaDAOImpl;
+import catalogoJuegos.modelo.impl.CategoriaDAOImpl;
+import catalogoJuegos.modelo.pojo.Categoria;
 import catalogoJuegos.utilidades.Alerta;
 import catalogoJuegos.utilidades.Constantes;
 

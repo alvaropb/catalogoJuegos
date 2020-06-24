@@ -1,4 +1,4 @@
-package catalogoJuegos.modelo;
+package catalogoJuegos.modelo.pojo;
 
 public class Categoria {
 

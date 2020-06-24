@@ -1,4 +1,4 @@
-package catalogoJuegos.modelo;
+package catalogoJuegos.modelo.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import catalogoJuegos.modelo.ConnectionManager;
+import catalogoJuegos.modelo.dao.JuegoDAO;
+import catalogoJuegos.modelo.pojo.Categoria;
+import catalogoJuegos.modelo.pojo.Juego;
 
 public class JuegoDAOImpl implements JuegoDAO {
 	private final static String GET_ALL = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
