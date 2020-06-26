@@ -10,6 +10,7 @@ public class Constantes {
 	public static final String ID_CATEGORIA = "idCategoria";
 	public static final String INICIO_JUEGOS = "Inicio | juegos";
 	public static final String JUEGOS = "juegos";
+	public static final String JUEGOS_POR_CATEGORIA = "juegosCategoria";
 	public static final String PAGINA = "pagina";
 
 	// paginas
@@ -37,12 +38,21 @@ public class Constantes {
 	public static final String UPDATE_CORRECTO = "Actualizacion correcta";
 	public static final String UPDATE_ERRONEO = "Actualizacion erronea";
 	public static final String WARNING = "warning";
+	
+	// mensajes h1
+	public static final String MSJ_CREAR_JUEGO = "Crear juego";
+	public static final String MSJ_EDITAR_REGISTRO = "Editar juego";
+	public static final String MSJ_VER_DETALLE = "Detalle";
+	
 
 	// constantes numericas
 
 	public static final int TRES = 3;
 	public static final int DIEZ = 10;
 	public static final int CIEN = 100;
+	
+	
+
 	
 	
 	
