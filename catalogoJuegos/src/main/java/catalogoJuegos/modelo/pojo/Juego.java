@@ -20,6 +20,8 @@ public class Juego {
 	
 	
 	private Categoria categoria;
+	@Size(min = 0, max = 255, message 
+		    = "Debe tener un maximo de 255 caracteres")
 	private String imagen;
 	
 	public Juego() {
