@@ -26,6 +26,9 @@
 <!-- custom js -->
 <script type="text/javascript" src="js/custom.js"></script>
 
+<!-- favicon --> 	
+<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" sizes="32x32">
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,12 +38,11 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link ${(param.activa eq 'listado_juegos')?'active':'' }" href="inicio?idCategoria=0">Listado Juegos </a>
-      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego?id=0">Crear Juegos </a>
-     <c:if test="${empty usuario }">
-      	<a class="nav-item nav-link ${(param.activa eq 'login')?'active':'' }" href="login">Login </a>
+     <c:if test="${not empty usuario }">
+	      <a class="nav-item nav-link ${(param.activa eq 'listado_juegos')?'active':'' }" href="inicio?idCategoria=0">Listado Juegos </a>
+	      <a class="nav-item nav-link ${(param.activa eq 'ultimos_juegos')?'active':'' }" href="inicio?idCategoria=-1">Juegos por categoria</a>
+	      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego?id=0">Crear Juegos </a>
      </c:if>
-     
 		<div class="dropdown">
 			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    Categorias
@@ -54,6 +56,12 @@
     
      </div>
   </div>
+  
+   <c:if test="${empty usuario }">
+	  <div>
+	  	<a class="nav-item nav-link ${(param.activa eq 'login')?'active':'' }" href="login">Login </a>	
+	  </div>
+  </c:if>
     
   <c:if test="${not empty usuario }">
 	  <div>
