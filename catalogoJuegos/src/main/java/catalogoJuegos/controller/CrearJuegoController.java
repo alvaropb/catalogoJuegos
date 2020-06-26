@@ -42,6 +42,8 @@ public class CrearJuegoController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String vista = "";
+		String msj="";
+		String readonly = null;
 		Juego juego = new Juego();
 		ArrayList<Categoria>categorias=new ArrayList<Categoria>();
 		
@@ -50,17 +52,32 @@ public class CrearJuegoController extends HttpServlet {
 		try {
 			categorias=categoriaDao.getAll();
 			String id = request.getParameter("id");
+			//parametro para ver detalle
+			readonly = request.getParameter("readonly");
+			int idDao=0;
 			if (id != null && !id.isEmpty()) {
-				int idDao = Integer.parseInt(id);
+				idDao = Integer.parseInt(id);
 				juego.setId(idDao);
 				juego = dao.getById(juego);
-			}
+				// setear mensaje de editar registro
+				if (idDao==0) {
+					msj=Constantes.MSJ_CREAR_JUEGO;
+					
+				}else {
+					msj=Constantes.MSJ_EDITAR_REGISTRO+": <b>"+juego.getNombre()+"</b>";
+					
+				}
+				if (readonly!=null) {
+					msj=Constantes.MSJ_VER_DETALLE+": <b>"+juego.getNombre()+"</b>";
+				}
+			}			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			vista = Constantes.CREAR_JUEGO_JSP;
-
+			request.setAttribute("msj", msj);
+			request.setAttribute("readonly", readonly);
 			request.setAttribute("juego", juego);
 			request.setAttribute("categorias", categorias);
 			request.getRequestDispatcher(vista).forward(request, response);
@@ -100,8 +117,8 @@ public class CrearJuegoController extends HttpServlet {
 			
 			// llamar al DAO
 			dao = JuegoDAOImpl.getInstance();
-			
-			categorias=categoriaDao.getAll();
+
+			categorias=(ArrayList<Categoria>) request.getServletContext().getAttribute("categorias");
 
 
 			
@@ -119,7 +136,7 @@ public class CrearJuegoController extends HttpServlet {
 				alerta.setTipo(Constantes.SUCCESS);
 			} else {// estamos editando
 
-				alerta.setMensaje(Constantes.UPDATE_ERRONEO + ": " + juego.getNombre());
+				alerta.setMensaje(Constantes.UPDATE_ERRONEO + ": " + juego.getNombre());		
 				alerta.setTipo(Constantes.DANGER);
 				
 				int idR = Integer.parseInt(id);
@@ -136,13 +153,18 @@ public class CrearJuegoController extends HttpServlet {
 			// si update o insert ok, vamos al listado
 			vista = "inicio";
 		} catch (Exception e) {
+			request.setAttribute("juego", juego);
+			vista = Constantes.CREAR_JUEGO_JSP;
 
 			e.printStackTrace();
+			if (e.getMessage().contains("Duplicate entry")) {
+				alerta.setMensaje(alerta.getMensaje()+" El nombre de ese juego ya existe");
+			}
 	
-			vista = Constantes.CREAR_JUEGO_JSP;
-			request.setAttribute("juego", juego);
+		} finally {
+
+			
 			request.setAttribute("categorias", categorias);
-		} finally {// TODO pasar el nombre de la categoria para el mensaje en cards-inicio.jsp
 			request.getSession().setAttribute("alerta", alerta);
 			request.getRequestDispatcher(vista).forward(request, response);
 		}
@@ -155,7 +177,7 @@ public class CrearJuegoController extends HttpServlet {
 		for (Iterator iterator = violations.iterator(); iterator.hasNext();) {
 			ConstraintViolation<Juego> constraintViolation = (ConstraintViolation<Juego>) iterator.next();
 
-			errores += "<p> <b>" + constraintViolation.getPropertyPath() + "</b>" + constraintViolation.getMessage()
+			errores += "<p> <b>" + constraintViolation.getPropertyPath() + "</b>: " + constraintViolation.getMessage()
 					+ "</p>";
 		}
 		if (!violations.isEmpty()) {
