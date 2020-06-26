@@ -1,4 +1,4 @@
-package catalogoJuegos.modelo.impl;
+package com.catalogoJuegos.modelo.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import catalogoJuegos.modelo.ConnectionManager;
-import catalogoJuegos.modelo.dao.CategoriaDAO;
-import catalogoJuegos.modelo.pojo.Categoria;
-import catalogoJuegos.modelo.pojo.Juego;
+import com.catalogoJuegos.modelo.ConnectionManager;
+import com.catalogoJuegos.modelo.dao.CategoriaDAO;
+import com.catalogoJuegos.modelo.pojo.Categoria;
+import com.catalogoJuegos.modelo.pojo.Juego;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
 

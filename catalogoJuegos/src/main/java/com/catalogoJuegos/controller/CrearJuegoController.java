@@ -1,4 +1,4 @@
-package catalogoJuegos.controller;
+package com.catalogoJuegos.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -16,13 +16,13 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import catalogoJuegos.modelo.dao.CategoriaDAO;
-import catalogoJuegos.modelo.impl.CategoriaDAOImpl;
-import catalogoJuegos.modelo.impl.JuegoDAOImpl;
-import catalogoJuegos.modelo.pojo.Categoria;
-import catalogoJuegos.modelo.pojo.Juego;
-import catalogoJuegos.utilidades.Alerta;
-import catalogoJuegos.utilidades.Constantes;
+import com.catalogoJuegos.modelo.dao.CategoriaDAO;
+import com.catalogoJuegos.modelo.impl.CategoriaDAOImpl;
+import com.catalogoJuegos.modelo.impl.JuegoDAOImpl;
+import com.catalogoJuegos.modelo.pojo.Categoria;
+import com.catalogoJuegos.modelo.pojo.Juego;
+import com.catalogoJuegos.utilidades.Alerta;
+import com.catalogoJuegos.utilidades.Constantes;
 
 /**
  * Servlet implementation class CrearJuegoController

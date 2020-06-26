@@ -1,4 +1,4 @@
-package catalogoJuegos.modelo.pojo;
+package com.catalogoJuegos.modelo.pojo;
 
 import java.math.BigDecimal;
 

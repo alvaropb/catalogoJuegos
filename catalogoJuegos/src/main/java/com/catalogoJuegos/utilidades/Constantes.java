@@ -1,4 +1,4 @@
-package catalogoJuegos.utilidades;
+package com.catalogoJuegos.utilidades;
 
 public class Constantes {
 

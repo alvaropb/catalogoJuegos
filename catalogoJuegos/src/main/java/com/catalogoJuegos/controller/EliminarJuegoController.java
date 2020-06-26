@@ -1,4 +1,4 @@
-package catalogoJuegos.controller;
+package com.catalogoJuegos.controller;
 
 import java.io.IOException;
 
@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import catalogoJuegos.modelo.impl.JuegoDAOImpl;
-import catalogoJuegos.modelo.pojo.Juego;
-import catalogoJuegos.utilidades.Alerta;
-import catalogoJuegos.utilidades.Constantes;
+import com.catalogoJuegos.modelo.impl.JuegoDAOImpl;
+import com.catalogoJuegos.modelo.pojo.Juego;
+import com.catalogoJuegos.utilidades.Alerta;
+import com.catalogoJuegos.utilidades.Constantes;
 
 /**
  * Servlet implementation class EliminarJuegoController

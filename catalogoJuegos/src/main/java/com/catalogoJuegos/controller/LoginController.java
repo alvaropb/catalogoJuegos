@@ -1,4 +1,4 @@
-package catalogoJuegos.controller;
+package com.catalogoJuegos.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import catalogoJuegos.modelo.impl.UsuarioDAOImpl;
-import catalogoJuegos.modelo.pojo.Usuario;
-import catalogoJuegos.utilidades.Alerta;
-import catalogoJuegos.utilidades.Constantes;
+import com.catalogoJuegos.modelo.impl.UsuarioDAOImpl;
+import com.catalogoJuegos.modelo.pojo.Usuario;
+import com.catalogoJuegos.utilidades.Alerta;
+import com.catalogoJuegos.utilidades.Constantes;
 
 /**
  * Servlet implementation class LoginController

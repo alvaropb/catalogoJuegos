@@ -1,4 +1,4 @@
-package catalogoJuegos.modelo.impl;
+package com.catalogoJuegos.modelo.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import catalogoJuegos.modelo.ConnectionManager;
-import catalogoJuegos.modelo.dao.UsuarioDAO;
-import catalogoJuegos.modelo.pojo.Usuario;
+import com.catalogoJuegos.modelo.ConnectionManager;
+import com.catalogoJuegos.modelo.dao.UsuarioDAO;
+import com.catalogoJuegos.modelo.pojo.Usuario;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
 	

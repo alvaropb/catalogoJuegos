@@ -1,4 +1,4 @@
-package catalogoJuegos.modelo;
+package com.catalogoJuegos.modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
