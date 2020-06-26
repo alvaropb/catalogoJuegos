@@ -1,14 +1,18 @@
 package catalogoJuegos.modelo.pojo;
 
+import java.util.ArrayList;
+
 public class Categoria {
 
 	private int id;
 	private String nombre;
+	private ArrayList<Juego>juegos;
 	
 	public Categoria() {
 		super();
 		this.id=0;
 		this.nombre="";
+		this.juegos=new ArrayList<Juego>();
 	}
 
 	public Categoria(String nombre) {
@@ -34,6 +38,14 @@ public class Categoria {
 	}
 	
 	
+	public ArrayList<Juego> getJuegos() {
+		return juegos;
+	}
+
+	public void setJuegos(ArrayList<Juego> juegos) {
+		this.juegos = juegos;
+	}
+
 	@Override
 	public String toString() {
 		return "Categoria [id=" + id + ", nombre=" + nombre + "]";
@@ -44,6 +56,7 @@ public class Categoria {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
+		result = prime * result + ((juegos == null) ? 0 : juegos.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
@@ -59,6 +72,11 @@ public class Categoria {
 		Categoria other = (Categoria) obj;
 		if (id != other.id)
 			return false;
+		if (juegos == null) {
+			if (other.juegos != null)
+				return false;
+		} else if (!juegos.equals(other.juegos))
+			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
 				return false;
@@ -66,8 +84,8 @@ public class Categoria {
 			return false;
 		return true;
 	}
-	
 
+	
 	
 	
 }
