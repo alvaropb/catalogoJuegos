@@ -59,11 +59,12 @@ CREATE TABLE `juegos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `precio` decimal(5,2) NOT NULL,
   `id_categoria` int(11) NOT NULL,
+  `imagen` varchar(255) COLLATE utf8_spanish_ci DEFAULT 'https://picsum.photos/200',
   PRIMARY KEY (`id`),
   UNIQUE KEY `juegos_UN` (`nombre`),
   KEY `FK_juegos_categoria` (`id_categoria`),
   CONSTRAINT `FK_juegos_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Listado de juegos';
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Listado de juegos';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +73,7 @@ CREATE TABLE `juegos` (
 
 LOCK TABLES `juegos` WRITE;
 /*!40000 ALTER TABLE `juegos` DISABLE KEYS */;
-INSERT INTO `juegos` VALUES ('editado',14,5.20,1),('super mario land 2',15,0.00,5),('super mario land 3',16,0.00,5),('     super mario land 4',17,0.00,5),('mario bros 2',18,0.00,5),('warriors orochi 3',19,0.00,3),('mighty nº 9',20,0.00,5),('fallout 4',21,0.00,4),('just cause',22,0.00,4),('gta liberty city',23,0.00,4),('so',24,0.00,3),('fallout 3',25,5.30,6),('turok 2',26,55.60,4);
+INSERT INTO `juegos` VALUES ('super mario land 2',15,3.00,5,'https://images-na.ssl-images-amazon.com/images/I/91x1gsV0G3L._SX342_.jpg'),('super mario land 3',16,6.00,5,'https://photos.wowroms.com/emulators-roms-logo/26/10377/420-420/Wario-Land---Super-Mario-Land-3-(World).jpg'),('     super mario land 4',17,5.00,5,'https://picsum.photos/100'),('mario bros 2',18,0.00,5,'https://picsum.photos/100'),('warriors orochi 3',19,20.00,4,'https://picsum.photos/100'),('mighty nº 9',20,5.00,1,'https://picsum.photos/100'),('fallout 4',21,10.00,1,'https://picsum.photos/100'),('just cause',22,0.00,4,'https://picsum.photos/100'),('gta liberty city',23,0.00,4,'https://picsum.photos/100'),('so',24,0.00,3,'https://picsum.photos/100'),('fallout 3',25,5.30,6,'https://picsum.photos/100'),('turok 2',26,55.60,4,'https://picsum.photos/100'),('State of Decay 2',29,10.34,4,'https://avatarfiles.alphacoders.com/140/140854.jpg'),('farcry 4',30,14.50,4,'https://static.truetrophies.com/boxart/Game_2842.png'),('far cry primal',31,5.00,4,'https://images-na.ssl-images-amazon.com/images/I/71GYXIFRkcL._CR0,204,1224,1224_UX256.jpg'),('forza 4',32,23.00,7,''),('pac-man',33,2.00,3,'');
 /*!40000 ALTER TABLE `juegos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-18 13:43:07
+-- Dump completed on 2020-06-30  8:09:58
