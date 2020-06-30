@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 
-<jsp:include page="includes/cabecera.jsp">
+<jsp:include page="../../includes/cabecera.jsp">
 	<jsp:param value="Inicio | Juegos" name="pagina"/>
 	<jsp:param value="crear_juego" name="activa"/>	
 </jsp:include>
@@ -84,5 +84,5 @@
 
 
 
-<c:import url="includes/pie.jsp">
+<c:import url="../../includes/pie.jsp">
 </c:import>

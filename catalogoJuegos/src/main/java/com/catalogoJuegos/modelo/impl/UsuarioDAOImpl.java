@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.catalogoJuegos.modelo.ConnectionManager;
 import com.catalogoJuegos.modelo.dao.UsuarioDAO;
 import com.catalogoJuegos.modelo.pojo.Usuario;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
+	private static final Logger LOG=Logger.getLogger(UsuarioDAOImpl.class);
 	
 	private final static String USUARIO_EXISTE = "SELECT nombre, id ,pass,imagen FROM usuarios WHERE nombre=? AND pass=?";
 	
@@ -88,11 +91,11 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 					usuarioR = mapper(rs);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOG.error(e);
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e);
 		}
 
 		return usuarioR;

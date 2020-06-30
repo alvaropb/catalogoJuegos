@@ -51,7 +51,7 @@ public class CatalogoInicialController extends HttpServlet {
 
 	protected void doProccess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		LOG.debug("prueba log4j");
+
 		
 		ArrayList<Juego> juegos = new ArrayList<Juego>();
 		ArrayList<Categoria>categorias=new ArrayList<Categoria>();
@@ -98,7 +98,7 @@ public class CatalogoInicialController extends HttpServlet {
 			alerta.setMensaje(Constantes.ERROR_INESPERADO);
 			alerta.setTipo(Constantes.DANGER);
 			request.setAttribute(Constantes.ALERTA, alerta);
-			e.printStackTrace();
+			LOG.error(e);
 		} finally {
 			
 			request.setAttribute(Constantes.CATEGORIA_NOMBRE, (categoriaNombre==null)?"Todas las categorias":"<b>"+juegos.size()+"</b> juego"+((juegos.size()==1)?"":"s")+" de la categoria <b>"+ categoriaNombre+"</b>" );

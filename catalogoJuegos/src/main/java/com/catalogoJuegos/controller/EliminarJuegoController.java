@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.catalogoJuegos.modelo.impl.JuegoDAOImpl;
 import com.catalogoJuegos.modelo.pojo.Juego;
 import com.catalogoJuegos.utilidades.Alerta;
@@ -19,6 +21,7 @@ import com.catalogoJuegos.utilidades.Constantes;
 @WebServlet(description = "Servlet para eliminar juegos", urlPatterns = { "/eliminar-juego" })
 public class EliminarJuegoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG=Logger.getLogger(EliminarJuegoController.class );
 
 
 	/**
@@ -45,6 +48,7 @@ public class EliminarJuegoController extends HttpServlet {
 		} catch (Exception e) {
 			alerta.setMensaje(Constantes.DELETE_ERRONEO);
 			alerta.setTipo(Constantes.DANGER);
+			LOG.error(e);
 		}finally {
 			request.getSession().setAttribute("alerta", alerta);
 			request.setAttribute("juego", juegoR);

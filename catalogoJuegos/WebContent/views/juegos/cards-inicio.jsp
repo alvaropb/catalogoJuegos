@@ -2,7 +2,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html;charset=UTF-8"%>
 
-<jsp:include page="includes/cabecera.jsp">
+<jsp:include page="../../includes/cabecera.jsp">
 	<jsp:param value="inicio| Ultimos juegos" name="pagina"/>
 	<jsp:param value="ultimos_juegos" name="activa"/>	
 </jsp:include>
@@ -48,5 +48,5 @@
 </main>
 
 
-<c:import url="includes/pie.jsp">
+<c:import url="../../includes/pie.jsp">
 </c:import>

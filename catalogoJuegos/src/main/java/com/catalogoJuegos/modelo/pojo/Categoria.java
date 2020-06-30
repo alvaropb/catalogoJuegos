@@ -6,20 +6,19 @@ public class Categoria {
 
 	private int id;
 	private String nombre;
-	private ArrayList<Juego>juegos;
-	
+	private ArrayList<Juego> juegos;
+
 	public Categoria() {
 		super();
-		this.id=0;
-		this.nombre="";
-		this.juegos=new ArrayList<Juego>();
+		this.id = 0;
+		this.nombre = "";
+		this.juegos = new ArrayList<Juego>();
 	}
 
 	public Categoria(String nombre) {
 		this();
 		this.nombre = nombre;
 	}
-
 
 	public int getId() {
 		return id;
@@ -36,8 +35,7 @@ public class Categoria {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
+
 	public ArrayList<Juego> getJuegos() {
 		return juegos;
 	}
@@ -85,7 +83,4 @@ public class Categoria {
 		return true;
 	}
 
-	
-	
-	
 }

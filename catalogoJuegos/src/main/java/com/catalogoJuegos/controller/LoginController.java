@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.catalogoJuegos.modelo.impl.UsuarioDAOImpl;
 import com.catalogoJuegos.modelo.pojo.Usuario;
 import com.catalogoJuegos.utilidades.Alerta;
@@ -19,6 +21,7 @@ import com.catalogoJuegos.utilidades.Constantes;
 @WebServlet(description = "Controlador para el login", urlPatterns = { "/login" })
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG=Logger.getLogger(LoginController.class );
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -70,7 +73,7 @@ public class LoginController extends HttpServlet {
 			}// fin usuario existe
 		} catch (Exception e) {
 
-			e.printStackTrace();
+			LOG.error(e);
 		}finally {
 			// redirigir a la pagina principal
 			request.getSession().setAttribute("alerta", alerta);

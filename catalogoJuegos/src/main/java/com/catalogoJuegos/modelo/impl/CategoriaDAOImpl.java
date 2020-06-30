@@ -7,12 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.log4j.Logger;
+
 import com.catalogoJuegos.modelo.ConnectionManager;
 import com.catalogoJuegos.modelo.dao.CategoriaDAO;
 import com.catalogoJuegos.modelo.pojo.Categoria;
 import com.catalogoJuegos.modelo.pojo.Juego;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
+	
+	private static final Logger LOG=Logger.getLogger(CategoriaDAOImpl.class);
 
 	private final static String GET_ALL = "SELECT id_categoria, nombre FROM categorias ORDER BY nombre DESC LIMIT 500;";
 	private final static String GET_BY_ID = "SELECT id_categoria, nombre FROM categorias WHERE id_categoria=? ";
@@ -56,13 +60,12 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 				}
 
 			} catch (Exception e) {
-				e.printStackTrace();
-				throw e;
+				LOG.error(e);
+				
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
+			LOG.error(e);
 		}
 
 		return categorias;
@@ -109,13 +112,11 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 				categoriasReturn=new ArrayList<Categoria>(hashMapCategorias.values()) ;
 				
 			} catch (Exception e) {
-				e.printStackTrace();
-				throw e;
+				LOG.error(e);
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
+			LOG.error(e);
 		}
 		
 		return categoriasReturn;
@@ -147,12 +148,10 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 				}
 
 			} catch (Exception e) {
-				e.printStackTrace();
-				throw e;
+				LOG.error(e);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
+			LOG.error(e);
 		}
 
 		return cReturn;

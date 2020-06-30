@@ -7,12 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.catalogoJuegos.modelo.ConnectionManager;
 import com.catalogoJuegos.modelo.dao.JuegoDAO;
 import com.catalogoJuegos.modelo.pojo.Categoria;
 import com.catalogoJuegos.modelo.pojo.Juego;
 
 public class JuegoDAOImpl implements JuegoDAO {
+	private static final Logger LOG=Logger.getLogger(JuegoDAOImpl.class);
 	private final static String GET_ALL = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
 			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
 			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + ""
@@ -71,7 +74,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e);
 			throw new Exception("Error de lectura en la bbdd");
 		}
 
@@ -92,7 +95,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 				}
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOG.error(e);
 
 			}
 
@@ -127,12 +130,12 @@ public class JuegoDAOImpl implements JuegoDAO {
 				}
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOG.error(e);
 				throw e;
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e);
 			throw e;
 		}
 
@@ -154,13 +157,11 @@ public class JuegoDAOImpl implements JuegoDAO {
 				}
 
 			} catch (Exception e) {
-				e.printStackTrace();
-				throw e;
+				LOG.error(e);
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
+			LOG.error(e);
 		}
 
 		return juegoR;
@@ -179,11 +180,11 @@ public class JuegoDAOImpl implements JuegoDAO {
 				}
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOG.error(e);
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e);
 		}
 
 		return juegoR;
@@ -205,8 +206,9 @@ public class JuegoDAOImpl implements JuegoDAO {
 			juegoR = getById(t);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new Exception("Ocurrio un error a la hora de actualizar");
+			LOG.error(e);
+			throw e;
+			//throw new Exception("Ocurrio un error a la hora de actualizar");
 		}
 
 		return juegoR;
@@ -224,8 +226,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 			pst.execute();
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
+			LOG.error(e);
+			
 		}
 
 		return juegoR;
@@ -255,12 +257,10 @@ public class JuegoDAOImpl implements JuegoDAO {
 					juegos.add(mapper(rs));
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
-				throw e;
+				LOG.error(e);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
+			LOG.error(e);
 		}
 
 		return juegos;

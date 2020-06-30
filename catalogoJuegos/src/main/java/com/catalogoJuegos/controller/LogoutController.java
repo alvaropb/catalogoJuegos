@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.catalogoJuegos.utilidades.Alerta;
 import com.catalogoJuegos.utilidades.Constantes;
 
@@ -16,6 +18,7 @@ import com.catalogoJuegos.utilidades.Constantes;
 @WebServlet(description = "Controller para logout", urlPatterns = { "/logout" })
 public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG=Logger.getLogger(LogoutController.class);
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -32,15 +35,24 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		Alerta alerta=new Alerta();
+		try {
+			
+			request.getSession().invalidate();
+			
+			alerta.setMensaje(Constantes.LOGOUT_CORRECTO);
+			alerta.setTipo(Constantes.SUCCESS);
+			
+		} catch (Exception e) {
+			LOG.error(e);
+		}finally {
+			request.getSession().setAttribute("alerta", alerta);
+			request.getRequestDispatcher(Constantes.INICIO).forward(request, response);
+			
+		}
 		
-		request.getSession().invalidate();
 		
-		alerta.setMensaje(Constantes.LOGOUT_CORRECTO);
-		alerta.setTipo(Constantes.SUCCESS);
-		
-		request.getSession().setAttribute("alerta", alerta);
-		request.getRequestDispatcher(Constantes.INICIO).forward(request, response);
 
 	}
 

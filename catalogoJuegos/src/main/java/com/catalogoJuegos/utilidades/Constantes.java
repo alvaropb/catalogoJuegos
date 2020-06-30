@@ -15,11 +15,11 @@ public class Constantes {
 
 	// paginas
 
-	public static final String CREAR_JUEGO_JSP = "crear-juego.jsp";
+	public static final String CREAR_JUEGO_JSP = "views/juegos/crear-juego.jsp";
 	public static final String INICIO = "inicio";
-	public static final String LISTADO_JUEGOS_INICIAL_JSP = "cards-inicio.jsp";
-	public static final String LISTADO_JUEGOS_JSP = "listado-juegos.jsp";
-	public static final String LOGIN = "login.jsp";
+	public static final String LISTADO_JUEGOS_INICIAL_JSP = "views/juegos/cards-inicio.jsp";
+	public static final String LISTADO_JUEGOS_JSP = "views/juegos/listado-juegos.jsp";
+	public static final String LOGIN = "views/login/login.jsp";
 
 	// mensajes alerta
 
@@ -38,24 +38,16 @@ public class Constantes {
 	public static final String UPDATE_CORRECTO = "Actualizacion correcta";
 	public static final String UPDATE_ERRONEO = "Actualizacion erronea";
 	public static final String WARNING = "warning";
-	
+
 	// mensajes h1
 	public static final String MSJ_CREAR_JUEGO = "Crear juego";
 	public static final String MSJ_EDITAR_REGISTRO = "Editar juego";
 	public static final String MSJ_VER_DETALLE = "Detalle";
-	
 
 	// constantes numericas
 
 	public static final int TRES = 3;
 	public static final int DIEZ = 10;
 	public static final int CIEN = 100;
-	
-	
-
-	
-	
-	
-	
 
 }

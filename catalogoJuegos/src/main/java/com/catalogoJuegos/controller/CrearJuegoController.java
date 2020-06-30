@@ -16,6 +16,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.apache.log4j.Logger;
+
 import com.catalogoJuegos.modelo.dao.CategoriaDAO;
 import com.catalogoJuegos.modelo.impl.CategoriaDAOImpl;
 import com.catalogoJuegos.modelo.impl.JuegoDAOImpl;
@@ -30,6 +32,7 @@ import com.catalogoJuegos.utilidades.Constantes;
 @WebServlet(description = "Controller para crear un registro de un nuevo juego", urlPatterns = { "/crear-juego" })
 public class CrearJuegoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG=Logger.getLogger(CrearJuegoController.class);
 	private static ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	private static Validator validator = factory.getValidator();
 	private static JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
@@ -73,7 +76,8 @@ public class CrearJuegoController extends HttpServlet {
 			}			
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			
+			LOG.error(e);
 		} finally {
 			vista = Constantes.CREAR_JUEGO_JSP;
 			request.setAttribute("msj", msj);
@@ -156,7 +160,9 @@ public class CrearJuegoController extends HttpServlet {
 			request.setAttribute("juego", juego);
 			vista = Constantes.CREAR_JUEGO_JSP;
 
-			e.printStackTrace();
+			
+			LOG.error(e.getMessage(), e);
+			
 			if (e.getMessage().contains("Duplicate entry")) {
 				alerta.setMensaje(alerta.getMensaje()+" El nombre de ese juego ya existe");
 			}
