@@ -44,6 +44,9 @@ public class InicioListener implements ServletContextListener {
 			LOG.fatal(e);
 		}
     	sce.getServletContext().setAttribute(Constantes.CATEGORIAS, categorias);
+    	// inicializar la variable del numero de usuarios conectados
+    	sce.getServletContext().setAttribute("numUsuLog", 0);
+    	
     }
 	
 }
