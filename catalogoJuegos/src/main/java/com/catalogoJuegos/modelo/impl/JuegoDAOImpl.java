@@ -18,12 +18,12 @@ public class JuegoDAOImpl implements JuegoDAO {
 	private static final Logger LOG=Logger.getLogger(JuegoDAOImpl.class);
 	private final static String GET_ALL = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
 			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + ""
+			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria WHERE fecha_validado IS NOT NULL " + ""
 			+ "ORDER BY j.id DESC LIMIT 500;";
 
 	private final static String GET_ULTIMOS = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
 			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + ""
+			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria WHERE fecha_validado IS NOT NULL " + ""
 			+ "ORDER BY j.id DESC LIMIT ?;";
 
 	private static final String INSERT = "INSERT INTO juegos (nombre,precio,id_categoria,imagen) VALUES(?,?,?,?)";
@@ -35,7 +35,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + "WHERE j.id= ?;";
 	private static final String GET_BY_ID_CATEGORIA = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
 			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + "WHERE c.id_categoria =? "
+			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + "WHERE c.id_categoria =? AND fecha_validado IS NOT NULL "
 			+ "ORDER BY j.id DESC LIMIT ?;";
 
 	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=?, id_categoria=?, imagen=? WHERE id=?";
@@ -80,6 +80,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 
 		return juegos;
 	}
+	
 	@Override
 	public ArrayList<Juego> getAll(int num) throws Exception {
 		ArrayList<Juego> juegos = new ArrayList<Juego>();
