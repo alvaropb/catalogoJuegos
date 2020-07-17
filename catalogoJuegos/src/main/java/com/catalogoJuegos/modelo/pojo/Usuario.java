@@ -6,6 +6,8 @@ public class Usuario {
 	private String nombre;
 	private String pass;
 	private String imagen;
+	private Rol rol;
+	
 
 	public Usuario(String nombre) {
 		this();
@@ -18,6 +20,7 @@ public class Usuario {
 		this.nombre = "";
 		this.pass = "";
 		this.imagen = "";
+		this.rol=new Rol();
 	}
 
 	public int getId() {
@@ -52,9 +55,20 @@ public class Usuario {
 		this.imagen = imagen;
 	}
 
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", pass=" + pass + ", imagen=" + imagen + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", pass=" + pass + ", imagen=" + imagen + ", rol=" + rol
+				+ "]";
 	}
+
+	
 
 }

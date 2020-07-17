@@ -15,7 +15,7 @@ import com.catalogoJuegos.modelo.pojo.Usuario;
 public class UsuarioDAOImpl implements UsuarioDAO {
 	private static final Logger LOG=Logger.getLogger(UsuarioDAOImpl.class);
 	
-	private final static String USUARIO_EXISTE = "SELECT nombre, id ,pass,imagen FROM usuarios WHERE nombre=? AND pass=?";
+	private final static String USUARIO_EXISTE = "SELECT u.nombre, u.id ,u.pass,u.imagen, r.id_rol,r.nombre_rol FROM usuarios u INNER JOIN roles r ON u.id_rol=r.id_rol  WHERE nombre=? AND pass=?";
 	
 	private static UsuarioDAOImpl INSTANCE = null;
 
@@ -108,6 +108,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		u.setImagen(rs.getString("imagen"));
 		u.setNombre(rs.getString("nombre"));
 		u.setPass(rs.getString("pass"));
+		u.getRol().setId(rs.getInt("id_rol"));
+		u.getRol().setNombre(rs.getString("nombre_rol"));
 
 		return u;
 	}
