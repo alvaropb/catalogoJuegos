@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.catalogoJuegos.modelo.impl.UsuarioDAOImpl;
+import com.catalogoJuegos.modelo.pojo.Rol;
 import com.catalogoJuegos.modelo.pojo.Usuario;
 import com.catalogoJuegos.utilidades.Alerta;
 import com.catalogoJuegos.utilidades.Constantes;
@@ -67,9 +68,23 @@ public class LoginController extends HttpServlet {
 				sesion.setAttribute("usuario", usuario);
 				sesion.setMaxInactiveInterval(1 * 60 * 60);// 60 minutos
 				
+				// al iniciar session , guardar un entero con el num de usuarios y 
+				//mostrarlo para que todos los usuarios puedan ver el num total de usuarios
+				
+				int numUsus=(int) (request.getServletContext().getAttribute("numUsuLog"));
+				request.getServletContext().setAttribute("numUsuLog", numUsus+1);
+				
+				
+				
 				alerta.setMensaje(Constantes.LOGIN_CORRECTO);
 				alerta.setTipo(Constantes.SUCCESS);
-				vista=Constantes.INICIO;
+				// redirigir a backoffice si rol =2
+				if (usuario.getRol().getId()==Rol.ADMINISTRADOR) {
+					vista=Constantes.BACKOFFICE_CONTROLLER;
+				}else {
+					vista=Constantes.FRONTOFFICE_CONTROLLER;//TODO cambiar a /views/frontoffice/inicio 
+				}
+				
 			}// fin usuario existe
 		} catch (Exception e) {
 
