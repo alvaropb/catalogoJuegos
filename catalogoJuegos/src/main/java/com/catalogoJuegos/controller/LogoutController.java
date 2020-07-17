@@ -41,6 +41,13 @@ public class LogoutController extends HttpServlet {
 			
 			request.getSession().invalidate();
 			
+			// al salir de la session , guardar un entero con el num de usuarios y 
+			//mostrarlo para que todos los usuarios conectados puedan ver el num total de usuarios
+			
+			int numUsus=(int) (request.getServletContext().getAttribute("numUsuLog"));
+			request.getServletContext().setAttribute("numUsuLog",numUsus-1);
+			
+			
 			alerta.setMensaje(Constantes.LOGOUT_CORRECTO);
 			alerta.setTipo(Constantes.SUCCESS);
 			
