@@ -42,6 +42,8 @@
 	      <a class="nav-item nav-link ${(param.activa eq 'listado_juegos')?'active':'' }" href="inicio?idCategoria=0">Listado Juegos </a>
 	      <a class="nav-item nav-link ${(param.activa eq 'ultimos_juegos')?'active':'' }" href="inicio?idCategoria=-1">Juegos por categoria</a>
 	      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego?id=0">Crear Juegos </a>
+	      <a class="nav-item nav-link ${(param.activa eq 'listado_categorias')?'active':'' }" href="crear-categoria">Listado categorias </a>
+	      <a class="nav-item nav-link" href="views/frontoffice/inicio">Panel frontoffice </a>
      </c:if>
 		<div class="dropdown">
 			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,6 +67,7 @@
     
   <c:if test="${not empty usuario }">
 	  <div>
+	  	<span>usuarios logeados:${applicationScope.numUsuLog}</span>
 	  	<span>${usuario.nombre}</span>
 	  </div>
 	  <div>
@@ -86,5 +89,6 @@
 	
 	<% request.getSession().removeAttribute("alerta"); %>
 	
-	
+	<a href="views/backoffice/index.jsp">backoffice</a>
+	<a href="views/frontoffice/index.jsp">frontoffice</a>
 	
