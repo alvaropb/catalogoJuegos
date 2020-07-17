@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/ejemplo05">
+     <Resource
+         type="javax.sql.DataSource"
+         auth="Container"
+         name="jdbc/poolConnection"
+         driverClassName="com.mysql.jdbc.Driver"
+         url="jdbc:mysql://localhost/catalogoJuegos"
+         username="debian-sys-maint"
+         password="o8lAkaNtX91xMUcV"
+
+         maxActive="100"
+         maxIdle="30"
+         maxWait="10000"
+         validationQuery="SELECT 1 FROM dual"
+      />
+ </Context>
