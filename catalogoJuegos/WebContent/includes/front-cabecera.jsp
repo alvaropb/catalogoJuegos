@@ -47,12 +47,12 @@
                                 Inicio
                             </a> 
                             <div class="sb-sidenav-menu-heading">Administracion</div>
-                            <a class="nav-link" href="views/frontoffice/productos?validar=1">
+                            <a class="nav-link" href="views/frontoffice/juegos?validar=1">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Productos validados
                             </a>                     
                             
-                            <a class="nav-link" href="views/frontoffice/productos">
+                            <a class="nav-link" href="views/frontoffice/juegos">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Productos pendientes de validar
                             </a>
@@ -71,3 +71,16 @@
             <div id="layoutSidenav_content">
 			<main>
                     <div class="container-fluid">
+                    <c:if test="${not empty alerta }">
+                    	<div class="alert alert-${alerta.tipo} alert-dismissible fade show" role="alert">
+						  <strong>${alerta.mensaje}</strong> 
+						  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						    <span aria-hidden="true">&times;</span>
+						  </button>
+						</div>
+                    </c:if>
+                    <%request.getSession().setAttribute("alerta", null); %>
+                    
+                    
+                    
+                    
