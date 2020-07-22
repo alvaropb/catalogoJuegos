@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.catalogoJuegos.modelo.impl.JuegoDAOImpl;
+import com.catalogoJuegos.modelo.pojo.Resumen;
+import com.catalogoJuegos.modelo.pojo.Usuario;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
@@ -17,32 +20,42 @@ import com.catalogoJuegos.utilidades.Constantes;
 @WebServlet("/views/frontoffice/inicio")
 public class FrontofficeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG=Logger.getLogger(FrontofficeController.class);
-	
-	
+	private static final Logger LOG = Logger.getLogger(FrontofficeController.class);
+	private static final JuegoDAOImpl juegoDAO = JuegoDAOImpl.getInstance();
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LOG.trace("Entra en FrontofficeController doGet() request:"+request);
-		//TODO cargar en vaiables los datos que queramos del dao
-		
-		request.setAttribute("juegos_alta", "listado de juegos de alta");
-		request.setAttribute("juegos_validar", "listado de juegos a validar");
-		
-		//redireccion
-		request.getRequestDispatcher(Constantes.INDEX).forward(request, response);
-		
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		LOG.trace("sale de FrontofficeController doGet() response:"+response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		LOG.trace("Entra en FrontofficeController doGet() request:" + request);
+		// TODO cargar en vaiables los datos que queramos del dao
+		Resumen resumen =null;
+		Usuario usu =null;
+		try {
+			// sacar id_usuario de la sesion
+			usu = (Usuario) request.getSession().getAttribute(Constantes.USUARIO);
+			resumen = juegoDAO.getResumenById(usu.getId());
+		} catch (Exception e) {
+			LOG.error(e);
+		}finally {
+			request.setAttribute(Constantes.RESUMEN, resumen);
+			
+			// redireccion
+			request.getRequestDispatcher(Constantes.INDEX).forward(request, response);
+			
+		}
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 
