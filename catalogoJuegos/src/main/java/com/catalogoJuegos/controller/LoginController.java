@@ -65,12 +65,12 @@ public class LoginController extends HttpServlet {
 
 				HttpSession sesion = request.getSession();
 
-				sesion.setAttribute("usuario", usuario);
+				sesion.setAttribute(Constantes.USUARIO, usuario);
 				sesion.setMaxInactiveInterval(1 * 60 * 60);// 60 minutos
 				
 				// al iniciar session , guardar un entero con el num de usuarios y 
 				//mostrarlo para que todos los usuarios puedan ver el num total de usuarios
-				
+				//TODO revisar correcto funcionamiento  
 				int numUsus=(int) (request.getServletContext().getAttribute("numUsuLog"));
 				request.getServletContext().setAttribute("numUsuLog", numUsus+1);
 				
@@ -82,7 +82,7 @@ public class LoginController extends HttpServlet {
 				if (usuario.getRol().getId()==Rol.ADMINISTRADOR) {
 					vista=Constantes.BACKOFFICE_CONTROLLER;
 				}else {
-					vista=Constantes.FRONTOFFICE_CONTROLLER;//TODO cambiar a /views/frontoffice/inicio 
+					vista=Constantes.FRONTOFFICE_CONTROLLER; 
 				}
 				
 			}// fin usuario existe
