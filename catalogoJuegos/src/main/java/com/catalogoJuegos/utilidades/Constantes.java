@@ -8,15 +8,18 @@ public class Constantes {
 	public static final String CATEGORIA = "categoria";
 	public static final String CATEGORIAS = "categorias";
 	public static final String CATEGORIA_NOMBRE = "categoriaNombre";
+	public static final String ID = "id";
 	public static final String ID_CATEGORIA = "idCategoria";
 	public static final String INICIO_JUEGOS = "Inicio | juegos";
+	public static final String JUEGO = "juego";
 	public static final String JUEGOS = "juegos";
 	public static final String JUEGOS_POR_CATEGORIA = "juegosCategoria";
 	public static final String MSJ = "msj";
 	public static final String NOMBRE = "nombre";
 	public static final String OPERACION = "operacion";
 	public static final String PAGINA = "pagina";
-
+	public static final String RESUMEN = "resumen";
+	public static final String USUARIO = "usuario";
 	public static final String VALIDAR = "validar";
 
 	// paginas
@@ -71,6 +74,10 @@ public class Constantes {
 	// errores
 	public static final String DUPLICATE_ENTRY = "Duplicate entry";
 	public static final String INTEGRITY_ERROR = "Cannot delete or update a parent row: a foreign key constraint fails";
+
+	
+	
+
 
 	
 
