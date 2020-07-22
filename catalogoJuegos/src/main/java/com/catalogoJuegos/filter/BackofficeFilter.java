@@ -44,7 +44,7 @@ public class BackofficeFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
+	
 		// parsear servler request a httprequest
 		HttpServletRequest servletRequest=(HttpServletRequest)request;
 		//parsear servler response a httpresponse
