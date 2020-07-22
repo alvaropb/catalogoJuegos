@@ -20,6 +20,8 @@ public class Juego {
 	private Categoria categoria;
 	@Size(min = 0, max = 255, message = "Debe tener un maximo de 255 caracteres")
 	private String imagen;
+	
+	private Usuario usuario;
 
 	public Juego() {
 		super();
@@ -28,6 +30,7 @@ public class Juego {
 		this.precio = BigDecimal.ZERO;
 		this.categoria = new Categoria();
 		this.imagen = "";
+		this.setUsuario(new Usuario());
 	}
 
 	public Juego(String nombre) {
@@ -75,11 +78,21 @@ public class Juego {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	@Override
 	public String toString() {
 		return "Juego [nombre=" + nombre + ", id=" + id + ", precio=" + precio + ", categoria=" + categoria
-				+ ", imagen=" + imagen + "]";
+				+ ", imagen=" + imagen + ", usuario=" + usuario + "]";
 	}
+
+	
+
 
 }
