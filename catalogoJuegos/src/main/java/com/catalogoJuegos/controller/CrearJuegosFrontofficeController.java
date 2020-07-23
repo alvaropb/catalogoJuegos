@@ -17,6 +17,7 @@ import javax.validation.ValidatorFactory;
 
 import org.apache.log4j.Logger;
 
+import com.catalogoJuegos.modelo.dao.SeguridadException;
 import com.catalogoJuegos.modelo.impl.JuegoDAOImpl;
 import com.catalogoJuegos.modelo.pojo.Categoria;
 import com.catalogoJuegos.modelo.pojo.Juego;
@@ -79,11 +80,12 @@ public class CrearJuegosFrontofficeController extends HttpServlet {
 			throws ServletException, IOException {
 		Juego juego=null;
 		String listadoErrores="";
-		Alerta alerta=new Alerta();// TODO meter alert en cabecera-frontoffice
+		Alerta alerta=new Alerta();
 		//recoger usuario de la sesion
 		Usuario usuario=new Usuario();
 		usuario=(Usuario) request.getSession().getAttribute(Constantes.USUARIO);
 		
+			
 		// recoger parametros
 		String nombre = request.getParameter("nombre");//
 		String id = request.getParameter("id");//Creamos, asi que la id se genera
@@ -109,7 +111,10 @@ public class CrearJuegosFrontofficeController extends HttpServlet {
 				//parsear para setear en juego y editar
 				juego.setId(Integer.parseInt(id));
 			}
-			
+			//verificar permisos:
+			if (juego.getId()>0) {
+				juegoDAO.getById(juego.getId(), juego.getUsuario().getId());
+			}
 			
 			// validar parametros
 			Set<ConstraintViolation<Juego>> errores=validator.validate(juego);
@@ -119,7 +124,7 @@ public class CrearJuegosFrontofficeController extends HttpServlet {
 				}
 				alerta.setTipo(Constantes.DANGER);
 				alerta.setMensaje(listadoErrores);
-				
+				throw new Exception();
 			}else {
 				if (juego.getId()!=0) {
 					juego=juegoDAO.update(juego);
@@ -130,24 +135,24 @@ public class CrearJuegosFrontofficeController extends HttpServlet {
 				}
 			}
 			
-			//insertar
+			
+		}catch (SeguridadException e) {
+			LOG.error(e);
+			LOG.error("Usuario intento saltarse la seguridad: "+usuario);
+			
 		} catch (Exception e) {
 			LOG.error(e);
-			alerta.setTipo(Constantes.DANGER);
 			if (e.getMessage().contains(Constantes.DUPLICATE_ENTRY)) {
 				listadoErrores+="<p><strong>"+Constantes.DUPLICATE_ENTRY+" </strong>Nombre ya existe</p>";
 			}
-			if (e.getMessage().contains("No tiene permisos para efectuar esta operacion")) {
-				listadoErrores+=e.getMessage();
-			}
-			
+
 			alerta.setMensaje(listadoErrores);
 		}finally {
 			
 			//setear atributos
 			request.setAttribute(Constantes.NOMBRE, nombre);
 			request.getSession().setAttribute(Constantes.ALERTA, alerta);
-			// redirigir, Esto peta fijo
+			// redirigir
 			request.getRequestDispatcher("/views/frontoffice/juegos").forward(request, response);
 			
 		}

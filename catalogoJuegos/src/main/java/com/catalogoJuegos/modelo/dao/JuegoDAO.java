@@ -55,6 +55,7 @@ public interface JuegoDAO extends ICrudable<Juego> {
 	 * @param idUsuario
 	 * @return Juego
 	 * @throws SeguridadException
+	 * @throws Exception 
 	 */
-	public Juego getById(int idJuego, int idUsuario) throws SeguridadException;
+	public Juego getById(int idJuego, int idUsuario) throws SeguridadException, Exception;
 }

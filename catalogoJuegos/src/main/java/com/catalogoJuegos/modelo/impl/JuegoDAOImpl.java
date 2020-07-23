@@ -42,14 +42,15 @@ public class JuegoDAOImpl implements JuegoDAO {
 	private static final String INSERT = "INSERT INTO juegos (nombre,precio,id_categoria,imagen,id_usuario) VALUES(?,?,?,?,?)";
 
 	private static final String GET_BY_NAME = "SELECT nombre,id, precio FROM juegos WHERE nombre=? LIMIT 500";
-	
+
 	private static final String GET_BY_ID = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
 			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
 			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + "WHERE j.id= ?;";
 	private static final String GET_BY_ID_USUARIO = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
-			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen , " + 
-					"			j.fecha_validado as 'isValidado' "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + "WHERE j.id= ? AND j.id_usuario =?;";
+			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen , "
+			+ "			j.fecha_validado as 'isValidado' "
+			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria "
+			+ "WHERE j.id= ? AND j.id_usuario =?;";
 	private static final String GET_BY_ID_CATEGORIA = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
 			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
 			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria "
@@ -100,7 +101,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 		}
 
 		return juegos;
-	}		// preguntar si rs.next()
+	} // preguntar si rs.next()
 
 	@Override
 	public ArrayList<Juego> getAll(int num) throws Exception {
@@ -116,15 +117,9 @@ public class JuegoDAOImpl implements JuegoDAO {
 					juegos.add(mapper(rs));// mapear el resultado en arrayList
 				}
 
-			} catch (Exception e) {
-				LOG.error(e);
+			} 
 
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();		// preguntar si rs.next()
-			throw new Exception("Error de lectura en la bbdd");
-		}
+		} 
 
 		return juegos;
 	}
@@ -153,15 +148,9 @@ public class JuegoDAOImpl implements JuegoDAO {
 					juegoR.setId(key);
 				}
 
-			} catch (Exception e) {
-				LOG.error(e);
-				throw e;
 			}
 
-		} catch (Exception e) {
-			LOG.error(e);
-			throw e;
-		}
+		} 
 
 		return juegoR;
 	}
@@ -180,12 +169,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 
 				}
 
-			} catch (Exception e) {
-				LOG.error(e);
-			}
+			} 
 
-		} catch (Exception e) {
-			LOG.error(e);
 		}
 
 		return juegoR;
@@ -203,52 +188,42 @@ public class JuegoDAOImpl implements JuegoDAO {
 					juegoR = mapper(rs);
 				}
 
-			} catch (Exception e) {
-				LOG.error(e);
-			}
+			} 
 
-		} catch (Exception e) {
-			LOG.error(e);
-		}
+		} 
 
 		return juegoR;
 	}
 
 	@Override
-	public Juego update(Juego t) throws Exception {
+	public Juego update(Juego t) throws Exception,SeguridadException {
 		Juego juegoR = new Juego();
-		
-		//TODO antes de modificar comprobar el ROL del usuario
+
+		// antes de modificar comprobar el ROL del usuario
 		// si es ADMIN hacer la update que tenemos abajo
 		// si es USER comprobar que le pertenezca ??
-		
-		
-		// throw new SeguridadException( SeguridadException.MENSAJE_1 );
-		// throw new SeguridadException();
+
+
 		try (Connection conn = ConnectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(UPDATE);) {
-			pst.setString(1, t.getNombre());		// preguntar si rs.next()
+			pst.setString(1, t.getNombre()); // preguntar si rs.next()
 			pst.setBigDecimal(2, t.getPrecio());
 			pst.setInt(3, t.getCategoria().getId());
 			pst.setString(4, t.getImagen());
 			pst.setInt(5, t.getUsuario().getId());
 			pst.setInt(6, t.getId());
-			
-			juegoR=getById(t.getId(), t.getUsuario().getId());
-			if ((t.getUsuario().getRol().getId()==Rol.ADMINISTRADOR)||juegoR.getId()!=0) {
-				
+
+			juegoR = getById(t.getId(), t.getUsuario().getId());
+			if ((t.getUsuario().getRol().getId() == Rol.ADMINISTRADOR) || juegoR.getId() != 0) {
+
 				pst.execute();
-			}else {
+			} else {
 				throw new SeguridadException();
 			}
 
 			juegoR = getById(t);
 
-		} catch (Exception e) {
-			LOG.error(e);
-			throw e;
-			// throw new Exception("Ocurrio un error a la hora de actualizar");
-		}
+		} 
 
 		return juegoR;
 	}
@@ -263,9 +238,6 @@ public class JuegoDAOImpl implements JuegoDAO {
 			pst.setInt(1, t.getId());
 			juegoR = getById(t);
 			pst.execute();
-
-		} catch (Exception e) {
-			LOG.error(e);
 
 		}
 
@@ -284,7 +256,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 		return juego;
 	}
 
-	@Override		// preguntar si rs.next()
+	@Override // preguntar si rs.next()
 	public ArrayList<Juego> getByCategoria(int id, int limite) throws Exception {
 		ArrayList<Juego> juegos = new ArrayList<Juego>();
 
@@ -296,12 +268,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 				while (rs.next()) {
 					juegos.add(mapper(rs));
 				}
-			} catch (Exception e) {
-				LOG.error(e);
-			}
-		} catch (Exception e) {
-			LOG.error(e);
-		}
+			} 
+		} 
 
 		return juegos;
 	}
@@ -326,14 +294,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 					juegos.add(mapper(rs));// mapear el resultado en arrayList
 				}
 
-			} catch (Exception e) {
-				LOG.error(e);
-				throw e;
-			}
+			} 
 
-		} catch (Exception e) {
-			LOG.error(e);
-			throw new Exception("Error de lectura en la bbdd");
 		}
 
 		return juegos;
@@ -350,14 +312,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 				if (rs.next()) {
 					mapperResumen(resumen, rs);
 				}
-					
-			} catch (Exception e) {
-				LOG.error(e);
-				throw e;
-			}
-		} catch (Exception e) {
-			LOG.error(e);
-			throw e;
+
+			} 
 		}
 
 		return resumen;
@@ -371,30 +327,30 @@ public class JuegoDAOImpl implements JuegoDAO {
 	}
 
 	@Override
-	public Juego delete(int idJuego, int idUsuario) throws Exception {
+	public Juego delete(int idJuego, int idUsuario) throws Exception,SeguridadException {
 
 		Juego juegoR = new Juego();
-		int affectedRows=0;
+		int affectedRows = 0;
 		juegoR.setId(idJuego);
 
 		try (Connection conn = ConnectionManager.getConnection();
-			PreparedStatement pst = conn.prepareStatement(DELETE_BY_USER)) {
+				PreparedStatement pst = conn.prepareStatement(DELETE_BY_USER)) {
 			pst.setInt(1, idJuego);
 			pst.setInt(2, idUsuario);
 			juegoR = getById(juegoR);
-			
-			affectedRows=pst.executeUpdate();
-			if (affectedRows==0) {
+
+			affectedRows = pst.executeUpdate();
+			if (affectedRows == 0) {
 				throw new SeguridadException();
 			}
 
-		} 
+		}
 
 		return juegoR;
 	}
 
 	@Override
-	public Juego getById(int idJuego, int idUsuario) throws SeguridadException {
+	public Juego getById(int idJuego, int idUsuario) throws Exception, SeguridadException {
 		Juego juegoR = new Juego();
 		// preguntar si rs.next()
 		try (Connection conn = ConnectionManager.getConnection();
@@ -406,16 +362,13 @@ public class JuegoDAOImpl implements JuegoDAO {
 				if (rs.next()) {
 					juegoR = mapper(rs);
 
-
+				}else {
+					throw new SeguridadException();
 				}
 
-			} catch (Exception e) {
-				LOG.error(e);
-			}
+			} 
 
-		} catch (Exception e) {
-			LOG.error(e);
-		}
+		} 
 
 		return juegoR;
 	}
