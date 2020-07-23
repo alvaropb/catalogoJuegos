@@ -36,8 +36,8 @@ public class JuegosFrontofficeController extends HttpServlet {
 
 		// recoger parametros
 		String validados = request.getParameter(Constantes.VALIDAR);
-		//TODO recoger de CrearJuegosController un parametro, atributo o lo que sea para redirigir 
-		//en funcion de si el juego editado esta validado o noString validadosDeController=request.getParameter(Constantes.VALIDAR);
+
+
 		LOG.trace("validados: "+validados);
 		Usuario usu = (Usuario) request.getSession().getAttribute(Constantes.USUARIO);
 		LOG.trace("usuario: "+usu);

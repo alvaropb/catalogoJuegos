@@ -21,7 +21,10 @@ public class Juego {
 	@Size(min = 0, max = 255, message = "Debe tener un maximo de 255 caracteres")
 	private String imagen;
 	
+
+
 	private Usuario usuario;
+
 
 	public Juego() {
 		super();
@@ -85,6 +88,7 @@ public class Juego {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
 
 	@Override
 	public String toString() {

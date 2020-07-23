@@ -47,14 +47,15 @@ public class JuegoDAOImpl implements JuegoDAO {
 			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
 			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + "WHERE j.id= ?;";
 	private static final String GET_BY_ID_USUARIO = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
-			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
+			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen , " + 
+					"			j.fecha_validado as 'isValidado' "
 			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + "WHERE j.id= ? AND j.id_usuario =?;";
 	private static final String GET_BY_ID_CATEGORIA = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
 			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
 			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria "
 			+ "WHERE c.id_categoria =? AND fecha_validado IS NOT NULL " + "ORDER BY j.id DESC LIMIT ?;";
 
-	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=?, id_categoria=?, imagen=?,id_usuario=? WHERE id=?";
+	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=?, id_categoria=?, imagen=?,id_usuario=?,fecha_validado=NULL WHERE id=?";
 
 	private static final String DELETE = "DELETE FROM juegos WHERE id=?";
 	private static final String DELETE_BY_USER = "DELETE FROM juegos WHERE id=? AND id_usuario=?";
@@ -387,10 +388,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 				throw new SeguridadException();
 			}
 
-		} catch (Exception e) {
-			LOG.error(e);
-			throw e;
-		}
+		} 
 
 		return juegoR;
 	}
@@ -407,6 +405,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
 					juegoR = mapper(rs);
+
+
 				}
 
 			} catch (Exception e) {

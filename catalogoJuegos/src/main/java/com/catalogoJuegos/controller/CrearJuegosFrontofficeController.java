@@ -123,12 +123,7 @@ public class CrearJuegosFrontofficeController extends HttpServlet {
 			}else {
 				if (juego.getId()!=0) {
 					juego=juegoDAO.update(juego);
-					//request.setAttribute(Constantes.VALIDAR, 1);
-					
-					//TODO redireccion. SI juego update validado-> enviar atributo "validar" String validados = request.getParameter(Constantes.VALIDAR);
-//					if (condition) {
-//						
-//					}
+
 				}else {
 					juego = juegoDAO.insert(juego);
 					
