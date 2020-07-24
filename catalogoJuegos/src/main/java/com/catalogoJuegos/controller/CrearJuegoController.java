@@ -94,6 +94,7 @@ public class CrearJuegoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -180,7 +181,7 @@ public class CrearJuegoController extends HttpServlet {
 	private void validaciones(Alerta alerta, Juego juego) throws Exception {
 		Set<ConstraintViolation<Juego>> violations = validator.validate(juego);
 		String errores = "";
-		for (Iterator iterator = violations.iterator(); iterator.hasNext();) {
+		for (Iterator<ConstraintViolation<Juego>> iterator = violations.iterator(); iterator.hasNext();) {
 			ConstraintViolation<Juego> constraintViolation = (ConstraintViolation<Juego>) iterator.next();
 
 			errores += "<p> <b>" + constraintViolation.getPropertyPath() + "</b>: " + constraintViolation.getMessage()
