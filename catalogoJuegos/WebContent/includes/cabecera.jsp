@@ -26,6 +26,10 @@
 <!-- custom js -->
 <script type="text/javascript" src="js/custom.js"></script>
 
+<!-- custom css -->
+<link rel="stylesheet" href="css/estilos.css" crossorigin="anonymous">
+
+
 <!-- favicon --> 	
 <link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" sizes="32x32">
 
@@ -43,7 +47,7 @@
 	      <a class="nav-item nav-link ${(param.activa eq 'ultimos_juegos')?'active':'' }" href="inicio?idCategoria=-1">Juegos por categoria</a>
 	      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego?id=0">Crear Juegos </a>
 	      <a class="nav-item nav-link ${(param.activa eq 'listado_categorias')?'active':'' }" href="crear-categoria">Listado categorias </a>
-	      <a class="nav-item nav-link" href="views/frontoffice/inicio">Panel frontoffice </a>
+	      <a class="nav-item nav-link ${(usuario.rol.id eq 1)?'active text-success':'' }" href="views/frontoffice/inicio">Panel frontoffice </a>
      </c:if>
 		<div class="dropdown">
 			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,7 +58,7 @@
 					    <a class="dropdown-item" href="inicio?idCategoria=${categoria.id }&categoriaNombre=${categoria.nombre }">${categoria.nombre }</a>
 				    </c:forEach>
 			  </div>
-		</div>
+		</div>5
     
      </div>
   </div>
@@ -89,6 +93,5 @@
 	
 	<% request.getSession().removeAttribute("alerta"); %>
 	
-	<a href="views/backoffice/index.jsp">backoffice</a>
-	<a href="views/frontoffice/index.jsp">frontoffice</a>
+
 	
