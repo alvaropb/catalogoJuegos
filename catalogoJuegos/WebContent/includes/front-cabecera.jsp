@@ -23,7 +23,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">Catalogo Juegos</a>
+            <a class="navbar-brand" href="inicio">Catalogo Juegos</a>
 
 
             <!-- Navbar-->  
@@ -32,9 +32,7 @@
 	                <li class="nav-item dropdown">
 	                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 	                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-	                        <a class="dropdown-item" href="#">Settings</a>
-	                        <a class="dropdown-item" href="#">Activity Log</a>
-	                        <div class="dropdown-divider"></div>
+	
 	                        <a class="dropdown-item" href="logout">Logout</a>
 	                    </div>
 	                </li>
@@ -47,23 +45,23 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
 		                   <div class="sb-sidenav-menu-heading">Inicio</div>
-                            <a class="nav-link" href="inicio">
+                            <a class="nav-link" href="views/frontoffice/inicio">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Inicio
                             </a> 
                             <div class="sb-sidenav-menu-heading">Administracion</div>
                             <a class="nav-link" href="views/frontoffice/juegos?validar=1">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Productos validados
+                                Juegos validados
                             </a>                     
                             
                             <a class="nav-link" href="views/frontoffice/juegos">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Productos pendientes de validar
+                                Juegos pendientes de validar
                             </a>
                             <a class="nav-link" href="views/frontoffice/crear-juegos">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Crear productos
+                                Crear juegos
                             </a>
                         </div>
                     </div>
