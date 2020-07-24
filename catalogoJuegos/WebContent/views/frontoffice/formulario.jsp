@@ -3,7 +3,7 @@
 	
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">formulario.jsp</h1>
+                        <h1 class="mt-4">${msj}</h1>
 							
 							<form action="views/frontoffice/crear-juegos" method="post">
 									  		<c:if test="${not empty juego.imagen}">
