@@ -13,11 +13,11 @@
 				<h4>${categoria.nombre}</h4>
 				<div class="d-flex container-fluid" >		
 			
-			 		<div class="row w-100 row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 row-cols-xl-5 row-cols-fluid-5}">
+			 		<div class="row w-100 row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 row-cols-xl-4 row-cols-fluid-4}">
 				
 						<c:forEach items="${categoria.juegos}" var="juego">
 											
-								<div class="col card " >
+								<div class="col card img-card" >
 									<div class="card-body">
 										  <img src="${juego.imagen}"  class="card-img-top img-fluid" height="200"  alt="...">
 									</div>
@@ -30,6 +30,7 @@
 										     <fmt:setLocale value = "es_ES"/>
 				        					 <fmt:formatNumber value = "${juego.precio }" type = "currency" currencySymbol="€"/></li>
 										    <li class="list-group-item">Categoria: ${juego.categoria.nombre} </li>
+										    <li class="list-group-item">Usuario: ${juego.usuario.nombre} </li>
 										    
 									  </ul>
 									  <div class="card-body">
