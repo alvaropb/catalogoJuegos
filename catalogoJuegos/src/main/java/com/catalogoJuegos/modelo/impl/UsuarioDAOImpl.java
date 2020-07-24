@@ -85,18 +85,14 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 			pst.setString(1, usuario.getNombre());
 			pst.setString(2, usuario.getPass());
-
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
 					usuarioR = mapper(rs);
 				}
-			} catch (Exception e) {
-				LOG.error(e);
 			}
 
-		} catch (Exception e) {
-			LOG.error(e);
-		}
+		} 
 
 		return usuarioR;
 	}
