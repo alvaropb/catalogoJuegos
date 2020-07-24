@@ -13,6 +13,7 @@ import com.catalogoJuegos.modelo.ConnectionManager;
 import com.catalogoJuegos.modelo.dao.CategoriaDAO;
 import com.catalogoJuegos.modelo.pojo.Categoria;
 import com.catalogoJuegos.modelo.pojo.Juego;
+import com.catalogoJuegos.modelo.pojo.Usuario;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
 
@@ -20,9 +21,10 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	private final static String GET_ALL = "SELECT id_categoria, nombre FROM categorias ORDER BY nombre DESC LIMIT 500;";
 	private final static String GET_BY_ID = "SELECT id_categoria, nombre FROM categorias WHERE id_categoria=? ";
-	private final static String GET_ALL_WITH_PRODUCTS = "SELECT j.nombre as 'titulo'," + "		j.id as 'id_juego',"
-			+ "		precio," + "		imagen," + "		c.id_categoria," + "		c.nombre "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria= c.id_categoria; ";
+	private final static String GET_ALL_WITH_PRODUCTS = "SELECT j.nombre as 'titulo',j.id as 'id_juego'," + 
+			"			precio,j.imagen,c.id_categoria,c.nombre,u.nombre,u.id " + 
+			"			FROM juegos j INNER JOIN categorias c ON j.id_categoria= c.id_categoria\n" + 
+			"			INNER JOIN usuarios u ON u.id =j.id_usuario ; ";
 
 	private final static String INSERT = "INSERT INTO categorias (nombre) VALUES (?);";
 	private final static String UPDATE = "UPDATE categorias SET nombre=? WHERE id_categoria=? ;";
@@ -55,19 +57,14 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		try (Connection conn = ConnectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(GET_ALL);) {
 			try (ResultSet rs = pst.executeQuery();) {
-
+				LOG.trace(pst);
 				while (rs.next()) {
 					categorias.add(mapper(rs));
 				}
 
-			} catch (Exception e) {
-				LOG.error(e);
-
 			}
 
-		} catch (Exception e) {
-			LOG.error(e);
-		}
+		} 
 
 		return categorias;
 	}
@@ -81,10 +78,10 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 		try (Connection conn = ConnectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(GET_ALL_WITH_PRODUCTS);) {
+			
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery();) {
 
-				// j.nombre as 'titulo', j.id as 'id_juego', precio, imagen, c.id_categoria,
-				// c.nombre
 				while (rs.next()) {
 
 					Categoria c = new Categoria();
@@ -97,6 +94,15 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 					j.setImagen(rs.getString("imagen"));
 					j.setNombre(rs.getString("titulo"));
 					j.setPrecio(rs.getBigDecimal("precio"));
+					
+					//usuario
+					//u.nombre,u.id
+					Usuario u=new Usuario();
+					u.setId(rs.getInt("u.id"));
+					u.setNombre(rs.getString("u.nombre"));
+					j.setUsuario(u);
+					
+					
 
 					if (hashMapCategorias.get(c.getId()) != null) {
 						// categoria ya esta en el hashmap, añadir juego al array de categoria
@@ -112,12 +118,8 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 				categoriasReturn = new ArrayList<Categoria>(hashMapCategorias.values());
 
-			} catch (Exception e) {
-				LOG.error(e);
-			}
+			} 
 
-		} catch (Exception e) {
-			LOG.error(e);
 		}
 
 		return categoriasReturn;
@@ -129,8 +131,8 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 		try (Connection conn = ConnectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS)) {
-
 			pst.setString(1, t.getNombre());
+			LOG.trace(pst);
 
 			pst.executeUpdate();
 
@@ -140,17 +142,10 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 					categoria.setId(rs.getInt(1));
 					categoria = getById(categoria);
 				}
-			} // TODO probar a quitar este catch lanzando una excepcion nombre duplicado
-			catch (Exception e) {
-				LOG.error(e);
-				LOG.error(pst);
-				throw e;
-			}
+			} 
+			
 
-		} catch (Exception e) {
-			LOG.error(e);
-			throw e;
-		}
+		} 
 
 		return categoria;
 	}
@@ -168,17 +163,14 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		try (Connection conn = ConnectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(GET_BY_ID)) {
 			pst.setInt(1, t.getId());
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
 					cReturn = mapper(rs);
 				}
 
-			} catch (Exception e) {
-				LOG.error(e);
-			}
-		} catch (Exception e) {
-			LOG.error(e);
-		}
+			} 
+		} 
 
 		return cReturn;
 	}
@@ -190,13 +182,11 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 				PreparedStatement pst = conn.prepareStatement(UPDATE);) {
 			pst.setString(1, t.getNombre());
 			pst.setInt(2, t.getId());
+			LOG.trace(pst);
 			pst.executeUpdate();
 			cReturn = getById(t);
 
-		} catch (Exception e) {
-			LOG.error(e);
-			throw e;
-		}
+		} 
 
 		return cReturn;
 	}
@@ -209,13 +199,11 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		try (Connection conn=ConnectionManager.getConnection();
 				PreparedStatement pst=conn.prepareStatement(DELETE)){
 			pst.setInt(1, t.getId());
+			LOG.trace(pst);
 			pst.executeUpdate();
 			
 			
-		} catch (Exception e) {
-			LOG.error(e);
-			throw e;
-		}
+		} 
 
 		return cReturn;
 	}
