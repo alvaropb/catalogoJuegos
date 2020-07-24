@@ -16,45 +16,48 @@ import com.catalogoJuegos.modelo.pojo.Categoria;
 import com.catalogoJuegos.modelo.pojo.Juego;
 import com.catalogoJuegos.modelo.pojo.Resumen;
 import com.catalogoJuegos.modelo.pojo.Rol;
+import com.catalogoJuegos.modelo.pojo.Usuario;
 
 public class JuegoDAOImpl implements JuegoDAO {
 	private static final Logger LOG = Logger.getLogger(JuegoDAOImpl.class);
-	private final static String GET_ALL = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
-			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria WHERE fecha_validado IS NOT NULL "
-			+ "" + "ORDER BY j.id DESC LIMIT 500;";
-	private final static String GET_ALL_BY_USUARIO_VALIDADO = "SELECT " + "j.nombre as 'titulo' ,"
-			+ "j.id as 'id_juego'," + "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria',"
-			+ "j.imagen "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria WHERE fecha_validado IS NOT NULL "
-			+ "" + "AND id_usuario=?  ORDER BY j.id DESC LIMIT 500;";
-	private final static String GET_ALL_BY_USUARIO_NO_VALIDADO = "SELECT " + "j.nombre as 'titulo' ,"
-			+ "j.id as 'id_juego'," + "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria',"
-			+ "j.imagen "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria WHERE fecha_validado IS NULL "
-			+ "" + "AND id_usuario=?  ORDER BY j.id DESC LIMIT 500;";
+	private final static String camposJuegos=" j.nombre as 'titulo' ,j.id as 'id_juego',j.precio as 'precio',c.id_categoria,c.nombre as 'nombre_categoria',j.imagen,u.nombre,u.id "; 
+	private final static String GET_ALL = "SELECT" +camposJuegos+
+								"FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria"
+								+ "	INNER JOIN usuarios u ON j.id_usuario =u.id "
+								+ " WHERE fecha_validado IS NOT NULL "
+								+ "ORDER BY j.id DESC LIMIT 500;";
+	private final static String GET_ALL_BY_USUARIO_VALIDADO = "SELECT " +camposJuegos
+								+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria "
+								+ "	INNER JOIN usuarios u ON j.id_usuario =u.id "
+								+ "WHERE fecha_validado IS NOT NULL "
+								+ "" + "AND id_usuario=?  ORDER BY j.id DESC LIMIT 500;";
+	private final static String GET_ALL_BY_USUARIO_NO_VALIDADO = "SELECT " + camposJuegos
+								+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria"
+								+ "	INNER JOIN usuarios u ON j.id_usuario =u.id "
+								+ " WHERE fecha_validado IS NULL "
+								+ "" + "AND id_usuario=?  ORDER BY j.id DESC LIMIT 500;";
 
-	private final static String GET_ULTIMOS = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
-			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria WHERE fecha_validado IS NOT NULL "
-			+ "" + "ORDER BY j.id DESC LIMIT ?;";
+	private final static String GET_ULTIMOS = "SELECT"+camposJuegos
+											+ "  FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria"
+											+ "	 INNER JOIN usuarios u ON j.id_usuario =u.id "
+											+ "	 WHERE fecha_validado IS NOT NULL ORDER BY j.id DESC LIMIT ?;";
 
 	private static final String INSERT = "INSERT INTO juegos (nombre,precio,id_categoria,imagen,id_usuario) VALUES(?,?,?,?,?)";
 
 	private static final String GET_BY_NAME = "SELECT nombre,id, precio FROM juegos WHERE nombre=? LIMIT 500";
 
-	private static final String GET_BY_ID = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
-			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria " + "WHERE j.id= ?;";
-	private static final String GET_BY_ID_USUARIO = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
-			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen , "
-			+ "			j.fecha_validado as 'isValidado' "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria "
-			+ "WHERE j.id= ? AND j.id_usuario =?;";
-	private static final String GET_BY_ID_CATEGORIA = "SELECT " + "j.nombre as 'titulo' ," + "j.id as 'id_juego',"
-			+ "j.precio as 'precio'," + "c.id_categoria," + "c.nombre as 'nombre_categoria'," + "j.imagen "
-			+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria "
-			+ "WHERE c.id_categoria =? AND fecha_validado IS NOT NULL " + "ORDER BY j.id DESC LIMIT ?;";
+	private static final String GET_BY_ID = "SELECT "+camposJuegos
+								+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria "
+								+ "	 INNER JOIN usuarios u ON j.id_usuario =u.id "
+								+ "WHERE j.id= ?;";
+	private static final String GET_BY_ID_USUARIO = "SELECT " + camposJuegos
+								+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria "
+								+ "	 INNER JOIN usuarios u ON j.id_usuario =u.id "
+								+ "WHERE j.id= ? AND j.id_usuario =?;";
+	private static final String GET_BY_ID_CATEGORIA = "SELECT " + camposJuegos
+								+ "FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria "
+								+ "	 INNER JOIN usuarios u ON j.id_usuario =u.id "
+								+ "WHERE c.id_categoria =? AND fecha_validado IS NOT NULL " + "ORDER BY j.id DESC LIMIT ?;";
 
 	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=?, id_categoria=?, imagen=?,id_usuario=?,fecha_validado=NULL WHERE id=?";
 
@@ -90,15 +93,14 @@ public class JuegoDAOImpl implements JuegoDAO {
 
 		try (Connection conn = ConnectionManager.getConnection(); // crear la conexion con la BBDD
 				PreparedStatement pst = conn.prepareStatement(GET_ALL); // preparar el statement
+				
 				ResultSet rs = pst.executeQuery();) {// recoger el resultado en un result set
+			LOG.trace(pst);
 			while (rs.next()) {
 				juegos.add(mapper(rs));// mapear el resultado en arrayList
 			}
 
-		} catch (Exception e) {
-			LOG.error(e);
-			throw new Exception("Error de lectura en la bbdd");
-		}
+		} 
 
 		return juegos;
 	} // preguntar si rs.next()
@@ -111,10 +113,12 @@ public class JuegoDAOImpl implements JuegoDAO {
 				PreparedStatement pst = conn.prepareStatement(GET_ULTIMOS); // preparar el statement
 		) {
 			pst.setInt(1, num);
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery();) {
 				// recoger el resultado en un result set
 				while (rs.next()) {
 					juegos.add(mapper(rs));// mapear el resultado en arrayList
+					//TODO añadir al juego el usuario 
 				}
 
 			} 
@@ -139,6 +143,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 			pst.setString(4, juego.getImagen());
 			// id_usuario
 			pst.setInt(5, juego.getUsuario().getId());
+			LOG.trace(pst);
 			pst.execute();
 
 			try (ResultSet rs = pst.getGeneratedKeys();) {
@@ -162,7 +167,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 		try (Connection conn = ConnectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(GET_BY_NAME);) {
 			pst.setString(1, t.getNombre());
-
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
 					juegoR = mapper(rs);
@@ -183,6 +188,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 				PreparedStatement pst = conn.prepareStatement(GET_BY_ID)) {
 
 			pst.setInt(1, t.getId());
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
 					juegoR = mapper(rs);
@@ -212,7 +218,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 			pst.setString(4, t.getImagen());
 			pst.setInt(5, t.getUsuario().getId());
 			pst.setInt(6, t.getId());
-
+			LOG.trace(pst);
 			juegoR = getById(t.getId(), t.getUsuario().getId());
 			if ((t.getUsuario().getRol().getId() == Rol.ADMINISTRADOR) || juegoR.getId() != 0) {
 
@@ -237,6 +243,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 				PreparedStatement pst = conn.prepareStatement(DELETE)) {
 			pst.setInt(1, t.getId());
 			juegoR = getById(t);
+			LOG.trace(pst);
 			pst.execute();
 
 		}
@@ -249,9 +256,15 @@ public class JuegoDAOImpl implements JuegoDAO {
 		juego.setId(rs.getInt("id_juego"));
 		juego.setPrecio(rs.getBigDecimal("precio"));
 		juego.setImagen(rs.getString("imagen"));
+		
 		Categoria c = new Categoria(rs.getString("nombre_categoria"));
 		c.setId(rs.getInt("id_categoria"));
 		juego.setCategoria(c);
+		
+		Usuario u=new Usuario();
+		u.setId(rs.getInt("u.id"));
+		u.setNombre(rs.getString("u.nombre"));
+		juego.setUsuario(u);
 
 		return juego;
 	}
@@ -264,6 +277,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 				PreparedStatement pst = conn.prepareStatement(GET_BY_ID_CATEGORIA)) {
 			pst.setInt(1, id);
 			pst.setInt(2, limite);
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery()) {
 				while (rs.next()) {
 					juegos.add(mapper(rs));
@@ -288,7 +302,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 				PreparedStatement pst = conn.prepareStatement(SQL); // preparar el statement
 		) {// recoger el resultado en un result set
 			pst.setInt(1, id);
-
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery();) {
 				while (rs.next()) {
 					juegos.add(mapper(rs));// mapear el resultado en arrayList
@@ -308,6 +322,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 		try (Connection conn = ConnectionManager.getConnection();
 				PreparedStatement pst = conn.prepareStatement(VIEW_RESUMEN_ID)) {
 			pst.setInt(1, id);
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
 					mapperResumen(resumen, rs);
@@ -338,7 +353,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 			pst.setInt(1, idJuego);
 			pst.setInt(2, idUsuario);
 			juegoR = getById(juegoR);
-
+			LOG.trace(pst);
 			affectedRows = pst.executeUpdate();
 			if (affectedRows == 0) {
 				throw new SeguridadException();
@@ -358,6 +373,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 
 			pst.setInt(1, idJuego);
 			pst.setInt(2, idUsuario);
+			LOG.trace(pst);
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
 					juegoR = mapper(rs);
