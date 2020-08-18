@@ -116,6 +116,13 @@
 			<version>${junit.version}</version>
 			<scope>test</scope> <!-- solo se usa para Test, cuando se crea el projecto no se usa esta libreria -->
 		</dependency>
+		
+		<!-- jsoup para recolectar de paginas web (crawler) -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.13.1</version>
+		</dependency>
 
 
 
