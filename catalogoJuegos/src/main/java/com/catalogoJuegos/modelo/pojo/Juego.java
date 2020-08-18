@@ -1,6 +1,7 @@
 package com.catalogoJuegos.modelo.pojo;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,8 @@ public class Juego {
 	@Size(min = 0, max = 255, message = "Debe tener un maximo de 255 caracteres")
 	private String imagen;
 	
+	private Date fechaValidacion;
+	
 
 
 	private Usuario usuario;
@@ -34,6 +37,7 @@ public class Juego {
 		this.categoria = new Categoria();
 		this.imagen = "";
 		this.setUsuario(new Usuario());
+		this.fechaValidacion= null;
 	}
 
 	public Juego(String nombre) {
@@ -90,11 +94,21 @@ public class Juego {
 	}
 	
 
+	public Date getFechaValidacion() {
+		return fechaValidacion;
+	}
+
+	public void setFechaValidacion(Date fechaValidacion) {
+		this.fechaValidacion = fechaValidacion;
+	}
+
 	@Override
 	public String toString() {
 		return "Juego [nombre=" + nombre + ", id=" + id + ", precio=" + precio + ", categoria=" + categoria
-				+ ", imagen=" + imagen + ", usuario=" + usuario + "]";
+				+ ", imagen=" + imagen + ", fechaValidacion=" + fechaValidacion + ", usuario=" + usuario + "]";
 	}
+
+
 
 	
 
