@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../../includes/front-cabecera.jsp"/>
-	
+<jsp:include page="../../includes/front-sidenav.jsp"/>
+<jsp:include page="../../includes/alerta.jsp"/>
 		 <table class="table" > 
 			  <thead class="thead-dark">
 			    <tr>
