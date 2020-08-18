@@ -1,5 +1,6 @@
 package com.catalogoJuegos.modelo.impl;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import com.catalogoJuegos.modelo.pojo.Usuario;
 
 public class JuegoDAOImpl implements JuegoDAO {
 	private static final Logger LOG = Logger.getLogger(JuegoDAOImpl.class);
-	private final static String camposJuegos=" j.nombre as 'titulo' ,j.id as 'id_juego',j.precio as 'precio',c.id_categoria,c.nombre as 'nombre_categoria',j.imagen,u.nombre,u.id "; 
+	private final static String camposJuegos=" j.nombre as 'titulo' ,j.id as 'id_juego',j.precio as 'precio',j.fecha_validado as 'is_validado',c.id_categoria,c.nombre as 'nombre_categoria',j.imagen,u.nombre,u.id "; 
 	private final static String GET_ALL = "SELECT" +camposJuegos+
 								"FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria"
 								+ "	INNER JOIN usuarios u ON j.id_usuario =u.id "
@@ -66,7 +67,15 @@ public class JuegoDAOImpl implements JuegoDAO {
 
 	private static final String VIEW_RESUMEN_ID = "SELECT id_usuario, total,validados,pendientes\n"
 			+ "FROM v_usuarios_juegos\n" + "WHERE id_usuario=?";
-
+	private static final String GET_ALL_TODOS = "SELECT" +camposJuegos+
+								"FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria"
+								+ "	INNER JOIN usuarios u ON j.id_usuario =u.id "
+								+ "ORDER BY j.id DESC LIMIT 500;";
+private static final String VALIDATE="UPDATE juegos " + 
+									" SET fecha_validado =SYSDATE() " + 
+									" WHERE id  IN ";
+	
+	
 	private static JuegoDAOImpl INSTANCE = null;
 
 	private synchronized static void createInstance() {
@@ -103,7 +112,24 @@ public class JuegoDAOImpl implements JuegoDAO {
 		} 
 
 		return juegos;
-	} // preguntar si rs.next()
+	}
+	@Override
+	public ArrayList<Juego> getAll(boolean todos) throws Exception {
+		ArrayList<Juego> juegos = new ArrayList<Juego>();
+
+		try (Connection conn = ConnectionManager.getConnection(); // crear la conexion con la BBDD
+				PreparedStatement pst = conn.prepareStatement(GET_ALL_TODOS); // preparar el statement
+				
+				ResultSet rs = pst.executeQuery();) {// recoger el resultado en un result set
+			LOG.trace(pst);
+			while (rs.next()) {
+				juegos.add(mapper(rs));// mapear el resultado en arrayList
+			}
+
+		} 
+
+		return juegos;
+	} 
 
 	@Override
 	public ArrayList<Juego> getAll(int num) throws Exception {
@@ -256,6 +282,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 		juego.setId(rs.getInt("id_juego"));
 		juego.setPrecio(rs.getBigDecimal("precio"));
 		juego.setImagen(rs.getString("imagen"));
+		juego.setFechaValidacion(rs.getDate("is_validado"));
 		
 		Categoria c = new Categoria(rs.getString("nombre_categoria"));
 		c.setId(rs.getInt("id_categoria"));
@@ -389,4 +416,36 @@ public class JuegoDAOImpl implements JuegoDAO {
 		return juegoR;
 	}
 
+	@Override
+	public void validate(ArrayList<Integer> juegosAValidar) throws Exception {
+		String cadena="";//(?);
+		if (juegosAValidar.size()>0) {
+			cadena="(?";
+			for (int i = 1; i < juegosAValidar.size(); i++) {
+				cadena+=",?";
+			}
+			cadena+=");";
+		}else {
+			throw new Exception("No se selecciono ningun juego para validar");
+		}
+		
+		try (Connection conn = ConnectionManager.getConnection();
+				PreparedStatement pst = conn.prepareStatement(VALIDATE+cadena);) {
+
+			LOG.trace(pst);
+
+			for (int i = 0; i <  juegosAValidar.size(); i++) {
+				pst.setInt(i+1, juegosAValidar.get(i));
+			}
+					
+			LOG.trace(pst);
+			pst.executeUpdate();
+			
+
+
+		} 
+		
+	}
+
+	
 }
