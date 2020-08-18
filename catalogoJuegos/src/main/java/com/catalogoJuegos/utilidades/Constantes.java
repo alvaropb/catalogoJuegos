@@ -20,6 +20,7 @@ public class Constantes {
 	public static final String PAGINA = "pagina";
 	public static final String RESUMEN = "resumen";
 	public static final String USUARIO = "usuario";
+	public static final String USUARIOS = "usuarios";
 	public static final String VALIDAR = "validar";
 
 	// paginas
@@ -76,5 +77,6 @@ public class Constantes {
 	// errores
 	public static final String DUPLICATE_ENTRY = "Duplicate entry";
 	public static final String INTEGRITY_ERROR = "Cannot delete or update a parent row: a foreign key constraint fails";
+	
 
 }
