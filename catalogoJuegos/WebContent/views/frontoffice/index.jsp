@@ -1,7 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../../includes/front-cabecera.jsp"/>
+<jsp:include page="../../includes/front-sidenav.jsp"/>
+<jsp:include page="../../includes/alerta.jsp"/>
 
-
+<!-- INICIO INDEX FRONTOFFICE -->
                         <h1 class="mt-4">Juegos</h1>
                         
 
@@ -37,5 +39,5 @@
 	 
                         </div>
 
-
+<!-- FIN INDEX FRONTOFFICE -->
   <jsp:include page="../../includes/front-footer.jsp"/>              
