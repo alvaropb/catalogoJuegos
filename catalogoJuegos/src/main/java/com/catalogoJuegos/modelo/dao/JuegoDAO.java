@@ -16,6 +16,14 @@ public interface JuegoDAO extends ICrudable<Juego> {
 	public ArrayList<Juego> getAll(int num) throws Exception;
 	
 	/**
+	 * Metodo que retorna todos los juegos
+	 * @param todos booleano para indicar que son todos los juegos
+	 * @return ArrayList<Juego> con todos los juegos
+	 * @throws Exception
+	 */
+	public ArrayList<Juego> getAll(boolean todos ) throws Exception;
+	
+	/**
 	 * Metodo que retorna un listado de juegos de una categoria
 	 * @param id
 	 * @param limite
@@ -58,4 +66,10 @@ public interface JuegoDAO extends ICrudable<Juego> {
 	 * @throws Exception 
 	 */
 	public Juego getById(int idJuego, int idUsuario) throws SeguridadException, Exception;
+	/**
+	 * Metodo que valida un listado de juegos
+	 * @param juegosAValidar listado de ids a validar
+	 * @throws Exception
+	 */
+	public void validate(ArrayList<Integer> juegosAValidar)throws Exception;
 }
