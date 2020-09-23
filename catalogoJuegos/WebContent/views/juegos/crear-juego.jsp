@@ -12,7 +12,7 @@
 
 	
 
-	<form action="crear-juego" method="post">
+	<form action="/views/backoffice/crear-juegos" method="post">
 	  		<c:if test="${not empty juego.imagen}">
 		  		<div class="form-group">
 				    
