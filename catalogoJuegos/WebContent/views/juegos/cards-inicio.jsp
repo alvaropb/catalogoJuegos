@@ -8,6 +8,13 @@
 </jsp:include>
 
 <main class="container" >
+
+<h1>Ejemplo servicio REST</h1>
+	
+	<a href="views/ejemplos/rest.jsp">Ejemplo REST</a>
+
+
+
 			<h1>${categoriaNombre }</h1>
 			<c:forEach items="${juegosCategoria}" var="categoria">
 				<h4>${categoria.nombre}</h4>
