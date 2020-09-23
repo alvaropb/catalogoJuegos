@@ -62,7 +62,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 
 	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=?, id_categoria=?, imagen=?,id_usuario=?,fecha_validado=NULL WHERE id=?";
 
-	private static final StrinGETg DELETE = "DELETE FROM juegos WHERE id=?";
+	private static final String DELETE = "DELETE FROM juegos WHERE id=?";
 	private static final String DELETE_BY_USER = "DELETE FROM juegos WHERE id=? AND id_usuario=?";
 
 	private static final String VIEW_RESUMEN_ID = "SELECT id_usuario, total,validados,pendientes\n"
