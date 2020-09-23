@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -23,13 +24,14 @@ import com.catalogoJuegos.modelo.impl.CategoriaDAOImpl;
 import com.catalogoJuegos.modelo.impl.JuegoDAOImpl;
 import com.catalogoJuegos.modelo.pojo.Categoria;
 import com.catalogoJuegos.modelo.pojo.Juego;
+import com.catalogoJuegos.modelo.pojo.Usuario;
 import com.catalogoJuegos.utilidades.Alerta;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
  * Servlet implementation class CrearJuegoController
  */
-@WebServlet(description = "Controller para crear un registro de un nuevo juego", urlPatterns = { "/crear-juego" })
+@WebServlet(description = "Controller para crear un registro de un nuevo juego", urlPatterns = { "/views/backoffice/crear-juegos" })
 public class CrearJuegoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG=Logger.getLogger(CrearJuegoController.class);
@@ -44,7 +46,9 @@ public class CrearJuegoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String vista = "";
+		
+		// redirigir de inicio a crear-juego.jsp
+		String vista =Constantes.BACKOFFICE_CREAR_JUEGO_JSP;
 		String msj="";
 		String readonly = null;
 		Juego juego = new Juego();
@@ -58,6 +62,10 @@ public class CrearJuegoController extends HttpServlet {
 			//parametro para ver detalle
 			readonly = request.getParameter("readonly");
 			int idDao=0;
+			
+			// comprobar seguridad en usuarioDAO para ver si es admin el que esta conectado
+			
+			//Lanzar SeguridadException si no es admin conectado
 			if (id != null && !id.isEmpty()) {
 				idDao = Integer.parseInt(id);
 				juego.setId(idDao);
@@ -76,10 +84,11 @@ public class CrearJuegoController extends HttpServlet {
 			}			
 
 		} catch (Exception e) {
-			
+			// redirigir a inicio backoffice
+			vista = Constantes.BACKOFFICE_CONTROLLER;
 			LOG.error(e);
 		} finally {
-			vista = Constantes.CREAR_JUEGO_JSP;
+
 			request.setAttribute("msj", msj);
 			request.setAttribute("readonly", readonly);
 			request.setAttribute("juego", juego);
@@ -109,6 +118,10 @@ public class CrearJuegoController extends HttpServlet {
 			String precio=request.getParameter("precio");
 			String imagen = request.getParameter("imagen");
 			int idCategoria=Integer.valueOf(request.getParameter("idCategoria")) ;
+			//recoger el usuario de la sesion
+			HttpSession sesion = request.getSession();
+
+			Usuario usuario=(Usuario) sesion.getAttribute(Constantes.USUARIO);
 			
 			
 			
@@ -149,14 +162,14 @@ public class CrearJuegoController extends HttpServlet {
 				//validar pojo
 				validaciones(alerta,juego);
 
-				dao.update(juego);
+				dao.update(juego,usuario);
 				
 				alerta.setMensaje(Constantes.UPDATE_CORRECTO + ": " + juego.getNombre());
 				alerta.setTipo(Constantes.SUCCESS);
 			}//fin update
 			
 			// si update o insert ok, vamos al listado
-			vista = "inicio";
+			vista ="juegos"; //Constantes.BACKOFFICE_INICIO;
 		} catch (Exception e) {
 			request.setAttribute("juego", juego);
 			vista = Constantes.CREAR_JUEGO_JSP;
