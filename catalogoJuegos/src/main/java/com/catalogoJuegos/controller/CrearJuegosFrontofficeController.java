@@ -142,7 +142,7 @@ public class CrearJuegosFrontofficeController extends HttpServlet {
 				throw new Exception();
 			}else {
 				if (juego.getId()!=0) {
-					juego=juegoDAO.update(juego);
+					juego=juegoDAO.update(juego,usuario);
 
 				}else {
 					juego = juegoDAO.insert(juego);					
