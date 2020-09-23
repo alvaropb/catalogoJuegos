@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.catalogoJuegos.modelo.impl.JuegoDAOImpl;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
@@ -18,7 +19,7 @@ import com.catalogoJuegos.utilidades.Constantes;
 public class BackofficeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG=Logger.getLogger(BackofficeController.class);
-
+	private static final JuegoDAOImpl juegoDAO=JuegoDAOImpl.getInstance();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -26,7 +27,14 @@ public class BackofficeController extends HttpServlet {
 		LOG.trace("Entra en BackofficeController doGet() request:"+request);
 		// cargar en atributos los datos que recogemos del DAO
 		
-		request.setAttribute("datos1", "listado de datos 1");
+		try {
+			request.setAttribute("juegosTotales", juegoDAO.getNumTotales());
+			request.setAttribute("juegosTotalesPendientes", juegoDAO.getNumTotalesPendientes());
+			request.setAttribute("usuariosTotales", juegoDAO.getNumUsuarios());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.setAttribute("datos2", "listado de datos 2");
 		
 		// redireccion 
