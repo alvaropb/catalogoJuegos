@@ -1,6 +1,6 @@
 package com.catalogoJuegos.modelo.impl;
 
-import java.sql.Array;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,7 +62,7 @@ public class JuegoDAOImpl implements JuegoDAO {
 
 	private static final String UPDATE = "UPDATE juegos SET nombre=?,precio=?, id_categoria=?, imagen=?,id_usuario=?,fecha_validado=NULL WHERE id=?";
 
-	private static final String DELETE = "DELETE FROM juegos WHERE id=?";
+	private static final StrinGETg DELETE = "DELETE FROM juegos WHERE id=?";
 	private static final String DELETE_BY_USER = "DELETE FROM juegos WHERE id=? AND id_usuario=?";
 
 	private static final String VIEW_RESUMEN_ID = "SELECT id_usuario, total,validados,pendientes\n"
@@ -71,11 +71,13 @@ public class JuegoDAOImpl implements JuegoDAO {
 								"FROM juegos j INNER JOIN categorias c ON j.id_categoria =c.id_categoria"
 								+ "	INNER JOIN usuarios u ON j.id_usuario =u.id "
 								+ "ORDER BY j.id DESC LIMIT 500;";
-private static final String VALIDATE="UPDATE juegos " + 
+	private static final String VALIDATE="UPDATE juegos " + 
 									" SET fecha_validado =SYSDATE() " + 
 									" WHERE id  IN ";
 	
-	
+	private static final String GET_NUM_JUEGOS="{CALL pa_juego_num_total(?) }";
+	private static final String GET_NUM_JUEGOS_PENDIENTES="{CALL pa_juego_num_totalPendiente(?) }";
+	private static final String GET_NUM_USUARIOS = "{CALL pa_usuario_num_total(?)}";
 	private static JuegoDAOImpl INSTANCE = null;
 
 	private synchronized static void createInstance() {
@@ -95,7 +97,64 @@ private static final String VALIDATE="UPDATE juegos " +
 		super();
 
 	}
+	/**
+	 * Método que retornal el numero de usuarios dados de alta 
+	 * @return int numero de usuarios dados de alta
+	 * @throws Exception
+	 */
+	public int getNumUsuarios()throws Exception {
+		int total=0;
+		try (Connection conn = ConnectionManager.getConnection();
+				CallableStatement cs=conn.prepareCall(GET_NUM_USUARIOS)){
+			cs.registerOutParameter(1, java.sql.Types.INTEGER);
+			cs.executeUpdate();
+			total=cs.getInt(1);
 
+			
+		}
+		
+		
+		return total;
+	}
+
+/**
+ * Método que retorna al numero total de juegos
+ * @return int  el numero total de juegos
+ * @throws Exception
+ */
+	public int getNumTotales()throws Exception {
+		int total=0;
+		try (Connection conn = ConnectionManager.getConnection();
+				CallableStatement cs=conn.prepareCall(GET_NUM_JUEGOS)){
+			cs.registerOutParameter(1, java.sql.Types.INTEGER);
+			cs.executeUpdate();
+			total=cs.getInt(1);
+
+			
+		}
+		
+		
+		return total;
+	};
+/**
+ * Método que retorna el numero de juegos pendientes de validar
+ * @return int numero de juegos pdtes de validar
+ * @throws Exception
+ */
+	public int getNumTotalesPendientes()throws Exception {
+		int total=0;
+		try (Connection conn = ConnectionManager.getConnection();
+				CallableStatement cs=conn.prepareCall(GET_NUM_JUEGOS_PENDIENTES)){
+			cs.registerOutParameter(1, java.sql.Types.INTEGER);
+			cs.executeUpdate();
+			total=cs.getInt(1);
+
+			
+		}
+		
+		
+		return total;
+	}
 	@Override
 	public ArrayList<Juego> getAll() throws Exception {
 		ArrayList<Juego> juegos = new ArrayList<Juego>();
@@ -229,24 +288,30 @@ private static final String VALIDATE="UPDATE juegos " +
 
 	@Override
 	public Juego update(Juego t) throws Exception,SeguridadException {
+		return null;
+	}
+	@Override
+	public Juego update(Juego t, Usuario u) throws Exception,SeguridadException {
 		Juego juegoR = new Juego();
 
 		// antes de modificar comprobar el ROL del usuario
 		// si es ADMIN hacer la update que tenemos abajo
-		// si es USER comprobar que le pertenezca ??
 
 
 		try (Connection conn = ConnectionManager.getConnection();
-				PreparedStatement pst = conn.prepareStatement(UPDATE);) {
-			pst.setString(1, t.getNombre()); // preguntar si rs.next()
+				PreparedStatement pst = conn.prepareStatement(UPDATE);) {//UPDATE juegos SET nombre=?,precio=?, id_categoria=?, imagen=?,id_usuario=?,fecha_validado=NULL WHERE id=?
+			//recuperar el id del usuario del juego
+			int idUsuario=getById(t).getUsuario().getId();
+			
+			pst.setString(1, t.getNombre());
 			pst.setBigDecimal(2, t.getPrecio());
 			pst.setInt(3, t.getCategoria().getId());
 			pst.setString(4, t.getImagen());
-			pst.setInt(5, t.getUsuario().getId());
+			pst.setInt(5, idUsuario);
 			pst.setInt(6, t.getId());
 			LOG.trace(pst);
-			juegoR = getById(t.getId(), t.getUsuario().getId());
-			if ((t.getUsuario().getRol().getId() == Rol.ADMINISTRADOR) || juegoR.getId() != 0) {
+
+			if ((u.getRol().getId() == Rol.ADMINISTRADOR) || u.getId()==idUsuario) {
 
 				pst.execute();
 			} else {
@@ -446,6 +511,8 @@ private static final String VALIDATE="UPDATE juegos " +
 		} 
 		
 	}
+
+
 
 	
 }
