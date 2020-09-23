@@ -58,7 +58,7 @@
 					    <a class="dropdown-item" href="inicio?idCategoria=${categoria.id }&categoriaNombre=${categoria.nombre }">${categoria.nombre }</a>
 				    </c:forEach>
 			  </div>
-		</div>5
+		</div>
     
      </div>
   </div>
