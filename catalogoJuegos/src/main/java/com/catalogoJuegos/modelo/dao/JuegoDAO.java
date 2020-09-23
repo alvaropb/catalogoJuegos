@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.catalogoJuegos.modelo.ICrudable;
 import com.catalogoJuegos.modelo.pojo.Juego;
 import com.catalogoJuegos.modelo.pojo.Resumen;
+import com.catalogoJuegos.modelo.pojo.Usuario;
 
 public interface JuegoDAO extends ICrudable<Juego> {
 	/**
@@ -72,4 +73,14 @@ public interface JuegoDAO extends ICrudable<Juego> {
 	 * @throws Exception
 	 */
 	public void validate(ArrayList<Integer> juegosAValidar)throws Exception;
+	
+	/**
+	 * 
+	 * @param Juego t juego a actualizar
+	 * @param Usuario u usuario conectado
+	 * @return El juego actualizado
+	 * @throws Exception
+	 * @throws SeguridadException
+	 */
+	public Juego update(Juego t, Usuario u) throws Exception,SeguridadException;
 }
