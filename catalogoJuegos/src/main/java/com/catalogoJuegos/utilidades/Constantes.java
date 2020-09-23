@@ -27,6 +27,9 @@ public class Constantes {
 
 	public static final String BACKOFFICE = "views/backoffice/index.jsp";
 	public static final String BACKOFFICE_CONTROLLER = "views/backoffice/inicio";
+	public static final String BACKOFFICE_CREAR_JUEGO_JSP = "crear-juego.jsp";
+	public static final String BACKOFFICE_INICIO = "/views/backoffice/juegos";
+	public static final String BACKOFFICE_USUARIOS_JSP = "usuarios.jsp";
 	public static final String CREAR_CATEGORIA = "views/categorias/crear-categoria.jsp";
 	public static final String CREAR_JUEGO_JSP = "views/juegos/crear-juego.jsp";
 	public static final String FORMULARIO = "formulario.jsp";
@@ -77,6 +80,7 @@ public class Constantes {
 	// errores
 	public static final String DUPLICATE_ENTRY = "Duplicate entry";
 	public static final String INTEGRITY_ERROR = "Cannot delete or update a parent row: a foreign key constraint fails";
+
 	
 
 }
