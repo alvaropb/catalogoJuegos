@@ -1,5 +1,6 @@
 package com.catalogoJuegos.modelo.impl;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	
 	private final static String USUARIO_EXISTE = "SELECT u.nombre, u.id ,u.pass,u.imagen, r.id_rol,r.nombre_rol FROM usuarios u INNER JOIN roles r ON u.id_rol=r.id_rol  WHERE nombre=? AND pass=?";
 	
+	private static final String SQL_PA_GET_USUARIOS="{CALL pa_usuario_getAll()}";
 	private static UsuarioDAOImpl INSTANCE = null;
 
 	private synchronized static void createInstance() {
@@ -41,8 +43,21 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	@Override
 	public ArrayList<Usuario> getAll() throws Exception {
-		// Sin implementar
-		return null;
+		ArrayList<Usuario>usuarios=new ArrayList<Usuario>();
+		
+		try(Connection conn=ConnectionManager.getConnection();
+				CallableStatement cs=conn.prepareCall(SQL_PA_GET_USUARIOS);
+						ResultSet rs=cs.executeQuery();) {
+				while (rs.next()) {
+					
+					usuarios.add(mapper(rs));
+				}
+			
+		}
+		
+		
+		
+		return usuarios;
 	}
 
 	@Override
