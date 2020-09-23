@@ -9,6 +9,8 @@
 <div class="container">
 	<h1>Listado de juegos</h1>
 	
+	<a href="crawler">crawler para recolectar datos de una pagina</a>
+
 
 
 	 <table class="table" > 
