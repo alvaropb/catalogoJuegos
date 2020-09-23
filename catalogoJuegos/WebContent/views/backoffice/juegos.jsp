@@ -41,9 +41,9 @@
 									</c:choose>
 					    			
 					    		</td>
-					    		<td>NO IMPLEMENTADO<a href="views/backoffice/crear-juegos?id=${juego.id}"><i class="fas fa-edit mx-3"></i></a>
+					    		<td><a href="views/backoffice/crear-juegos?id=${juego.id}"><i class="fas fa-edit mx-3"></i></a>
 					    			
-					    			NO IMPLEMENTADO<a  onclick="confirmar('${juego.nombre}')"
+					    			<a  onclick="confirmar('${juego.nombre}')"
 					    			 href="views/backffice/eliminar-juego?id=${juego.id}"><i class="fas fa-trash-alt"></i></a>
 					    			 
 					    			 
