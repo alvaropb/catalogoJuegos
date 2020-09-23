@@ -16,7 +16,7 @@
                                 <div class="sb-nav-link-icon"><i class="fa fa-check-square-o"></i></div>
                                 Juegos
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="views/backoffice/usuarios">
                                 <div class="sb-nav-link-icon"><i class="fa fa-check-circle-o"></i></div>
                                 Usuarios
                             </a>
