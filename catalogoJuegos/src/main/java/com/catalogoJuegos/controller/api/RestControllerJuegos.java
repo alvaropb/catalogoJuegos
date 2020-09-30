@@ -19,6 +19,16 @@ import com.catalogoJuegos.modelo.pojo.Juego;
 import com.google.gson.Gson;
 
 /**
+ * Servlet que implementa un servicio REST para juegos
+ * Servicio implementado:
+ * <ul>
+ * <li>GET</li>
+ * <li>GET{id}</li>
+ * <li>POST{id}</li>
+ * <li>PUT{id}</li>
+ * <li>DELETE{id} <b>pendiente</b></li>
+ * </ul>
+ * 
  * Servlet implementation class RestController
  */
 @WebServlet("/api/juego/*")
