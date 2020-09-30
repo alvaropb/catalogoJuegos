@@ -20,6 +20,9 @@ import com.catalogoJuegos.modelo.pojo.Usuario;
 
 
 /**
+ * Filtro para controlar accesos no deseados a backoffice
+ * Solo usuarios con el rol administrador pueden entrar
+ * @see com.catalogoJuegos.modelo.pojo.Rol
  * Servlet Filter implementation class BackofficeFilter
  */
 @WebFilter(dispatcherTypes = {

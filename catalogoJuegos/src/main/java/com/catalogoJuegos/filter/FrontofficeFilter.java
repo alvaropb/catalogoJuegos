@@ -18,6 +18,9 @@ import com.catalogoJuegos.modelo.pojo.Rol;
 import com.catalogoJuegos.modelo.pojo.Usuario;
 
 /**
+ * Filtro que controla los accesos no autorizados a frontend
+ * Acceso solo a usuarios con el rol Usuario
+ * @see com.catalogoJuegos.modelo.pojo.Rol
  * Servlet Filter implementation class FrontofficeFilter
  */
 @WebFilter(dispatcherTypes = {
