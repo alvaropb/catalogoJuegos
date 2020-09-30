@@ -1,7 +1,11 @@
 package com.catalogoJuegos.modelo.pojo;
 
 import java.util.ArrayList;
-
+/**
+ * Clase que relaciona la tabla categoria de la bbdd con objetos java
+ * @author javaee
+ *
+ */
 public class Categoria {
 
 	private int id;

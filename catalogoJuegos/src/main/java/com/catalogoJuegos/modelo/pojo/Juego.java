@@ -7,6 +7,11 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * Clase que relaciona la tabla juegos con objeto tipo juego en java
+ * @author javaee
+ *
+ */
 public class Juego {
 
 	@NotNull(message = "Nombre no puede ser null")

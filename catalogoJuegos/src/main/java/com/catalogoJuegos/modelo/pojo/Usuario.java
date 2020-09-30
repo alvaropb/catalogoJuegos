@@ -1,5 +1,9 @@
 package com.catalogoJuegos.modelo.pojo;
-
+/**
+ * Clase que relaciona la tabla usuario con el objeto java usuario
+ * @author javaee
+ *
+ */
 public class Usuario {
 
 	private int id;

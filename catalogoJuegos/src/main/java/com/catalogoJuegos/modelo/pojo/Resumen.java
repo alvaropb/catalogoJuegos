@@ -1,5 +1,10 @@
 package com.catalogoJuegos.modelo.pojo;
 
+/**
+ * Clase que relaciona la vista resumen con un objeto resumen java
+ * @author javaee
+ *
+ */
 public class Resumen {
 
 	private int idUsuario;

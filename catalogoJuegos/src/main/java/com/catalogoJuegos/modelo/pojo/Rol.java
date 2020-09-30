@@ -1,5 +1,10 @@
 package com.catalogoJuegos.modelo.pojo;
 
+/**
+ * Clase que relaciona el rol de la tabla roles con el objeto Rol de la clase java
+ * @author javaee
+ *
+ */
 public class Rol {
 	public static final int ADMINISTRADOR=2;
 	public static final int USUARIO=1;
