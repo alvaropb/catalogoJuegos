@@ -17,6 +17,7 @@ import com.catalogoJuegos.utilidades.Alerta;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
+ * Servlet para eliminar juegos de un usuario
  * Servlet implementation class EliminarJuegoController
  */
 @WebServlet(description = "Servlet para eliminar juegos", urlPatterns = { "/views/frontoffice/eliminar-juego" })

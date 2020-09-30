@@ -14,7 +14,7 @@ import com.catalogoJuegos.modelo.pojo.Resumen;
 import com.catalogoJuegos.modelo.pojo.Usuario;
 import com.catalogoJuegos.utilidades.Constantes;
 
-/**
+/**Servlet que muestra un resumen para el usuario conectado de juegos totales, ptes de validar y validados.
  * Servlet implementation class FrontofficeController
  */
 @WebServlet("/views/frontoffice/inicio")

@@ -17,6 +17,7 @@ import com.catalogoJuegos.modelo.pojo.Usuario;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
+ * Servlet que muestra los juegos de un usuario conectado que esten pendientes de validar o no.
  * Servlet implementation class ProductosFrontofficeController
  */
 @WebServlet("/views/frontoffice/juegos")

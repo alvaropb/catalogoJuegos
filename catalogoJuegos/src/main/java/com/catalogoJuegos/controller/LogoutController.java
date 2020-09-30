@@ -13,6 +13,7 @@ import com.catalogoJuegos.utilidades.Alerta;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
+ * Servlet que elimina la sesion del usuario conectado y muestra el numero total de usuarios conectados
  * Servlet implementation class LogoutController
  */
 @WebServlet(description = "Controller para logout", urlPatterns = { "/logout" })

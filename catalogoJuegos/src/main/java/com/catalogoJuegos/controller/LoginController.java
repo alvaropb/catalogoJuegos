@@ -17,6 +17,8 @@ import com.catalogoJuegos.utilidades.Alerta;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
+ * Servlet que guarda en la sesion el usuario si sus credenciales son correctas, 
+ * y le redirige a backoffice o frontoffice en funcion de su rol
  * Servlet implementation class LoginController
  */
 @WebServlet(description = "Controlador para el login", urlPatterns = { "/login" })
