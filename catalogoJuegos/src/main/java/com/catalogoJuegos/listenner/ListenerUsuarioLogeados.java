@@ -18,6 +18,10 @@ import com.catalogoJuegos.utilidades.Constantes;
 
 
 /**
+ * 
+ * Listener que: recupera el usuario conectado en la sesion y lo añade 
+ * a un listado de usuarios conectados en el contexto de la aplicacion
+ * Elimina un usuario del listado de usuarios conectados
  * Application Lifecycle Listener implementation class ListenerUsuarioLogeados
  *
  */

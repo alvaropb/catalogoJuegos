@@ -14,6 +14,7 @@ import com.catalogoJuegos.utilidades.Alerta;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
+ * Servlet que el listado de categorias en el contexto de la aplicacion.
  * Application Lifecycle Listener implementation class InicioListener
  *
  */
