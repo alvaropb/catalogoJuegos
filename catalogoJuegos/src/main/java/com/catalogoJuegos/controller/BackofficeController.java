@@ -13,7 +13,7 @@ import com.catalogoJuegos.modelo.impl.JuegoDAOImpl;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
- * Servlet implementation class BackofficeController
+ * Servlet que carga estadisticas sobre juegos 
  */
 @WebServlet("/views/backoffice/inicio")
 public class BackofficeController extends HttpServlet {
@@ -32,8 +32,8 @@ public class BackofficeController extends HttpServlet {
 			request.setAttribute("juegosTotalesPendientes", juegoDAO.getNumTotalesPendientes());
 			request.setAttribute("usuariosTotales", juegoDAO.getNumUsuarios());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			LOG.error(e);
 		}
 		request.setAttribute("datos2", "listado de datos 2");
 		
