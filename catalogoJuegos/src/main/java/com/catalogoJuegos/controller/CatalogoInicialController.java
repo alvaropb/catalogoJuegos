@@ -48,7 +48,17 @@ public class CatalogoInicialController extends HttpServlet {
 
 		doProccess(request, response);
 	}
-
+/**
+ * Método que carga en funcion de la id categoria: 
+ * Si no viene informada la id-&gt carga los ultimos 10 juegos de cualquier categoria
+ * Si id es 0, Listado con todos los juegos
+ * Si id es -1 &gt todos los juegos agrupados por categoria.
+ * Si id viene informada y es &gt 0 -&gt Ultimos 10 juegos de la categoria informada
+ * @param request
+ * @param response
+ * @throws ServletException
+ * @throws IOException
+ */
 	protected void doProccess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
