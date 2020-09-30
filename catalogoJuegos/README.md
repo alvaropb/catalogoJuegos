@@ -9,7 +9,14 @@ _MySQL Server version: 5.7.31_
 ```
 usar script de creacion script-db-v7.sql
 ```
+## Funcionalidades
 
+* CRUD de juegos
+* Api REST escuchando en
+ 
+```
+/api/juego/ 
+```
 
 ## Construido con 🛠️
 
