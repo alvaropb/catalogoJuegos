@@ -18,6 +18,7 @@ import com.catalogoJuegos.utilidades.Constantes;
 
 
 /**
+ * Servlet para crear, editar o eliminar una categoria
  * Servlet implementation class CategoriaController
  */
 @WebServlet("/crear-categoria")
