@@ -26,6 +26,7 @@ import com.catalogoJuegos.utilidades.Alerta;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
+ * Servlet para crear o editar juegos de un usuario
  * Servlet implementation class CrearProductosFrontofficeController
  */
 @WebServlet("/views/frontoffice/crear-juegos")

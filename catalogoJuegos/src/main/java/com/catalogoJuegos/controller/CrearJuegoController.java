@@ -29,6 +29,7 @@ import com.catalogoJuegos.utilidades.Alerta;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
+ * Servlet para crear o editar juegos backoffice administrador
  * Servlet implementation class CrearJuegoController
  */
 @WebServlet(description = "Controller para crear un registro de un nuevo juego", urlPatterns = { "/views/backoffice/crear-juegos" })
