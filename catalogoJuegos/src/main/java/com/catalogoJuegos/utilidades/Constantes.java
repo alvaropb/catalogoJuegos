@@ -1,5 +1,10 @@
 package com.catalogoJuegos.utilidades;
 
+/**
+ * Constantes del proyecto
+ * @author javaee
+ *
+ */
 public class Constantes {
 
 	// atributos

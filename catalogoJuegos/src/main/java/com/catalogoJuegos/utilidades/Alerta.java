@@ -1,5 +1,11 @@
 package com.catalogoJuegos.utilidades;
 
+/**
+ * Clase para mostrar alertas al usuario
+ * @see https://getbootstrap.com/docs/4.0/components/alerts/
+ * @author javaee
+ *
+ */
 public class Alerta {
 
 	private String mensaje;
