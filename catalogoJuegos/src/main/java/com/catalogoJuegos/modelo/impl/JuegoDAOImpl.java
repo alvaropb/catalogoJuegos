@@ -19,6 +19,11 @@ import com.catalogoJuegos.modelo.pojo.Resumen;
 import com.catalogoJuegos.modelo.pojo.Rol;
 import com.catalogoJuegos.modelo.pojo.Usuario;
 
+/**
+ * Implementacion para realizar CRUD de los juegos
+ * @author javaee
+ *
+ */
 public class JuegoDAOImpl implements JuegoDAO {
 	private static final Logger LOG = Logger.getLogger(JuegoDAOImpl.class);
 	private final static String camposJuegos=" j.nombre as 'titulo' ,j.id as 'id_juego',j.precio as 'precio',j.fecha_validado as 'is_validado',c.id_categoria,c.nombre as 'nombre_categoria',j.imagen,u.nombre,u.id "; 

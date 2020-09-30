@@ -13,6 +13,11 @@ import com.catalogoJuegos.modelo.ConnectionManager;
 import com.catalogoJuegos.modelo.dao.UsuarioDAO;
 import com.catalogoJuegos.modelo.pojo.Usuario;
 
+/**
+ * Implementacion para realizar un CRUD de usuarios
+ * @author javaee
+ *
+ */
 public class UsuarioDAOImpl implements UsuarioDAO {
 	private static final Logger LOG=Logger.getLogger(UsuarioDAOImpl.class);
 	

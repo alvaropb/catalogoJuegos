@@ -14,7 +14,11 @@ import com.catalogoJuegos.modelo.dao.CategoriaDAO;
 import com.catalogoJuegos.modelo.pojo.Categoria;
 import com.catalogoJuegos.modelo.pojo.Juego;
 import com.catalogoJuegos.modelo.pojo.Usuario;
-
+/**
+ * Implementacion para realizar CRUD de las categorias
+ * @author javaee
+ *
+ */
 public class CategoriaDAOImpl implements CategoriaDAO {
 
 	private static final Logger LOG = Logger.getLogger(CategoriaDAOImpl.class);
