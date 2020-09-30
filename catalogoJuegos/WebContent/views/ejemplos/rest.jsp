@@ -31,6 +31,20 @@
 </form>
 
 
+<h2>Api Rest</h2>
+
+<p>Una api REST localizada en /api/juego/</p>
+<ul class="list-group">
+  <li class="list-group-item"><p><span class="badge badge-success">GET</span>/api/juego/ <span class="badge badge-pill badge-dark float-right">200</span> <b class="float-right">Retorno de un listado de juegos</b> </p></li>
+  <li class="list-group-item"><p><span class="badge badge-success">GET</span>/api/juego/{id} <span class="badge badge-pill badge-dark float-right">200</span> <span class="badge badge-pill badge-dark float-right">204</span><b class="float-right">Retorno de un unico juego </b>   </p></li>
+  <li class="list-group-item"><p><span class="badge badge-success">PUT</span>/api/juego/{juego} <span class="badge badge-pill badge-dark float-right">200</span><span class="badge badge-pill badge-dark float-right">409</span><b class="float-right">Modificacion de un juego</b>  </p></li>
+  <li class="list-group-item"><p><span class="badge badge-success">POST</span>/api/juego/{juego} <span class="badge badge-pill badge-dark float-right">201</span><span class="badge badge-pill badge-dark float-right">409</span><b class="float-right">Insercion de un juego </b>  </p></li>
+</ul>
+
+
+
+
+
 
 
 
