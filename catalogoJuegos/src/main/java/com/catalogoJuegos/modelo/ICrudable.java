@@ -1,7 +1,12 @@
 package com.catalogoJuegos.modelo;
 
 import java.util.ArrayList;
-
+/**
+ * Interfaz para realizar un CRUD de objetos
+ * @author javaee
+ *
+ * @param <T>
+ */
 public interface ICrudable<T> {
 	
 	/**

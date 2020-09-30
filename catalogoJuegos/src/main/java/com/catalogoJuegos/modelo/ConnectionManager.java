@@ -9,6 +9,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+/**
+ * Clase que obtiene una conexion de un pool de conexiones a la bbdd
+ * @author javaee
+ *
+ */
 public class ConnectionManager {
 
 	
