@@ -7,6 +7,11 @@ import com.catalogoJuegos.modelo.pojo.Juego;
 import com.catalogoJuegos.modelo.pojo.Resumen;
 import com.catalogoJuegos.modelo.pojo.Usuario;
 
+/**
+ * Interfaz para agregar metodos no contemplados en ICrudable para los Juegos
+ * @author javaee
+ *
+ */
 public interface JuegoDAO extends ICrudable<Juego> {
 	/**
 	 * Metodo que retorna los ultimos juegos

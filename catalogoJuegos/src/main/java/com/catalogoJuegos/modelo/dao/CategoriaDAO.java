@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import com.catalogoJuegos.modelo.ICrudable;
 import com.catalogoJuegos.modelo.pojo.Categoria;
 
+/**
+ * Interfaz para agregar metodos especificos para las Categorias
+ * @author javaee
+ *
+ */
 public interface CategoriaDAO extends ICrudable<Categoria> {
 
 	/**
