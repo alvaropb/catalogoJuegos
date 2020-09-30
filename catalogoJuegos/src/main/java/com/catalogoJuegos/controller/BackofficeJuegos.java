@@ -20,7 +20,7 @@ import com.catalogoJuegos.modelo.pojo.Juego;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
- * Servlet implementation class BackofficeJuegos
+ * Servlet para que los administradores validen juegos. 
  */
 @WebServlet("/views/backoffice/juegos")
 public class BackofficeJuegos extends HttpServlet {
@@ -29,6 +29,7 @@ public class BackofficeJuegos extends HttpServlet {
 	private final static JuegoDAOImpl dao = JuegoDAOImpl.getInstance();
 
 	/**
+	 * Carga listado de juegos esten validados o no.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
