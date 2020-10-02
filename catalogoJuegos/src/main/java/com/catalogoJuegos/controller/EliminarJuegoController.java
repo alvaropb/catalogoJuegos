@@ -19,7 +19,7 @@ import com.catalogoJuegos.utilidades.Constantes;
  * Servlet para eliminar juegos
  * Servlet implementation class EliminarJuegoController
  */
-@WebServlet(description = "Servlet para eliminar juegos", urlPatterns = { "/eliminar-juego" })
+@WebServlet(description = "Servlet para eliminar juegos", urlPatterns = { "/views/backoffice/eliminar-juego" })
 public class EliminarJuegoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG=Logger.getLogger(EliminarJuegoController.class );
