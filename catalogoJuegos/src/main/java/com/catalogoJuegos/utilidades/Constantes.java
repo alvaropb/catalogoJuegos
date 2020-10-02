@@ -35,7 +35,7 @@ public class Constantes {
 	public static final String BACKOFFICE_CREAR_JUEGO_JSP = "crear-juego.jsp";
 	public static final String BACKOFFICE_INICIO = "/views/backoffice/juegos";
 	public static final String BACKOFFICE_USUARIOS_JSP = "usuarios.jsp";
-	public static final String CREAR_CATEGORIA = "views/categorias/crear-categoria.jsp";
+	public static final String CREAR_CATEGORIA = "crear-categoria.jsp";
 	public static final String CREAR_JUEGO_JSP = "views/juegos/crear-juego.jsp";
 	public static final String FORMULARIO = "formulario.jsp";
 	public static final String FRONTOFFICE = "views/frontoffice/index.jsp";
@@ -45,7 +45,7 @@ public class Constantes {
 	public static final String INDEX = "index.jsp";
 	public static final String INICIO = "inicio";
 	public static final String JUEGOS_JSP = "juegos.jsp";
-	public static final String LISTADO_CATEGORIAS_JSP = "views/categorias/listado-categorias.jsp";
+	public static final String LISTADO_CATEGORIAS_JSP = "listado-categorias.jsp";
 	public static final String LISTADO_JUEGOS_INICIAL_JSP = "views/juegos/cards-inicio.jsp";
 	public static final String LISTADO_JUEGOS_JSP = "views/juegos/listado-juegos.jsp";
 	public static final String LOGIN = "views/login/login.jsp";
@@ -85,6 +85,7 @@ public class Constantes {
 	// errores
 	public static final String DUPLICATE_ENTRY = "Duplicate entry";
 	public static final String INTEGRITY_ERROR = "Cannot delete or update a parent row: a foreign key constraint fails";
+
 
 	
 
