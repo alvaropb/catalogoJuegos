@@ -21,7 +21,7 @@ import com.catalogoJuegos.utilidades.Constantes;
  * Servlet para crear, editar o eliminar una categoria
  * Servlet implementation class CategoriaController
  */
-@WebServlet("/crear-categoria")
+@WebServlet("/views/backoffice/categorias")
 public class CategoriaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = Logger.getLogger(CategoriaController.class);
@@ -64,7 +64,8 @@ public class CategoriaController extends HttpServlet {
 					view=Constantes.LISTADO_CATEGORIAS_JSP;
 					categoriaDao.delete(categoria);
 					categorias = categoriaDao.getAll();
-					
+					alerta.setMensaje(Constantes.DELETE_CORRECTO);
+					alerta.setTipo(Constantes.SUCCESS);
 					request.setAttribute(Constantes.CATEGORIAS, categorias);
 				}
 				
