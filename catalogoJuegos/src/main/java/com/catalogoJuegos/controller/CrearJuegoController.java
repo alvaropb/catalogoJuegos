@@ -129,7 +129,7 @@ public class CrearJuegoController extends HttpServlet {
 			juego = new Juego(nombre);
 			juego.setImagen(imagen);
 			juego.getCategoria().setId(idCategoria);
-			
+			juego.setUsuario(usuario);
 			if ( precio!=null && !precio.isEmpty() ) {
 				juego.setPrecio(BigDecimal.valueOf(Double.valueOf(precio)));
 			}
@@ -173,7 +173,7 @@ public class CrearJuegoController extends HttpServlet {
 			vista ="juegos"; //Constantes.BACKOFFICE_INICIO;
 		} catch (Exception e) {
 			request.setAttribute("juego", juego);
-			vista = Constantes.CREAR_JUEGO_JSP;
+			vista = Constantes.BACKOFFICE_CREAR_JUEGO_JSP;
 
 			
 			LOG.error(e.getMessage(), e);
