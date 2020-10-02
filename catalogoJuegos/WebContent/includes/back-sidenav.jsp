@@ -20,7 +20,8 @@
                                 <div class="sb-nav-link-icon"><i class="fa fa-check-circle-o"></i></div>
                                 Usuarios
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="views/backoffice/categorias">
+                            
                                 <div class="sb-nav-link-icon"><i class="fa fa-plus-circle"></i></div>
                                 Categorias
                             </a>
