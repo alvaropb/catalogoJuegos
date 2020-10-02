@@ -1,0 +1,10 @@
+com.UF2176.act1_alvaro
+com.catalogoJuegos.controller
+com.catalogoJuegos.controller.api
+com.catalogoJuegos.filter
+com.catalogoJuegos.listenner
+com.catalogoJuegos.modelo
+com.catalogoJuegos.modelo.dao
+com.catalogoJuegos.modelo.impl
+com.catalogoJuegos.modelo.pojo
+com.catalogoJuegos.utilidades

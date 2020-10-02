@@ -18,3 +18,21 @@ function convertir(){
 	
 		document.getElementById("pass").value=hash;
 }
+function buscarUsuario(event) {
+	 //console.debug(event);
+	 const nombre = event.target.value;
+	 console.debug(`valor del input ${nombre}`);
+	 
+	 let elNombreHelp = document.getElementById('nombreHelp');
+	 
+	 //TODO llamada Ajax
+	 if ( nombre == 'ander' ){
+	  elNombreHelp.innerHTML = 'nombre no disponible';
+	  
+	 }else{
+	  elNombreHelp.innerHTML = 'nombre disponible';
+	  
+	 }
+	 
+	 
+	}
