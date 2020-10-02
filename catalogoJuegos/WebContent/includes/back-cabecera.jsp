@@ -24,7 +24,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="inicio">Catalogo Juegos</a>
-
+			<a class="nav-item nav-link" href="doc/index.html">Javadoc </a>
 
             <!-- Navbar-->  
 			<div class="ml-auto mr-0 mr-md-3 my-2 my-md-0">

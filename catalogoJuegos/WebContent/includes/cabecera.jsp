@@ -48,6 +48,7 @@
 	      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego?id=0">Crear Juegos </a>
 	      <a class="nav-item nav-link ${(param.activa eq 'listado_categorias')?'active':'' }" href="crear-categoria">Listado categorias </a>
 	      <a class="nav-item nav-link ${(usuario.rol.id eq 1)?'active text-success':'' }" href="views/frontoffice/inicio">Panel frontoffice </a>
+	     
      </c:if>
 		<div class="dropdown">
 			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,7 +60,7 @@
 				    </c:forEach>
 			  </div>
 		</div>
-    
+    	<a class="nav-item nav-link" href="doc/index.html">Javadoc </a>
      </div>
   </div>
   
