@@ -46,7 +46,6 @@
 	      <a class="nav-item nav-link ${(param.activa eq 'listado_juegos')?'active':'' }" href="inicio?idCategoria=0">Listado Juegos </a>
 	      <a class="nav-item nav-link ${(param.activa eq 'ultimos_juegos')?'active':'' }" href="inicio?idCategoria=-1">Juegos por categoria</a>
 	      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego?id=0">Crear Juegos </a>
-	      <a class="nav-item nav-link ${(param.activa eq 'listado_categorias')?'active':'' }" href="crear-categoria">Listado categorias </a>
 	      <a class="nav-item nav-link ${(usuario.rol.id eq 1)?'active text-success':'' }" href="views/frontoffice/inicio">Panel frontoffice </a>
 	     
      </c:if>
