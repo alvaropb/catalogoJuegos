@@ -3,6 +3,8 @@
 <jsp:include page="../../includes/back-sidenav.jsp"/>
 <jsp:include page="../../includes/alerta.jsp"/>
 	
+	<a  href="views/backoffice/crear-juegos" class="btn btn-primary my-3">Crear juego</a>
+	
 	<form action="views/backoffice/juegos" method="post">
 			 <button type="submit" class="btn btn-primary my-3">validar juegos</button>
 			 <table class="table" > 
@@ -44,7 +46,7 @@
 					    		<td><a href="views/backoffice/crear-juegos?id=${juego.id}"><i class="fas fa-edit mx-3"></i></a>
 					    			
 					    			<a  onclick="confirmar('${juego.nombre}')"
-					    			 href="views/backffice/eliminar-juego?id=${juego.id}"><i class="fas fa-trash-alt"></i></a>
+					    			 href="views/backoffice/eliminar-juego?id=${juego.id}"><i class="fas fa-trash-alt"></i></a>
 					    			 
 					    			 
 					    		</td>
