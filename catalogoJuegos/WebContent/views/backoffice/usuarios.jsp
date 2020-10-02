@@ -3,8 +3,8 @@
 <jsp:include page="../../includes/back-sidenav.jsp"/>
 <jsp:include page="../../includes/alerta.jsp"/>
 	
-	<form action="views/backoffice/usuarios" method="post">
-			 <button type="submit" class="btn btn-primary my-3">validar juegos</button>
+<div class="container">
+	<h1>Listado de usuarios</h1>
 			 <table class="table" > 
 				  <thead class="thead-dark">
 				    <tr>
@@ -37,5 +37,5 @@
 				  </tbody>
 				
 			</table>
-		</form> 
+</div>
   	<jsp:include page="../../includes/back-footer.jsp"/>                
