@@ -1,14 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-
-<jsp:include page="../../includes/cabecera.jsp">
-	<jsp:param value="Inicio | Categorias" name="pagina"/>
-	<jsp:param value="listado_categorias" name="activa"/>	
-</jsp:include>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="../../includes/back-cabecera.jsp"/>
+<jsp:include page="../../includes/back-sidenav.jsp"/>
+<jsp:include page="../../includes/alerta.jsp"/>
 
 
 <div class="container">
 	<h1>Listado de categorias</h1>
-	<a href="crear-categoria?idCategoria=0">Crear categoria</a>
+	<a href="views/backoffice/categorias?idCategoria=0" class="btn btn-primary my-3">Crear categoria</a>
 
 
 	 <table class="table" > 
@@ -24,10 +22,10 @@
 			    	<tr>
 			    		<td>${categoria.id}</td>
 			    		<td>${categoria.nombre}</td>
-			    		<td><a href="crear-categoria?idCategoria=${categoria.id}"><i class="fas fa-edit mx-3"></i></a>
+			    		<td><a href="views/backoffice/categorias?idCategoria=${categoria.id}"><i class="fas fa-edit mx-3"></i></a>
 			    			
 			    			<a  onclick="confirmar('${categoria.nombre}')"
-			    			 href="crear-categoria?idCategoria=${categoria.id}&operacion=2"><i class="fas fa-trash-alt"></i></a>
+			    			 href="views/backoffice/categorias?idCategoria=${categoria.id}&operacion=2"><i class="fas fa-trash-alt"></i></a>
 			    			 
 			    		</td>
 			    																																									
@@ -39,5 +37,4 @@
 	</table> 
 </div>
 
-<c:import url="../../includes/pie.jsp">
-</c:import>
+<jsp:include page="../../includes/back-footer.jsp"/>           

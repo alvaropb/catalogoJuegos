@@ -1,9 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-
-<jsp:include page="../../includes/cabecera.jsp">
-	<jsp:param value="Inicio | Juegos" name="pagina"/>
-	<jsp:param value="crear_juego" name="activa"/>	
-</jsp:include>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="../../includes/back-cabecera.jsp"/>
+<jsp:include page="../../includes/back-sidenav.jsp"/>
+<jsp:include page="../../includes/alerta.jsp"/>
 
 
 <main class="container">
@@ -12,7 +10,7 @@
 
 	
 
-	<form action="crear-categoria" method="post">
+	<form action="views/backoffice/categorias" method="post">
 
 	  		
 	  		<div class="form-group">
@@ -36,11 +34,11 @@
 	
 
 
-</main>
 
 
 
 
+<jsp:include page="../../includes/back-footer.jsp"/>     
 
 
 
