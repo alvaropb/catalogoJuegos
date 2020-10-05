@@ -48,10 +48,12 @@ public class JuegosFrontofficeController extends HttpServlet {
 				// productos sin validar
 				juegos = juegoDAO.getAllByUser(usu.getId(), false);
 
-			} else {
+			} else if("1".equals(validados)) {
 				// productos validados
 				juegos = juegoDAO.getAllByUser(usu.getId(), true);
-
+			}else {
+				juegos = juegoDAO.getAllByUser(usu.getId(), false);
+				juegos.addAll(juegoDAO.getAllByUser(usu.getId(), true));
 			}
 
 		} catch (Exception e) {
