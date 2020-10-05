@@ -13,7 +13,7 @@
 	                                <div class="card bg-primary text-white mb-4">
 	                                    <div class="card-body">JUEGOS TOTALES<h1> ${resumen.juegosTotales }</h1></div>
 	                                    <div class="card-footer d-flex align-items-center justify-content-between">
-	                                        <a class="small text-white stretched-link" href="#">ver detalle</a>
+	                                        <a class="small text-white stretched-link" href="views/frontoffice/juegos?validar=0">ver detalle</a>
 	                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
 	                                    </div>
 	                                </div>
@@ -22,7 +22,7 @@
 	                                <div class="card bg-danger text-white mb-4">
 	                                    <div class="card-body">PENDIENTES DE VALIDAR<h1> ${resumen.juegosPendientes }</h1></div>
 	                                    <div class="card-footer d-flex align-items-center justify-content-between">
-	                                        <a class="small text-white stretched-link" href="#">ver detalle</a>
+	                                        <a class="small text-white stretched-link" href="views/frontoffice/juegos">ver detalle</a>
 	                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
 	                                    </div>
 	                                </div>
@@ -31,7 +31,7 @@
 	                                <div class="card bg-success text-white mb-4">
 	                                    <div class="card-body">JUEGOS VALIDADOS <h1> ${resumen.juegosValidados }</h1></div>
 	                                    <div class="card-footer d-flex align-items-center justify-content-between">
-	                                        <a class="small text-white stretched-link" href="#">ver detalle</a>
+	                                        <a class="small text-white stretched-link" href="views/frontoffice/juegos?validar=1">ver detalle</a>
 	                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
 	                                    </div>
 	                                </div>
