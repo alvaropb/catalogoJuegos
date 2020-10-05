@@ -62,7 +62,8 @@ public class FrontofficeFilter implements Filter {
 			LOG.error("Se intento entrar en :"+req.getLocalAddr()+"  desde:"+req.getLocalAddr());
 		}else if (Rol.ADMINISTRADOR==usu.getRol().getId()) {// si usu=admin
 			LOG.error("Se intento entrar en :"+req.getLocalAddr()+"  desde:"+req.getLocalAddr());
-			res.sendRedirect(contextPath+"/views/backoffice/index.jsp");
+			
+			req.getRequestDispatcher("/views/backoffice/inicio").forward(req, res);
 		}else {// usuario es usu normal->frontoffice
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
