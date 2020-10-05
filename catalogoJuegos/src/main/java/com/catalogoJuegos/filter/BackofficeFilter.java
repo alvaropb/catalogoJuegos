@@ -71,7 +71,8 @@ public class BackofficeFilter implements Filter {
 			
 		}else {// si usuario es normal-->frontoffice
 			LOG.trace("intento de entrar a :"+servletRequest.getPathInfo()+" desde:"+servletRequest.getLocalAddr());
-			servletResponse.sendRedirect(contextPath+"/views/frontoffice/index.jsp");
+			// /views/frontoffice/inicio
+			servletRequest.getRequestDispatcher("/views/frontoffice/inicio").forward(servletRequest, servletResponse);
 		}
 		
 	}
