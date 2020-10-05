@@ -17,7 +17,9 @@ import com.catalogoJuegos.modelo.pojo.Juego;
 import com.catalogoJuegos.utilidades.Constantes;
 
 /**
- * Servlet para que los administradores validen juegos. 
+ * Servlet para que los administradores validen juegos.
+ * @version 1.0 
+ * @author Alvaro PB
  */
 @WebServlet("/views/backoffice/juegos")
 public class BackofficeJuegos extends HttpServlet {
