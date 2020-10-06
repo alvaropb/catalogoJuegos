@@ -42,14 +42,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-     <c:if test="${not empty usuario }">
-	      <a class="nav-item nav-link ${(param.activa eq 'listado_juegos')?'active':'' }" href="inicio?idCategoria=0">Listado Juegos </a>
-	      <a class="nav-item nav-link ${(param.activa eq 'ultimos_juegos')?'active':'' }" href="inicio?idCategoria=-1">Juegos por categoria</a>
-	      <a class="nav-item nav-link ${(param.activa eq 'crear_juego')?'active':'' }" href="crear-juego?id=0">Crear Juegos </a>
-	      <a class="nav-item nav-link ${(usuario.rol.id eq 1)?'active text-success':'' }" href="views/frontoffice/inicio">Mi Panel</a>
-	     
-     </c:if>
-		<div class="dropdown">
+   		<div class="dropdown">
 			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    Categorias
 			  </button>
@@ -59,6 +52,13 @@
 				    </c:forEach>
 			  </div>
 		</div>
+	     <c:if test="${not empty usuario }">
+		      <a class="nav-item nav-link ${(param.activa eq 'listado_juegos')?'active':'' }" href="inicio?idCategoria=0">Listado Juegos </a>
+		      <a class="nav-item nav-link ${(param.activa eq 'ultimos_juegos')?'active':'' }" href="inicio?idCategoria=-1">Juegos por categoria</a>
+		      <a class="nav-item nav-link ${(usuario.rol.id eq 1)?'active text-success':'' }" href="views/frontoffice/inicio">Mi Panel</a>
+		     
+	     </c:if>
+
     	<a class="nav-item nav-link" href="doc/index.html">Javadoc </a>
      </div>
   </div>
