@@ -9,7 +9,6 @@
 <div class="container">
 	<h1>Listado de juegos</h1>
 	
-	<a href="crawler">crawler para recolectar datos de una pagina</a>
 
 
 
@@ -21,7 +20,7 @@
 		      <th>Precio</th>
 		      <th>Imagen</th>
 		      <th>Categoria</th>
-		      <th>Operaciones</th>
+		      
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -32,12 +31,7 @@
 			    		<td>${juego.precio}</td>
 			    		<td><img  src="${juego.imagen}" height="100" width="auto"></td>
 			    		<td>${juego.categoria.nombre}</td>
-			    		<td><a href="crear-juego?id=${juego.id}"><i class="fas fa-edit mx-3"></i></a>
-			    			
-			    			<a  onclick="confirmar('${juego.nombre}')"
-			    			 href="eliminar-juego?id=${juego.id}"><i class="fas fa-trash-alt"></i></a>
-			    			 
-			    		</td>
+
 			    																																									
 			    	</tr>																																																																																		
 			    </c:forEach>
