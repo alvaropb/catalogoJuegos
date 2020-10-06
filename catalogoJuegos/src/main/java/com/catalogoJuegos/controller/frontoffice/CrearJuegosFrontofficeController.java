@@ -1,4 +1,4 @@
-package com.catalogoJuegos.controller;
+package com.catalogoJuegos.controller.frontoffice;
 
 import java.io.IOException;
 import java.math.BigDecimal;

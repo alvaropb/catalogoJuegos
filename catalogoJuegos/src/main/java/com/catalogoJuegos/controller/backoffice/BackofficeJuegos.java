@@ -1,4 +1,4 @@
-package com.catalogoJuegos.controller;
+package com.catalogoJuegos.controller.backoffice;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.catalogoJuegos.controller;
+package com.catalogoJuegos.controller.backoffice;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -33,9 +33,9 @@ import com.catalogoJuegos.utilidades.Constantes;
  * Servlet implementation class CrearJuegoController
  */
 @WebServlet(description = "Controller para crear un registro de un nuevo juego", urlPatterns = { "/views/backoffice/crear-juegos" })
-public class CrearJuegoController extends HttpServlet {
+public class CrearJuegoBackofficeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG=Logger.getLogger(CrearJuegoController.class);
+	private static final Logger LOG=Logger.getLogger(CrearJuegoBackofficeController.class);
 	private static ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	private static Validator validator = factory.getValidator();
 	private static JuegoDAOImpl dao = JuegoDAOImpl.getInstance();

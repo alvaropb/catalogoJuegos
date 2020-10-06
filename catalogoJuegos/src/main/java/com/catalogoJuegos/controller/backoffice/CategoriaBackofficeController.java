@@ -1,4 +1,4 @@
-package com.catalogoJuegos.controller;
+package com.catalogoJuegos.controller.backoffice;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,9 +22,9 @@ import com.catalogoJuegos.utilidades.Constantes;
  * Servlet implementation class CategoriaController
  */
 @WebServlet("/views/backoffice/categorias")
-public class CategoriaController extends HttpServlet {
+public class CategoriaBackofficeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG = Logger.getLogger(CategoriaController.class);
+	private static final Logger LOG = Logger.getLogger(CategoriaBackofficeController.class);
 	private static final CategoriaDAOImpl categoriaDao = CategoriaDAOImpl.getInstance();
 
 	/**

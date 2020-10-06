@@ -1,4 +1,4 @@
-package com.catalogoJuegos.controller;
+package com.catalogoJuegos.controller.backoffice;
 
 import java.io.IOException;
 
@@ -20,9 +20,9 @@ import com.catalogoJuegos.utilidades.Constantes;
  * Servlet implementation class EliminarJuegoController
  */
 @WebServlet(description = "Servlet para eliminar juegos", urlPatterns = { "/views/backoffice/eliminar-juego" })
-public class EliminarJuegoController extends HttpServlet {
+public class EliminarJuegoBackofficeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG=Logger.getLogger(EliminarJuegoController.class );
+	private static final Logger LOG=Logger.getLogger(EliminarJuegoBackofficeController.class );
 
 
 	/**
