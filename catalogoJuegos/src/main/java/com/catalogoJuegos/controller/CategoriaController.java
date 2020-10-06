@@ -67,6 +67,7 @@ public class CategoriaController extends HttpServlet {
 					alerta.setMensaje(Constantes.DELETE_CORRECTO);
 					alerta.setTipo(Constantes.SUCCESS);
 					request.setAttribute(Constantes.CATEGORIAS, categorias);
+					request.setAttribute(Constantes.ALERTA, alerta);
 				}
 				
 				
@@ -87,11 +88,12 @@ public class CategoriaController extends HttpServlet {
 				alerta.setMensaje(Constantes.ERROR_INTEGRIDAD);
 				alerta.setTipo(Constantes.DANGER);
 			}
+			request.setAttribute(Constantes.ALERTA, alerta);
 		}
 		 finally {
 			request.setAttribute(Constantes.CATEGORIA, categoria);
 			request.setAttribute(Constantes.MSJ, msj);
-			request.setAttribute(Constantes.ALERTA, alerta);
+			
 			request.getRequestDispatcher(view).forward(request, response);
 		}
 
