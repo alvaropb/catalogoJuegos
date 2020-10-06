@@ -17,7 +17,7 @@
 	                                <div class="card bg-primary text-white mb-4">
 	                                    <div class="card-body">JUEGOS TOTALES<h1> ${juegosTotales }</h1></div>
 	                                    <div class="card-footer d-flex align-items-center justify-content-between">
-	                                        <a class="small text-white stretched-link" href="#">ver detalle</a>
+	                                        <a class="small text-white stretched-link" href="views/backoffice/juegos">ver detalle</a>
 	                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
 	                                    </div>
 	                                </div>
@@ -26,7 +26,7 @@
 	                                <div class="card bg-danger text-white mb-4">
 	                                    <div class="card-body">JUEGOS TOTALES PENDIENTES DE VALIDAR<h1>${juegosTotalesPendientes }</h1></div>
 	                                    <div class="card-footer d-flex align-items-center justify-content-between">
-	                                        <a class="small text-white stretched-link" href="#">ver detalle</a>
+	                                        <a class="small text-white stretched-link" href="views/backoffice/juegos">ver detalle</a>
 	                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
 	                                    </div>
 	                                </div>
@@ -35,7 +35,7 @@
 	                                <div class="card bg-secondary text-white mb-4">
 	                                    <div class="card-body">CATEGORIAS  <h1>${categorias.size() }  </h1></div>
 	                                    <div class="card-footer d-flex align-items-center justify-content-between">
-	                                        <a class="small text-white stretched-link" href="#">ver detalle</a>
+	                                        <a class="small text-white stretched-link" href="views/backoffice/categorias">ver detalle</a>
 	                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
 	                                    </div>
 	                                </div>
@@ -44,7 +44,7 @@
 	                                <div class="card bg-success text-white mb-4">
 	                                    <div class="card-body">USUARIOS TOTALES  <h1>${usuariosTotales } </h1></div>
 	                                    <div class="card-footer d-flex align-items-center justify-content-between">
-	                                        <a class="small text-white stretched-link" href="#">ver detalle</a>
+	                                        <a class="small text-white stretched-link" href="views/backoffice/usuarios">ver detalle</a>
 	                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
 	                                    </div>
 	                                </div>
