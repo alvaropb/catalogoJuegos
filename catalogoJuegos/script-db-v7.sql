@@ -153,6 +153,18 @@ SET character_set_client = utf8;
  1 AS `pendientes`*/;
 SET character_set_client = @saved_cs_client;
 
+CREATE OR REPLACE
+ VIEW catalogoJuegos.v_usuarios_juegos AS
+select
+    j.id_usuario AS id_usuario,
+    count(j.fecha_creacion) AS total,
+    count(j.fecha_validado) AS validados,
+    sum(isnull(j.fecha_validado)) AS pendientes
+from
+    catalogoJuegos.juegos j
+group by
+    j.id_usuario
+
 --
 -- Dumping routines for database 'catalogoJuegos'
 --
