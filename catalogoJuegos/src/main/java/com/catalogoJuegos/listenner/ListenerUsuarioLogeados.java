@@ -48,7 +48,8 @@ public class ListenerUsuarioLogeados implements HttpSessionListener, HttpSession
      * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
      */
     public void sessionDestroyed(HttpSessionEvent arg0)  { 
-         // TODO Auto-generated method stub
+
+    	
     }
 
 	/**
