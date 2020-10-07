@@ -26,7 +26,7 @@
 	                                <div class="card bg-danger text-white mb-4">
 	                                    <div class="card-body">JUEGOS TOTALES PENDIENTES DE VALIDAR<h1>${juegosTotalesPendientes }</h1></div>
 	                                    <div class="card-footer d-flex align-items-center justify-content-between">
-	                                        <a class="small text-white stretched-link" href="views/backoffice/juegos">ver detalle</a>
+	                                        <a class="small text-white stretched-link" href="views/backoffice/juegos?noValidado=1">ver detalle</a>
 	                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
 	                                    </div>
 	                                </div>
