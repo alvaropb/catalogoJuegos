@@ -39,7 +39,13 @@ public class BackofficeJuegos extends HttpServlet {
 		try {
 
 			juegos = new ArrayList<Juego>();
-			juegos = dao.getAll(true);
+			
+			String noValidado=request.getParameter("noValidado");
+			if (noValidado==null) {//no enviamos desde la vista noValidado
+				juegos = dao.getAll(true);
+			}else {
+				juegos = dao.getAll(false);
+			}
 
 		} catch (Exception e) {
 			LOG.error(e);
