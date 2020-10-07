@@ -83,6 +83,12 @@ public class JuegoDAOImpl implements JuegoDAO {
 	private static final String GET_NUM_JUEGOS="{CALL pa_juego_num_total(?) }";
 	private static final String GET_NUM_JUEGOS_PENDIENTES="{CALL pa_juego_num_totalPendiente(?) }";
 	private static final String GET_NUM_USUARIOS = "{CALL pa_usuario_num_total(?)}";
+	private static final String GET_ALL_NO_VALIDADOS = "SELECT" +camposJuegos+
+									"FROM juegos j \n" + 
+									"INNER JOIN categorias c ON j.id_categoria =c.id_categoria\n" + 
+									"INNER JOIN usuarios u ON j.id_usuario =u.id\n" + 
+									"WHERE j.fecha_validado IS NULL\n" + 
+									"ORDER BY j.id DESC LIMIT 500";
 	private static JuegoDAOImpl INSTANCE = null;
 
 	private synchronized static void createInstance() {
@@ -182,7 +188,8 @@ public class JuegoDAOImpl implements JuegoDAO {
 		ArrayList<Juego> juegos = new ArrayList<Juego>();
 
 		try (Connection conn = ConnectionManager.getConnection(); // crear la conexion con la BBDD
-				PreparedStatement pst = conn.prepareStatement(GET_ALL_TODOS); // preparar el statement
+				
+				PreparedStatement pst = conn.prepareStatement((todos)?GET_ALL_TODOS:GET_ALL_NO_VALIDADOS ); // preparar el statement
 				
 				ResultSet rs = pst.executeQuery();) {// recoger el resultado en un result set
 			LOG.trace(pst);
