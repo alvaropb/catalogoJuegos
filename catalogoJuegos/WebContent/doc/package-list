@@ -1,6 +1,8 @@
 com.UF2176.act1_alvaro
 com.catalogoJuegos.controller
 com.catalogoJuegos.controller.api
+com.catalogoJuegos.controller.backoffice
+com.catalogoJuegos.controller.frontoffice
 com.catalogoJuegos.filter
 com.catalogoJuegos.listenner
 com.catalogoJuegos.modelo
